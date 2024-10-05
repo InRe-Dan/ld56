@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://spider/legs.gd" id="3_yp1od"]
 
 [sub_resource type="Gradient" id="Gradient_b7iuv"]
-offsets = PackedFloat32Array(0, 0.59375, 0.634375, 0.996875)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.971787, 0, 0, 0, 0, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.59375, 0.6, 0.996875)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jljql"]
 gradient = SubResource("Gradient_b7iuv")
@@ -15,8 +15,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_1whfc"]
-offsets = PackedFloat32Array(0, 0.59375, 0.634375, 0.996875)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.971787, 0, 0, 0, 0, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.59375, 0.60625, 0.996875)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_twskm"]
 gradient = SubResource("Gradient_1whfc")
@@ -94,7 +94,8 @@ shape = SubResource("CircleShape2D_3imjw")
 collision_mask = 2
 
 [node name="WebCast" type="RayCast2D" parent="."]
-target_position = Vector2(1920, 0)
+position = Vector2(0, -59)
+target_position = Vector2(0, -100)
 collision_mask = 2
 
 [node name="Legs" type="Node2D" parent="."]
@@ -143,6 +144,7 @@ metadata/_local_pose_override_enabled_ = true
 position = Vector2(-0.107306, -0.459028)
 scale = Vector2(0.553522, 0.171015)
 points = PackedVector2Array(0, 0, 2.86277, 0.220215, 7.60832, 0.585266, 30.5221, 10.876)
+default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
@@ -153,6 +155,7 @@ metadata/_local_pose_override_enabled_ = true
 position = Vector2(-6.54321, 6.80228)
 scale = Vector2(0.345679, 0.244191)
 points = PackedVector2Array(20.4605, -25.9337, 65.6356, -27.9966)
+default_color = Color(0, 0, 0, 1)
 
 [node name="L1" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(-17, 3)
@@ -165,6 +168,7 @@ metadata/_local_pose_override_enabled_ = true
 position = Vector2(-0.107306, -0.459028)
 scale = Vector2(0.553522, 0.171015)
 points = PackedVector2Array(0, 0, 2.86277, 0.220215, 7.60832, 0.585266, 30.5221, 10.876)
+default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/L1"]
 position = Vector2(17, 1)
@@ -177,3 +181,4 @@ metadata/_local_pose_override_enabled_ = true
 position = Vector2(-3.86452, 6.48502)
 scale = Vector2(0.162642, 0.244191)
 points = PackedVector2Array(20.4605, -25.9337, 12.5831, 36.0064)
+default_color = Color(0, 0, 0, 1)

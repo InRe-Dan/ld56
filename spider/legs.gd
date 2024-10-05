@@ -28,13 +28,10 @@ func _process(delta: float) -> void:
 		if area.has_overlapping_bodies():
 			for object : PhysicsBody2D in area.get_overlapping_bodies():
 				for object_child : Node in object.get_children():
-					print(object_child)
 					if object_child is CollisionPolygon2D:
 						var points : PackedVector2Array = object_child.polygon
 						var closest : Vector2 = NearestPointOnLine(points[0], points[1], node.global_position)
 						if closest != Vector2(-1, -1):
 							best_dist = closest.distance_to(node.global_position)
 							target = closest
-							print("1")
-		print(target)
 		marker.global_position = lerp(marker.global_position, target, 5 * delta)
