@@ -11,6 +11,31 @@ var moveable_joint_scene : PackedScene = preload("res://web/moveable_web_joint.t
 @onready var web_scout : ShapeCast2D = $WebScout
 @onready var joint_scout : ShapeCast2D = $JointScout
 
+## Turns a web's two joints into one, destroying the web in the process.
+func weld(web : Web) -> void:
+	var survivor : WebJoint = null
+	var killed : WebJoint = null
+	if (web.point_a.body is StaticBody2D):
+		survivor = web.point_a
+		killed = web.point_b
+	elif (web.point_b.body is StaticBody2D):
+		survivor = web.point_b
+		killed = web.point_a
+	else:
+		# Choose arbitrarily
+		survivor = web.point_a
+		killed = web.point_b
+	
+	for connected_web : Web in killed.webs:
+		if web.point_a == killed:
+			web.point_a = survivor
+		if web.point_b == killed:
+			web.point_b = survivor
+	print("Freed ", killed)
+	print("Didn't free ", survivor)
+	web.destroy()
+	killed.queue_free()
+
 ## Splits a web into two, destroying the original. Returns the two segments' connecting joint.
 func split(web : Web, pos : Vector2) -> WebJoint:
 	var new_joint : WebJoint = moveable_joint_scene.instantiate()

@@ -19,6 +19,7 @@ var damping: float = 64.0
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
+@onready var web_factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 
 var debug_colors: Array = [Color.AQUA, Color.AQUAMARINE, Color.CORAL, Color.CADET_BLUE, Color.DARK_SALMON,
 Color.FIREBRICK, Color.LIGHT_CORAL, Color.GOLD, Color.YELLOW_GREEN, Color.VIOLET]
@@ -40,7 +41,9 @@ func _physics_process(delta: float) -> void:
 		point_a.body.apply_force(+ spring_force)
 	if point_b.body is RigidBody2D:
 		point_b.body.apply_force(- spring_force)
-
+		
+	if point_a.global_position.distance_squared_to(point_b.global_position) < 50:
+		web_factory.weld(self)
 
 ## Called every frame
 func _process(delta: float) -> void:
