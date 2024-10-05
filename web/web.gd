@@ -18,8 +18,8 @@ var spring: DampedSpringJoint2D
 
 # Spring parameters
 var resting_length: float = 0
-var stiffness: float = 500
-var damping: float = 64.0
+var stiffness: float = 640.0
+var damping: float = 1.0
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	if point_b.body is RigidBody2D:
 		point_b.body.apply_force(- spring_force)
 		
-	if point_a.global_position.distance_squared_to(point_b.global_position) < 50:
+	if point_a.global_position.distance_squared_to(point_b.global_position) < Global.web_length * 2:
 		web_factory.weld(self)
 	
 	# Draw web

@@ -9,6 +9,7 @@
 radius = 30.0
 
 [sub_resource type="Gradient" id="Gradient_xskm1"]
+colors = PackedColorArray(1, 1, 1, 0.462745, 1, 1, 1, 0.462745)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4s3g3"]
 gradient = SubResource("Gradient_xskm1")
@@ -64,7 +65,6 @@ shape = SubResource("CircleShape2D_3imjw")
 collision_mask = 2
 
 [node name="WebCast" type="RayCast2D" parent="."]
-position = Vector2(50, 0)
 target_position = Vector2(1920, 0)
 collision_mask = 2
 

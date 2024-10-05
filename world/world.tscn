@@ -1,32 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=4 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hi3fh"]
-
-[sub_resource type="Gradient" id="Gradient_u666v"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kms8m"]
-gradient = SubResource("Gradient_u666v")
-width = 20
-height = 20
-
-[sub_resource type="GDScript" id="GDScript_1iwkk"]
-script/source = "extends CharacterBody2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	velocity = global_position.direction_to(get_global_mouse_position()).normalized() * 50
-	move_and_slide()
-"
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_m6c00")
@@ -62,31 +38,3 @@ default_color = Color(0, 0, 0, 1)
 [node name="CollisionMask" type="CollisionPolygon2D" parent="RightTree"]
 build_mode = 1
 polygon = PackedVector2Array(1440, 0, 1320, 1080)
-
-[node name="WebTest" type="Node2D" parent="."]
-
-[node name="FallingBlock" type="RigidBody2D" parent="WebTest"]
-position = Vector2(961, 304)
-constant_force = Vector2(0, 30)
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="WebTest/FallingBlock"]
-shape = SubResource("RectangleShape2D_hi3fh")
-
-[node name="Sprite2D" type="Sprite2D" parent="WebTest/FallingBlock"]
-texture = SubResource("GradientTexture2D_kms8m")
-
-[node name="StaticBlock" type="CharacterBody2D" parent="WebTest"]
-position = Vector2(959, 254)
-script = SubResource("GDScript_1iwkk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WebTest/StaticBlock"]
-shape = SubResource("RectangleShape2D_hi3fh")
-
-[node name="Sprite2D2" type="Sprite2D" parent="WebTest/StaticBlock"]
-texture = SubResource("GradientTexture2D_kms8m")
-
-[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="WebTest"]
-position = Vector2(960, 254)
-node_a = NodePath("../StaticBlock")
-node_b = NodePath("../FallingBlock")
-disable_collision = false

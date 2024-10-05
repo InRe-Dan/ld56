@@ -65,9 +65,9 @@ func _get_intersection_strength(ray: RayCast2D) -> float:
 
 ## Fires a web at the current mouse position
 func shoot_web() -> void:
-	#web_cast.global_rotation = 0
-	#web_cast.target_position = global_position.direction_to(get_global_mouse_position()) * 5000
-	#web_cast.force_raycast_update()
+	web_cast.global_rotation = 0
+	web_cast.target_position = global_position.direction_to(get_global_mouse_position()) * 5000
+	web_cast.force_raycast_update()
 	if web_cast.is_colliding():
 		factory.create_web(global_position, web_cast.get_collision_point())
 	

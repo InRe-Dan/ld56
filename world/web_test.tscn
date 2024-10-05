@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcty7w0md2ya3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hi3fh"]
+
+[sub_resource type="Gradient" id="Gradient_u666v"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kms8m"]
+gradient = SubResource("Gradient_u666v")
+width = 20
+height = 20
+
+[sub_resource type="GDScript" id="GDScript_1iwkk"]
+script/source = "extends CharacterBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	velocity = global_position.direction_to(get_global_mouse_position()).normalized() * 50
+	move_and_slide()
+"
+
+[node name="WebTest" type="Node2D"]
+
+[node name="FallingBlock" type="RigidBody2D" parent="."]
+position = Vector2(961, 304)
+constant_force = Vector2(0, 30)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FallingBlock"]
+shape = SubResource("RectangleShape2D_hi3fh")
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingBlock"]
+texture = SubResource("GradientTexture2D_kms8m")
+
+[node name="StaticBlock" type="CharacterBody2D" parent="."]
+position = Vector2(959, 254)
+script = SubResource("GDScript_1iwkk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBlock"]
+shape = SubResource("RectangleShape2D_hi3fh")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBlock"]
+texture = SubResource("GradientTexture2D_kms8m")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2(960, 254)
+node_a = NodePath("../StaticBlock")
+node_b = NodePath("../FallingBlock")
+disable_collision = false
