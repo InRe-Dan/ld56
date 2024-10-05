@@ -1,32 +1,57 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3ud2rqlsvy6p"]
+[gd_scene load_steps=13 format=3 uid="uid://d3ud2rqlsvy6p"]
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
-[ext_resource type="Texture2D" uid="uid://cpetqx71af6pt" path="res://icon.svg" id="2_fopp8"]
+[ext_resource type="Script" path="res://spider/legs.gd" id="3_yp1od"]
+
+[sub_resource type="Gradient" id="Gradient_b7iuv"]
+offsets = PackedFloat32Array(0, 0.59375, 0.634375, 0.996875)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.971787, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jljql"]
+gradient = SubResource("Gradient_b7iuv")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_1whfc"]
+offsets = PackedFloat32Array(0, 0.59375, 0.634375, 0.996875)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.971787, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_twskm"]
+gradient = SubResource("Gradient_1whfc")
+width = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cslph"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3imjw"]
 radius = 30.0
 
-[sub_resource type="Gradient" id="Gradient_xskm1"]
-colors = PackedColorArray(1, 1, 1, 0.462745, 1, 1, 1, 0.462745)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4s3g3"]
-gradient = SubResource("Gradient_xskm1")
-width = 30
-height = 30
+[sub_resource type="CircleShape2D" id="CircleShape2D_siiaj"]
+radius = 85.0235
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_cpe7q"]
-target_nodepath = NodePath("../../Sprite2D2")
+target_nodepath = NodePath("../LegTargets/R1/Marker2D")
 joint_one_bone_idx = 0
-joint_one_bone2d_node = NodePath("Bone2D")
+joint_one_bone2d_node = NodePath("R1")
 joint_two_bone_idx = 1
-joint_two_bone2d_node = NodePath("Bone2D/Bone2D2")
+joint_two_bone2d_node = NodePath("R1/Bone2D2")
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_mgb5j"]
+target_nodepath = NodePath("../LegTargets/L1/Marker2D")
+flip_bend_direction = true
+joint_one_bone_idx = 2
+joint_one_bone2d_node = NodePath("L1")
+joint_two_bone_idx = 3
+joint_two_bone2d_node = NodePath("L1/Bone2D2")
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_fuwid"]
 enabled = true
-modification_count = 1
+modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_cpe7q")
+modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_mgb5j")
 
 [node name="Spider" type="RigidBody2D"]
 collision_mask = 0
@@ -34,9 +59,13 @@ linear_damp = 4.0
 angular_damp = 1.0
 script = ExtResource("1_gma0t")
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = SubResource("GradientTexture2D_jljql")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_fopp8")
+position = Vector2(0, 15)
+texture = SubResource("GradientTexture2D_twskm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cslph")
@@ -68,32 +97,83 @@ collision_mask = 2
 target_position = Vector2(1920, 0)
 collision_mask = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(95, -59)
-texture = SubResource("GradientTexture2D_4s3g3")
-
 [node name="Legs" type="Node2D" parent="."]
+script = ExtResource("3_yp1od")
+
+[node name="RayCast2D" type="RayCast2D" parent="Legs"]
+
+[node name="LegTargets" type="Node2D" parent="Legs"]
+
+[node name="R1" type="Node2D" parent="Legs/LegTargets"]
+position = Vector2(80, -12)
+
+[node name="Marker2D" type="Marker2D" parent="Legs/LegTargets/R1"]
+
+[node name="Area2D" type="Area2D" parent="Legs/LegTargets/R1"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/LegTargets/R1/Area2D"]
+shape = SubResource("CircleShape2D_siiaj")
+
+[node name="L1" type="Node2D" parent="Legs/LegTargets"]
+position = Vector2(-73, -13)
+
+[node name="Area2D" type="Area2D" parent="Legs/LegTargets/L1"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs/LegTargets/L1/Area2D"]
+shape = SubResource("CircleShape2D_siiaj")
+
+[node name="Marker2D" type="Marker2D" parent="Legs/LegTargets/L1"]
+position = Vector2(0, 1)
 
 [node name="Skeleton2D" type="Skeleton2D" parent="Legs"]
 modification_stack = SubResource("SkeletonModificationStack2D_fuwid")
 
-[node name="Bone2D" type="Bone2D" parent="Legs/Skeleton2D"]
+[node name="R1" type="Bone2D" parent="Legs/Skeleton2D"]
+position = Vector2(15, 3)
 rotation = -0.555756
 scale = Vector2(3, 3)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
 
-[node name="Line2D2" type="Line2D" parent="Legs/Skeleton2D/Bone2D"]
+[node name="Line2D2" type="Line2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(-0.107306, -0.459028)
 scale = Vector2(0.553522, 0.171015)
 points = PackedVector2Array(0, 0, 2.86277, 0.220215, 7.60832, 0.585266, 30.5221, 10.876)
 
-[node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/Bone2D"]
+[node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
-[node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/Bone2D/Bone2D2"]
+[node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R1/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
 scale = Vector2(0.345679, 0.244191)
 points = PackedVector2Array(20.4605, -25.9337, 65.6356, -27.9966)
+
+[node name="L1" type="Bone2D" parent="Legs/Skeleton2D"]
+position = Vector2(-17, 3)
+rotation = -1.08407
+scale = Vector2(3, 3)
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Line2D2" type="Line2D" parent="Legs/Skeleton2D/L1"]
+position = Vector2(-0.107306, -0.459028)
+scale = Vector2(0.553522, 0.171015)
+points = PackedVector2Array(0, 0, 2.86277, 0.220215, 7.60832, 0.585266, 30.5221, 10.876)
+
+[node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/L1"]
+position = Vector2(17, 1)
+rotation = 1.7243
+scale = Vector2(0.999995, 0.999995)
+rest = Transform2D(1, 0, 0, 1, 17, 1)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L1/Bone2D2"]
+position = Vector2(-3.86452, 6.48502)
+scale = Vector2(0.162642, 0.244191)
+points = PackedVector2Array(20.4605, -25.9337, 12.5831, 36.0064)
