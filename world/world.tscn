@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://4a2wbnhvgulj"]
+
+[ext_resource type="Script" path="res://web/web_factory.gd" id="1_68jv2"]
+[ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
+[ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_m6c00")
+
+[node name="WebFactory" type="Node2D" parent="."]
+script = ExtResource("1_68jv2")
+
+[node name="Spider" parent="." instance=ExtResource("3_pypjb")]
+position = Vector2(544, 569)
+
+[node name="LeftTree" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="VisualMask" type="Line2D" parent="LeftTree"]
+points = PackedVector2Array(480, 0, 600, 1080)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="LeftTree"]
+build_mode = 1
+polygon = PackedVector2Array(480, 0, 600, 1080)
+
+[node name="RightTree" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="VisualMask" type="Line2D" parent="RightTree"]
+position = Vector2(0, -1)
+points = PackedVector2Array(1440, 0, 1320, 1080)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="RightTree"]
+build_mode = 1
+polygon = PackedVector2Array(1440, 0, 1320, 1080)
