@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bilrm8o5qns0m"]
+
+[ext_resource type="Script" path="res://insects/insect.gd" id="1_r2g3x"]
+
+[node name="Insect" type="Node2D"]
+script = ExtResource("1_r2g3x")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmyotpujac7a"]
+
+[ext_resource type="Texture2D" uid="uid://cpetqx71af6pt" path="res://icon.svg" id="1_v1rba"]
+[ext_resource type="Script" path="res://insects/fly.gd" id="1_wqne1"]
+
+[sub_resource type="Gradient" id="Gradient_d67ep"]
+offsets = PackedFloat32Array(0, 0.412903, 0.690323, 0.777419)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.823883, 1, 1, 1, 0.0548387, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_svvyp"]
+gradient = SubResource("Gradient_d67ep")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_bp4ll"]
+offsets = PackedFloat32Array(0, 0.367925, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.339623, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_faphp"]
+size = Vector2(45, 45)
+
+[node name="Fly" type="Node2D"]
+script = ExtResource("1_wqne1")
+
+[node name="SpawnFlourish" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 500
+one_shot = true
+explosiveness = 1.0
+texture = SubResource("GradientTexture2D_svvyp")
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 38.67
+initial_velocity_max = 243.09
+color_ramp = SubResource("Gradient_bp4ll")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_v1rba")
+
+[node name="WebDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WebDetection"]
+shape = SubResource("RectangleShape2D_faphp")
