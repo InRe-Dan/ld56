@@ -24,6 +24,7 @@ func _ready() -> void:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
+	$Sprite2D2.global_position = get_global_mouse_position()
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	# Speed formula
