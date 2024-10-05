@@ -1,5 +1,5 @@
 ## Web segment class
-class_name Web extends RigidBody2D
+class_name Web extends StaticBody2D
 
 const debug_colors: Array = [Color.AQUA, Color.AQUAMARINE, Color.CORAL, Color.CADET_BLUE, Color.DARK_SALMON,
 Color.FIREBRICK, Color.LIGHT_CORAL, Color.GOLD, Color.YELLOW_GREEN, Color.VIOLET]
@@ -14,11 +14,17 @@ var point_b : WebJoint:
 		x.add_web(self)
 		point_b = x
 
-var spring: DampedSpringJoint2D
+var velocity : Vector2:
+	get():
+		var vel_a : Vector2 = Vector2.ZERO
+		var vel_b : Vector2 = Vector2.ZERO
+		if is_instance_valid(point_a): vel_a = point_a.velocity
+		if is_instance_valid(point_b): vel_b = point_b.velocity
+		return vel_a + vel_b
 
 # Spring parameters
-var stiffness: float = 25600.0
-var damping: float = 512.0
+var stiffness: float = 6400.0
+var damping: float = 256.0
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
@@ -40,12 +46,12 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
 	var magnitude: float = point_a.position.distance_to(point_b.position) * stiffness
 
-	var spring_force: Vector2 = (direction * magnitude - damping * (point_a.linear_velocity - point_b.linear_velocity)) * delta
+	var spring_force: Vector2 = (direction * magnitude - damping * (point_a.velocity - point_b.velocity)) * delta
 	if point_a.body is RigidBody2D:
 		point_a.body.apply_force(+ spring_force / 2)
 	if point_b.body is RigidBody2D:
 		point_b.body.apply_force(- spring_force / 2)
-		
+
 	if point_a.global_position.distance_squared_to(point_b.global_position) < Global.web_length * 4:
 		web_factory.weld(self)
 	

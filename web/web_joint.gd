@@ -1,11 +1,10 @@
 ## Web segment connection point
-class_name WebJoint extends Node2D
+class_name WebJoint extends PhysicsBody2D
 
-## Can be either static or rigid (for anchors and moveable points respectively)
 @export var body : PhysicsBody2D
 var webs : Array[Web]
 
-var linear_velocity : Vector2:
+var velocity : Vector2:
 	get:
 		if body is RigidBody2D:
 			return body.linear_velocity

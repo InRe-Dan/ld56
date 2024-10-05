@@ -2,8 +2,8 @@
 class_name WebFactory extends Node2D
 
 var web_scene : PackedScene = preload("res://web/web.tscn")
-var anchor_joint_scene : PackedScene = preload("res://web/anchor_web_joint.tscn")
-var moveable_joint_scene : PackedScene = preload("res://web/moveable_web_joint.tscn")
+var static_joint_scene : PackedScene = preload("res://web/static_joint.tscn")
+var rigid_joint_scene : PackedScene = preload("res://web/rigid_joint.tscn")
 
 @onready var web_scout: ShapeCast2D = $WebScout
 @onready var joint_scout : ShapeCast2D = $JointScout
@@ -34,7 +34,8 @@ func weld(web : Web) -> void:
 
 ## Splits a web into two, destroying the original. Returns the two segments' connecting joint.
 func split(web : Web, pos : Vector2) -> WebJoint:
-	var new_joint : WebJoint = moveable_joint_scene.instantiate()
+	print("split")
+	var new_joint : WebJoint = rigid_joint_scene.instantiate()
 	new_joint.global_position = pos
 	add_child(new_joint)
 	_create_web_segment(web.point_a.global_position.distance_to(new_joint.global_position), web.point_a, new_joint)
@@ -63,14 +64,14 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 
 	# First check if any pivots already exist here
 	if joint_scout.is_colliding():
-		joint = joint_scout.get_collider(0).get_parent()
+		joint = joint_scout.get_collider(0)
 
 	# Otherwise check if branches or webs exist
 	elif web_scout.is_colliding():
 		var object : PhysicsBody2D = web_scout.get_collider(0)
 		if object is StaticBody2D:
 			# This must be a tree
-			joint = anchor_joint_scene.instantiate()
+			joint = static_joint_scene.instantiate()
 			joint.global_position = web_scout.get_collision_point(0)
 			add_child(joint)
 		elif object is RigidBody2D:
@@ -80,7 +81,7 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 		else: assert(false) # huh
 	
 	if not joint:
-		joint = moveable_joint_scene.instantiate()
+		joint = rigid_joint_scene.instantiate()
 		joint.global_position = pos
 		add_child(joint)
 

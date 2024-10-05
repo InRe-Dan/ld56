@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvsnbvqly5tn"]
+
+[ext_resource type="Script" path="res://web/web_joint.gd" id="1_udhan"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5y2f"]
+radius = 4.0
+
+[node name="StaticJoint" type="StaticBody2D" node_paths=PackedStringArray("body")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_udhan")
+body = NodePath(".")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y5y2f")

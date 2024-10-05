@@ -24,7 +24,6 @@ func _ready() -> void:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
-
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	# Speed formula
@@ -42,7 +41,9 @@ func _physics_process(delta: float) -> void:
 			speed_mod = max(speed_mod, cast_length * 0.5)
 	
 	# Apply velocity
-	linear_velocity += input_vector * movement_speed * delta * (speed_mod / cast_length)
+	linear_velocity += (input_vector * movement_speed * delta * (speed_mod / cast_length) +
+		(_get_intersect_velocity(up_cast) + _get_intersect_velocity(down_cast)
+		+ _get_intersect_velocity(left_cast) + _get_intersect_velocity(right_cast)) * delta)
 
 
 ## Updates the cast length of the spider
@@ -54,12 +55,24 @@ func update_cast_length(new_length: float) -> void:
 
 
 ## Returns the intersection strength of the passed ray
-func _get_intersection_strength(ray: RayCast2D) -> float:
+func _get_intersection_strength(ray : RayCast2D) -> float:
 	if ray.is_colliding():
 		var intersection: Vector2 = ray.get_collision_point()
 		return position.distance_to(intersection)
 	else:
 		return cast_length
+
+
+## Returns the linear velocity of the collider of the passed ray
+func _get_intersect_velocity(ray : RayCast2D) -> Vector2:
+	if ray.is_colliding():
+		var collider: PhysicsBody2D = ray.get_collider()
+		if collider is Web:
+			return collider.velocity
+		else:
+			return Vector2.ZERO
+	else:
+		return Vector2.ZERO
 
 
 ## Fires a web at the current mouse position

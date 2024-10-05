@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbp7kms23fo0m"]
+
+[ext_resource type="Script" path="res://web/web_joint.gd" id="1_0gjbj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mcaq7"]
+radius = 4.0
+
+[node name="RigidJoint" type="RigidBody2D" node_paths=PackedStringArray("body")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_0gjbj")
+body = NodePath(".")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mcaq7")

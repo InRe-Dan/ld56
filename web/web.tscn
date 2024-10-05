@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" path="res://web/web.gd" id="1_7k0vh"]
 
-[node name="Web" type="RigidBody2D"]
+[node name="Web" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
-can_sleep = false
 script = ExtResource("1_7k0vh")
 
 [node name="VisualMask" type="Line2D" parent="."]
