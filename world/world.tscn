@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://4a2wbnhvgulj"]
 
-[ext_resource type="Script" path="res://web/web_factory.gd" id="1_68jv2"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
+[ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hi3fh"]
@@ -31,8 +31,7 @@ func _process(delta: float) -> void:
 [node name="World" type="Node2D"]
 script = ExtResource("1_m6c00")
 
-[node name="WebFactory" type="Node2D" parent="." groups=["web_factory"]]
-script = ExtResource("1_68jv2")
+[node name="WebFactory" parent="." instance=ExtResource("2_u3u5w")]
 
 [node name="Spider" parent="." instance=ExtResource("3_pypjb")]
 position = Vector2(544, 569)

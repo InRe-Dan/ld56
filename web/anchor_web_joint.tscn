@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvsnbvqly5tn"]
+
+[ext_resource type="Script" path="res://web/moveable_web_joint.gd" id="1_wm30r"]
+
+[sub_resource type="Gradient" id="Gradient_v8bg5"]
+offsets = PackedFloat32Array(0, 0.57554, 0.683453)
+colors = PackedColorArray(0.74902, 0.576471, 1, 1, 0.74902, 0.576471, 1, 0.81295, 0.74902, 0.576471, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fqbdd"]
+gradient = SubResource("Gradient_v8bg5")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_15pkh"]
+
+[node name="AnchorWebJoint" type="Node2D" node_paths=PackedStringArray("body")]
+script = ExtResource("1_wm30r")
+body = NodePath("StaticBody2D")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_fqbdd")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_15pkh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]

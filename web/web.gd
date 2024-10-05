@@ -1,39 +1,57 @@
 class_name Web extends RigidBody2D
 
-var connection_object: PhysicsBody2D
+var point_a : WebJoint:
+	set(x):
+		x.add_web(self)
+		point_a = x
+		
+var point_b : WebJoint:
+	set(x):
+		x.add_web(self)
+		point_b = x
+	
 var spring: DampedSpringJoint2D
 
 # Spring parameters
-var resting_length: float = 0.0
-var stiffness: float = 20.0
+var resting_length: float = 0
+var stiffness: float = 500
 var damping: float = 64.0
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
 
+var debug_colors: Array = [Color.AQUA, Color.AQUAMARINE, Color.CORAL, Color.CADET_BLUE, Color.DARK_SALMON,
+Color.FIREBRICK, Color.LIGHT_CORAL, Color.GOLD, Color.YELLOW_GREEN, Color.VIOLET]
+
+func _ready() -> void:
+	assert(point_a)
+	assert(point_b)
+	visual.modulate = debug_colors.pick_random()
 
 ## Called every physics frame
-func _physics_process(delta: float) -> void:
-	if connection_object == null or not is_instance_valid(connection_object): return
-	
+func _physics_process(delta: float) -> void:	
 	# Apply spring physics
-	var direction: Vector2 = (position - connection_object.position).normalized()
-	var distance: float = position.distance_to(connection_object.position)
+	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
+	var distance: float = point_a.position.distance_to(point_b.position)
 	var magnitude: float = (distance - resting_length) * stiffness
-	var damping_force: float = 0.0
-	if connection_object is RigidBody2D:
-		damping_force = (connection_object.linear_velocity - linear_velocity).dot(direction) * damping
-	var spring_force: Vector2 = -direction * (magnitude - damping_force)
-	apply_force(spring_force, position)
-	if (connection_object is RigidBody2D):
-		(connection_object as RigidBody2D).apply_force(-spring_force, connection_object.position)
+	
+	var spring_force: Vector2 = direction * magnitude
+	if point_a.body is RigidBody2D:
+		point_a.body.apply_force(+ spring_force)
+	if point_b.body is RigidBody2D:
+		point_b.body.apply_force(- spring_force)
 
 
 ## Called every frame
 func _process(delta: float) -> void:
-	if connection_object == null or not is_instance_valid(connection_object): return
 	
 	# Draw web
-	var endpoints: PackedVector2Array = [0, to_local(connection_object.global_position)]
+	var endpoints: PackedVector2Array = [point_a.global_position, point_b.global_position]
 	visual.points = endpoints
 	collision.polygon = endpoints
+	
+## Queues for deletion and removes itself from weblists.
+func destroy() -> void:
+	point_a.update_web_list.call_deferred()
+	point_b.update_web_list.call_deferred()
+	queue_free()
