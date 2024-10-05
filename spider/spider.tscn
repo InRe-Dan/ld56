@@ -1,7 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3ud2rqlsvy6p"]
+[gd_scene load_steps=14 format=3 uid="uid://d3ud2rqlsvy6p"]
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
 [ext_resource type="Script" path="res://spider/legs.gd" id="3_yp1od"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ra4ms"]
+radius = 20.0
 
 [sub_resource type="Gradient" id="Gradient_b7iuv"]
 offsets = PackedFloat32Array(0, 0.59375, 0.6, 0.996875)
@@ -58,6 +61,15 @@ collision_mask = 0
 linear_damp = 4.0
 angular_damp = 1.0
 script = ExtResource("1_gma0t")
+
+[node name="Mouth" type="Area2D" parent="."]
+position = Vector2(1, -24)
+collision_layer = 0
+collision_mask = 8
+
+[node name="MouthArea" type="CollisionShape2D" parent="Mouth"]
+position = Vector2(-1, 5)
+shape = SubResource("CircleShape2D_ra4ms")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
@@ -182,3 +194,5 @@ position = Vector2(-3.86452, 6.48502)
 scale = Vector2(0.162642, 0.244191)
 points = PackedVector2Array(20.4605, -25.9337, 12.5831, 36.0064)
 default_color = Color(0, 0, 0, 1)
+
+[connection signal="area_entered" from="Mouth" to="." method="_on_mouth_area_entered"]

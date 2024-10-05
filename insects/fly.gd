@@ -43,7 +43,6 @@ func _process(delta: float) -> void:
 		eyes.target_position = velocity.normalized() * 100
 		eyes.force_raycast_update()
 		if eyes.is_colliding():
-			print("Oh no!")
 			avoidance_cooldown = 0.5 + randf()
 			target_dir = - velocity.normalized()
 	else:
@@ -52,6 +51,13 @@ func _process(delta: float) -> void:
 	velocity = velocity.limit_length(max_speed)
 	global_position += velocity * delta
 
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+func kill(blood_splatter_dir : Vector2) -> void:
+	$Blood.direction = blood_splatter_dir
+	$Blood.emitting = true
+	$Blood.finished.connect($Blood.queue_free)
+	$Blood.reparent(get_parent())
 	queue_free()
+	
+
+func _on_web_detection_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

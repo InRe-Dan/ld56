@@ -79,6 +79,8 @@ move_right={
 2d_physics/layer_1="Spider"
 2d_physics/layer_2="Walkable"
 2d_physics/layer_3="JointArea"
+2d_physics/layer_4="Bug"
+2d_physics/layer_9="Web (Bug avoidance)"
 
 [physics]
 
