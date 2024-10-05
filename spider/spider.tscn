@@ -64,10 +64,11 @@ shape = SubResource("CircleShape2D_3imjw")
 collision_mask = 2
 
 [node name="WebCast" type="RayCast2D" parent="."]
+position = Vector2(50, 0)
+target_position = Vector2(1920, 0)
 collision_mask = 2
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(95, -59)
 texture = SubResource("GradientTexture2D_4s3g3")
 

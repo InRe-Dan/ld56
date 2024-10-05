@@ -37,6 +37,7 @@ func weld(web : Web) -> void:
 	web.destroy()
 	killed.queue_free()
 
+
 ## Splits a web into two, destroying the original. Returns the two segments' connecting joint.
 func split(web : Web, pos : Vector2) -> WebJoint:
 	var new_joint : WebJoint = moveable_joint_scene.instantiate()
@@ -65,7 +66,7 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 	joint_scout.force_shapecast_update()
 	web_scout.force_shapecast_update()
 	var joint : WebJoint = null
-
+	print(pos)
 	# First check if any pivots already exist here
 	if joint_scout.is_colliding():
 		print("A")
@@ -92,8 +93,10 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 
 	return joint
 
+
 ## Creates a web between two points
 func create_web(point_a: Vector2, point_b: Vector2) -> void:
+	print(point_a, point_b)
 	if not (check_for_object(point_a) and check_for_object(point_b)):
 		print("Can't create web here.")
 		return
@@ -103,7 +106,7 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 	var direction: Vector2 = point_a.direction_to(point_b)
 	
 	var start_joint: WebJoint = get_joint_at(point_a)
-
+	print(start_joint)
 	while distance > 0:
 		var new_web_length: float = min(distance, web_length)
 		var start = point_a + direction * distance_created

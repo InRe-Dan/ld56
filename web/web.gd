@@ -35,6 +35,8 @@ func _ready() -> void:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
+	if not (is_instance_valid(point_a) and is_instance_valid(point_b)): return
+	
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
 	var magnitude: float = (point_a.position.distance_to(point_b.position) - resting_length) * stiffness
@@ -47,9 +49,7 @@ func _physics_process(delta: float) -> void:
 		
 	if point_a.global_position.distance_squared_to(point_b.global_position) < 50:
 		web_factory.weld(self)
-
-## Called every frame
-func _process(delta: float) -> void:
+	
 	# Draw web
 	var endpoints: PackedVector2Array = [point_a.global_position, point_b.global_position]
 	visual.points = endpoints
