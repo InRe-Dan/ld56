@@ -5,11 +5,13 @@ var rotation_speed: float = 4.0
 
 var cast_length: float = 50.0:
 	set(x): update_cast_length(x)
+var safety_cast_length : float = 100
 
 @onready var up_cast: RayCast2D = $Upcast
 @onready var down_cast: RayCast2D = $Downcast
 @onready var left_cast: RayCast2D = $Leftcast
 @onready var right_cast: RayCast2D = $Rightcast
+@onready var safety_cast : ShapeCast2D = $Safety
 @onready var factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 
 
@@ -23,18 +25,22 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
-	
 	# Speed formula
 	var speed_mod: float = max(
 		2 * cast_length - max(_get_intersection_strength(up_cast) + _get_intersection_strength(down_cast), cast_length),
 		2 * cast_length - max(_get_intersection_strength(left_cast) + _get_intersection_strength(right_cast), cast_length)
 	)
 	
-	linear_velocity += input_vector * movement_speed * delta * (speed_mod / cast_length)
-	
 	# Rotate spider to face input vector
 	if input_vector != Vector2.ZERO:
 		global_rotation = rotate_toward(global_rotation, input_vector.angle(), delta * rotation_speed)
+		safety_cast.global_rotation = 0
+		safety_cast.target_position = input_vector * safety_cast_length
+		if safety_cast.is_colliding():
+			speed_mod = cast_length
+	
+	linear_velocity += input_vector * movement_speed * delta * (speed_mod / cast_length)
+	
 
 
 ## Updates the cast length of the spider
