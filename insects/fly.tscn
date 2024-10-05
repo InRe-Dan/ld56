@@ -44,3 +44,12 @@ texture = ExtResource("1_v1rba")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WebDetection"]
 shape = SubResource("RectangleShape2D_faphp")
+
+[node name="Eyes" type="RayCast2D" parent="."]
+collision_mask = 2
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(3.3, 3.1)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

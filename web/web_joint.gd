@@ -23,7 +23,6 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	global_position = body.global_position
 
-
 ## Forces reference count update- frees if empty
 func update_web_list() -> void:
 	webs.filter(func (x): is_instance_valid(x))
