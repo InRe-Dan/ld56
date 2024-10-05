@@ -24,7 +24,8 @@ func _ready() -> void:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
-	$Sprite2D2.global_position = get_global_mouse_position()
+	$Sprite2D2.global_position = get_global_mouse_position() # TODO: REMOVE
+
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	# Speed formula
@@ -41,8 +42,8 @@ func _physics_process(delta: float) -> void:
 		if safety_cast.is_colliding():
 			speed_mod = max(speed_mod, cast_length * 0.5)
 	
+	# Apply velocity
 	linear_velocity += input_vector * movement_speed * delta * (speed_mod / cast_length)
-	
 
 
 ## Updates the cast length of the spider
@@ -61,6 +62,8 @@ func _get_intersection_strength(ray: RayCast2D) -> float:
 	else:
 		return cast_length
 
+
+## Fires a web at the current mouse position
 func shoot_web() -> void:
 	web_cast.global_rotation = 0
 	web_cast.target_position = global_position.direction_to(get_global_mouse_position()) * 5000
@@ -69,7 +72,9 @@ func shoot_web() -> void:
 		factory.create_web(global_position, web_cast.get_collision_point())
 	
 
+## Handles input events from the input stack not previously handled this frame
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		# Left mouse pressed
 		if event.button_index == 1 and event.pressed:
 			shoot_web()

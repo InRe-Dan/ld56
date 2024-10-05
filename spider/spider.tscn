@@ -67,6 +67,7 @@ collision_mask = 2
 collision_mask = 2
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(95, -59)
 texture = SubResource("GradientTexture2D_4s3g3")
 

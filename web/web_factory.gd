@@ -11,6 +11,7 @@ var moveable_joint_scene : PackedScene = preload("res://web/moveable_web_joint.t
 @onready var web_scout : ShapeCast2D = $WebScout
 @onready var joint_scout : ShapeCast2D = $JointScout
 
+
 ## Splits a web into two, destroying the original. Returns the two segments' connecting joint.
 func split(web : Web, pos : Vector2) -> WebJoint:
 	var new_joint : WebJoint = moveable_joint_scene.instantiate()
@@ -30,6 +31,7 @@ func check_for_object(pos : Vector2) -> bool:
 	web_scout.force_shapecast_update()
 	return web_scout.is_colliding() or joint_scout.is_colliding()
 
+
 ## This will either check for an existing joint near this point 
 ## or create and add a new one to the scene tree.
 func get_joint_at(pos : Vector2) -> WebJoint:
@@ -43,8 +45,9 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 	if joint_scout.is_colliding():
 		print("A")
 		joint = joint_scout.get_collider(0).get_parent()
-	# Then check if branches or webs exist
+	# Otherwise check if branches or webs exist
 	elif web_scout.is_colliding():
+		print("B")
 		var object : PhysicsBody2D = web_scout.get_collider(0)
 		if object is StaticBody2D:
 			# This must be a tree
@@ -61,28 +64,27 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 		joint = moveable_joint_scene.instantiate()
 		joint.global_position = pos
 		add_child(joint)
-	print(joint.global_position)
+
 	return joint
 
 ## Creates a web between two points
 func create_web(point_a: Vector2, point_b: Vector2) -> void:
-
 	if not (check_for_object(point_a) and check_for_object(point_b)):
 		print("Can't create web here.")
 		return
 
-	var distance : float = point_a.distance_to(point_b)
-	var distance_created : float = 0
-	var direction : Vector2 = point_a.direction_to(point_b)
+	var distance: float = point_a.distance_to(point_b)
+	var distance_created: float = 0
+	var direction: Vector2 = point_a.direction_to(point_b)
 	
-	var start_joint : WebJoint = get_joint_at(point_a)
+	var start_joint: WebJoint = get_joint_at(point_a)
 
 	while distance > 0:
-		var new_web_length : float = min(distance, web_length)
+		var new_web_length: float = min(distance, web_length)
 		var start = point_a + direction * distance_created
 		distance_created += new_web_length
 		var end = point_a + direction * distance_created
-		var new_joint : WebJoint = get_joint_at(end)
+		var new_joint: WebJoint = get_joint_at(end)
 		if not new_joint:
 			return
 		assert(start_joint.global_position != Vector2())
@@ -93,7 +95,6 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 
 ## Creates a new web segment
 func _create_web_segment(point_a : WebJoint, point_b : WebJoint = null) -> void:
-	
 	# Instantiate new web object
 	var web: Web = web_scene.instantiate() as Web
 	web.point_a = point_a

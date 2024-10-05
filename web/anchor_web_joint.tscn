@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvsnbvqly5tn"]
 
-[ext_resource type="Script" path="res://web/moveable_web_joint.gd" id="1_wm30r"]
+[ext_resource type="Script" path="res://web/web_joint.gd" id="1_jio0k"]
 
 [sub_resource type="Gradient" id="Gradient_v8bg5"]
 offsets = PackedFloat32Array(0, 0.57554, 0.683453)
@@ -16,7 +16,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_15pkh"]
 
 [node name="AnchorWebJoint" type="Node2D" node_paths=PackedStringArray("body")]
-script = ExtResource("1_wm30r")
+script = ExtResource("1_jio0k")
 body = NodePath("StaticBody2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
