@@ -182,3 +182,7 @@ position = Vector2(-3.86452, 6.48502)
 scale = Vector2(0.162642, 0.244191)
 points = PackedVector2Array(20.4605, -25.9337, 12.5831, 36.0064)
 default_color = Color(0, 0, 0, 1)
+
+[node name="WebIndicatorTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="WebIndicatorTimer" to="." method="_on_web_indicator_timer_timeout"]
