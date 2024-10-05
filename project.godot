@@ -31,6 +31,18 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="LD56"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "blue",
+"res://insects/": "orange",
+"res://menus/": "green",
+"res://resources/": "red",
+"res://spider/": "purple",
+"res://web/": "gray",
+"res://world/": "teal"
+}
+
 [global_group]
 
 web_factory=""
