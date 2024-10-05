@@ -12,8 +12,8 @@ var damping: float = 64.0
 @onready var collision: CollisionPolygon2D = $CollisionMask
 
 
-## Called every frame
-func _process(delta: float) -> void:
+## Called every physics frame
+func _physics_process(delta: float) -> void:
 	if connection_object == null or not is_instance_valid(connection_object): return
 	
 	# Apply spring physics
@@ -27,6 +27,11 @@ func _process(delta: float) -> void:
 	apply_force(spring_force, position)
 	if (connection_object is RigidBody2D):
 		(connection_object as RigidBody2D).apply_force(-spring_force, connection_object.position)
+
+
+## Called every frame
+func _process(delta: float) -> void:
+	if connection_object == null or not is_instance_valid(connection_object): return
 	
 	# Draw web
 	var endpoints: PackedVector2Array = [position, connection_object.position]

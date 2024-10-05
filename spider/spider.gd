@@ -3,7 +3,8 @@ class_name Spider extends RigidBody2D
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
 var rotation_speed: float = 4.0
 
-var cast_length: float = 50.0
+var cast_length: float = 50.0:
+	set(x): update_cast_length(x)
 
 @onready var up_cast: RayCast2D = $Upcast
 @onready var down_cast: RayCast2D = $Downcast
