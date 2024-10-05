@@ -12,6 +12,7 @@ var safety_cast_length : float = 100
 @onready var left_cast: RayCast2D = $Leftcast
 @onready var right_cast: RayCast2D = $Rightcast
 @onready var safety_cast : ShapeCast2D = $Safety
+@onready var web_cast : RayCast2D = $WebCast
 @onready var factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 
 
@@ -37,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		safety_cast.global_rotation = 0
 		safety_cast.target_position = input_vector * safety_cast_length
 		if safety_cast.is_colliding():
-			speed_mod = cast_length
+			speed_mod = max(speed_mod, cast_length * 0.5)
 	
 	linear_velocity += input_vector * movement_speed * delta * (speed_mod / cast_length)
 	
@@ -59,7 +60,15 @@ func _get_intersection_strength(ray: RayCast2D) -> float:
 	else:
 		return cast_length
 
+func shoot_web() -> void:
+	web_cast.global_rotation = 0
+	web_cast.target_position = global_position.direction_to(get_global_mouse_position()) * 5000
+	web_cast.force_raycast_update()
+	if web_cast.is_colliding():
+		factory.create_web(global_position, web_cast.get_collision_point())
+	
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == 1 and event.pressed:
-			factory.create_web(global_position, global_position + Vector2.from_angle(global_rotation) * 500)
+			shoot_web()

@@ -43,3 +43,6 @@ hit_from_inside = true
 [node name="Safety" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_3imjw")
 collision_mask = 2
+
+[node name="WebCast" type="RayCast2D" parent="."]
+collision_mask = 2
