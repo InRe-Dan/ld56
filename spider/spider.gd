@@ -24,7 +24,6 @@ func _ready() -> void:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
-	$Sprite2D2.global_position = get_global_mouse_position() # TODO: REMOVE
 
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
@@ -36,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Rotate spider to face input vector
 	if input_vector != Vector2.ZERO:
-		global_rotation = rotate_toward(global_rotation, input_vector.angle(), delta * rotation_speed)
+		global_rotation = rotate_toward(global_rotation, input_vector.angle() + PI / 2, delta * rotation_speed)
 		safety_cast.global_rotation = 0
 		safety_cast.target_position = input_vector * safety_cast_length
 		if safety_cast.is_colliding():
@@ -66,7 +65,9 @@ func _get_intersection_strength(ray: RayCast2D) -> float:
 ## Fires a web at the current mouse position
 func shoot_web() -> void:
 	web_cast.global_rotation = 0
-	web_cast.target_position = global_position.direction_to(get_global_mouse_position()) * 5000
+	var dir : Vector2 = global_position.direction_to(get_global_mouse_position())
+	web_cast.global_position = global_position + dir * 50
+	web_cast.target_position = dir * 5000
 	web_cast.force_raycast_update()
 	if web_cast.is_colliding():
 		factory.create_web(global_position, web_cast.get_collision_point())
