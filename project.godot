@@ -25,6 +25,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="LD56"
 
+[global_group]
+
+web_factory=""
+
 [input]
 
 move_up={

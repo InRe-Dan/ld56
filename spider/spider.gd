@@ -10,6 +10,7 @@ var cast_length: float = 50.0:
 @onready var down_cast: RayCast2D = $Downcast
 @onready var left_cast: RayCast2D = $Leftcast
 @onready var right_cast: RayCast2D = $Rightcast
+@onready var factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 
 
 ## Called when the node enters the scene tree for the first time
@@ -51,3 +52,8 @@ func _get_intersection_strength(ray: RayCast2D) -> float:
 		return position.distance_to(intersection)
 	else:
 		return cast_length
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == 1 and event.pressed:
+			factory.create_web(global_position, global_position + Vector2.from_angle(global_rotation) * 500)

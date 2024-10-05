@@ -9,7 +9,6 @@ can_sleep = false
 script = ExtResource("1_7k0vh")
 
 [node name="VisualMask" type="Line2D" parent="."]
-top_level = true
 width = 8.0
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="."]

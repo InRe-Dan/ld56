@@ -34,6 +34,6 @@ func _process(delta: float) -> void:
 	if connection_object == null or not is_instance_valid(connection_object): return
 	
 	# Draw web
-	var endpoints: PackedVector2Array = [position, connection_object.position]
+	var endpoints: PackedVector2Array = [0, to_local(connection_object.global_position)]
 	visual.points = endpoints
-	collision.points = endpoints
+	collision.polygon = endpoints
