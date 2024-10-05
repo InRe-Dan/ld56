@@ -17,9 +17,8 @@ var point_b : WebJoint:
 var spring: DampedSpringJoint2D
 
 # Spring parameters
-var resting_length: float = 0
-var stiffness: float = 640.0
-var damping: float = 1.0
+var stiffness: float = 25600.0
+var damping: float = 512.0
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
@@ -30,26 +29,25 @@ var damping: float = 1.0
 func _ready() -> void:
 	assert(point_a)
 	assert(point_b)
-	visual.modulate = debug_colors.pick_random()
+	#visual.modulate = debug_colors.pick_random()
 
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
 	if not (is_instance_valid(point_a) and is_instance_valid(point_b)): return
-	
+
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
-	var magnitude: float = (point_a.position.distance_to(point_b.position) - resting_length) * stiffness
+	var magnitude: float = point_a.position.distance_to(point_b.position) * stiffness
 
-	var spring_force: Vector2 = direction * magnitude
+	var spring_force: Vector2 = (direction * magnitude - damping * (point_a.linear_velocity - point_b.linear_velocity)) * delta
 	if point_a.body is RigidBody2D:
-		point_a.body.apply_force(+ spring_force)
+		point_a.body.apply_force(+ spring_force / 2)
 	if point_b.body is RigidBody2D:
-		point_b.body.apply_force(- spring_force)
+		point_b.body.apply_force(- spring_force / 2)
 		
-	if point_a.global_position.distance_squared_to(point_b.global_position) < Global.web_length * 2:
-		pass
-		#web_factory.weld(self)
+	if point_a.global_position.distance_squared_to(point_b.global_position) < Global.web_length * 4:
+		web_factory.weld(self)
 	
 	# Draw web
 	var endpoints: PackedVector2Array = [point_a.global_position, point_b.global_position]

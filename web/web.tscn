@@ -9,7 +9,8 @@ can_sleep = false
 script = ExtResource("1_7k0vh")
 
 [node name="VisualMask" type="Line2D" parent="."]
-width = 8.0
+width = 4.0
+joint_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -1)

@@ -20,6 +20,7 @@ script = ExtResource("1_jio0k")
 body = NodePath("StaticBody2D")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("GradientTexture2D_fqbdd")
 
 [node name="Area2D" type="Area2D" parent="."]

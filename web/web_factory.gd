@@ -1,8 +1,6 @@
 ## Factory class for creating new web objects
 class_name WebFactory extends Node2D
 
-const web_looseness : float = 0.5 ## Smaller number makes webs artificially tighter
-
 var web_scene : PackedScene = preload("res://web/web.tscn")
 var anchor_joint_scene : PackedScene = preload("res://web/anchor_web_joint.tscn")
 var moveable_joint_scene : PackedScene = preload("res://web/moveable_web_joint.tscn")
@@ -13,42 +11,32 @@ var moveable_joint_scene : PackedScene = preload("res://web/moveable_web_joint.t
 
 ## Turns a web's two joints into one, destroying the web in the process.
 func weld(web : Web) -> void:
-	var survivor : WebJoint = null
-	var killed : WebJoint = null
-	if (web.point_a.body is StaticBody2D):
-		survivor = web.point_a
-		killed = web.point_b
-	elif (web.point_b.body is StaticBody2D):
-		survivor = web.point_b
-		killed = web.point_a
-	else:
-		# Choose arbitrarily
-		survivor = web.point_a
-		killed = web.point_b
+	print("welding time")
+	var root : WebJoint = web.point_a
+	var floating : WebJoint = web.point_b
 	
-	for connected_web : Web in killed.webs:
-		if web.point_a == killed:
-			web.point_a = survivor
-		if web.point_b == killed:
-			web.point_b = survivor
-	print("Freed ", killed)
-	print("Didn't free ", survivor)
+	# Favor point_b if it is static
+	if (web.point_b.body is StaticBody2D):
+		root = web.point_b
+		floating = web.point_a
+	
+	# Join decoupled webs to other end
+	for connection : Web in floating.webs:
+		if not is_instance_valid(connection): continue
+		if connection.point_a == floating:
+			connection.point_a = root
+		else:
+			connection.point_b = root
+
 	web.destroy()
-	killed.queue_free()
+	floating.queue_free()
 
 
 ## Splits a web into two, destroying the original. Returns the two segments' connecting joint.
 func split(web : Web, pos : Vector2) -> WebJoint:
-	print("split ", web, " at ", pos)
 	var new_joint : WebJoint = moveable_joint_scene.instantiate()
 	new_joint.global_position = pos
 	add_child(new_joint)
-	if not is_instance_valid(web.point_a):
-		print("A invalid: ", web, " ", web.point_a)
-		return
-	if not is_instance_valid(web.point_b):
-		print("B invalid: ", web, " ", web.point_b)
-		return
 	_create_web_segment(web.point_a.global_position.distance_to(new_joint.global_position), web.point_a, new_joint)
 	_create_web_segment(web.point_b.global_position.distance_to(new_joint.global_position), new_joint, web.point_b)
 	web.destroy()
@@ -75,8 +63,8 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 
 	# First check if any pivots already exist here
 	if joint_scout.is_colliding():
-		print("scouted joint at ", pos)
 		joint = joint_scout.get_collider(0).get_parent()
+
 	# Otherwise check if branches or webs exist
 	elif web_scout.is_colliding():
 		var object : PhysicsBody2D = web_scout.get_collider(0)
@@ -116,18 +104,23 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 	var start_joint: WebJoint = get_joint_at(point_a)
 
 	while distance > 0:
+		# Calculate distance of next segment
 		var new_web_length: float
 		if distance > Global.web_length * 1.5:
 			new_web_length = Global.web_length
 		else:
 			new_web_length = distance
+		
+		# Place points
 		var start = point_a + direction * distance_created
 		distance_created += new_web_length
 		var end = point_a + direction * distance_created
+		
 		var new_joint: WebJoint = get_joint_at(end)
 		if not new_joint:
 			return
 		assert(start_joint.global_position != Vector2())
+		
 		_create_web_segment(new_web_length, start_joint, new_joint)
 		start_joint = new_joint
 		distance -= new_web_length
@@ -139,6 +132,5 @@ func _create_web_segment(length : float, point_a : WebJoint, point_b : WebJoint 
 	var web: Web = web_scene.instantiate() as Web
 	web.point_a = point_a
 	web.point_b = point_b
-	web.resting_length = Global.web_length * web_looseness
 
 	add_child(web)
