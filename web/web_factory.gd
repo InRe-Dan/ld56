@@ -11,10 +11,9 @@ var moveable_joint_scene : PackedScene = preload("res://web/moveable_web_joint.t
 
 ## Turns a web's two joints into one, destroying the web in the process.
 func weld(web : Web) -> void:
-	print("welding time")
 	var root : WebJoint = web.point_a
 	var floating : WebJoint = web.point_b
-	
+
 	# Favor point_b if it is static
 	if (web.point_b.body is StaticBody2D):
 		root = web.point_b
