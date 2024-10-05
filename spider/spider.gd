@@ -92,3 +92,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		# Left mouse pressed
 		if event.button_index == 1 and event.pressed:
 			shoot_web()
+
+
+func _on_mouth_area_entered(area: Area2D) -> void:
+	(area.get_parent() as Fly).kill($Mouth.global_position.direction_to(area.global_position))
+
+func _on_web_indicator_timer_timeout() -> void:
+		$"../WebIndicator".visible = false

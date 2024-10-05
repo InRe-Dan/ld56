@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		point_b.body.apply_force(- spring_force / 2)
 
 	if point_a.global_position.distance_squared_to(point_b.global_position) < Global.web_length * 4:
-		web_factory.weld(self)
+		pass;#web_factory.weld(self)
 	
 	# Draw web
 	var endpoints: PackedVector2Array = [point_a.global_position, point_b.global_position]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=7 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
 [ext_resource type="Texture2D" uid="uid://bxw34dyx2cgac" path="res://assets/background_1.png" id="4_2hkic"]
+[ext_resource type="PackedScene" uid="uid://dmyotpujac7a" path="res://insects/fly.tscn" id="5_lpks7"]
+[ext_resource type="Texture2D" uid="uid://dctbj2786bciq" path="res://assets/I am literally Picasso.png" id="6_lh8ic"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_m6c00")
@@ -43,3 +45,12 @@ default_color = Color(0, 0, 0, 1)
 [node name="CollisionMask" type="CollisionPolygon2D" parent="RightTree"]
 build_mode = 1
 polygon = PackedVector2Array(1440, 0, 1320, 1080)
+
+[node name="Fly" parent="." instance=ExtResource("5_lpks7")]
+position = Vector2(1027, 476)
+
+[node name="WebIndicator" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(904, 310)
+scale = Vector2(3, 3)
+texture = ExtResource("6_lh8ic")
