@@ -116,7 +116,11 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 	var start_joint: WebJoint = get_joint_at(point_a)
 
 	while distance > 0:
-		var new_web_length: float = min(distance, Global.web_length)
+		var new_web_length: float
+		if distance > Global.web_length * 1.5:
+			new_web_length = Global.web_length
+		else:
+			new_web_length = distance
 		var start = point_a + direction * distance_created
 		distance_created += new_web_length
 		var end = point_a + direction * distance_created
@@ -126,7 +130,7 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 		assert(start_joint.global_position != Vector2())
 		_create_web_segment(new_web_length, start_joint, new_joint)
 		start_joint = new_joint
-		distance -= Global.web_length
+		distance -= new_web_length
 
 
 ## Creates a new web segment
