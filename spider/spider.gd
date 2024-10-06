@@ -2,15 +2,16 @@ class_name Spider extends RigidBody2D
 
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
 var rotation_speed: float = 4.0
+var sway_influece : float = 2.0 # Influence of nearby velocities
 
-var cast_length: float = 50.0:
+var cast_length: float = 64.0:
 	set(x): update_cast_length(x)
 var safety_cast_length : float = 100
 
-@onready var up_cast: RayCast2D = $Upcast
-@onready var down_cast: RayCast2D = $Downcast
-@onready var left_cast: RayCast2D = $Leftcast
-@onready var right_cast: RayCast2D = $Rightcast
+@onready var up_cast: RayCast2D = $MainRays/Upcast
+@onready var down_cast: RayCast2D = $MainRays/Downcast
+@onready var left_cast: RayCast2D = $MainRays/Leftcast
+@onready var right_cast: RayCast2D = $MainRays/Rightcast
 @onready var safety_cast : ShapeCast2D = $Safety
 @onready var web_cast : RayCast2D = $WebCast
 @onready var factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
@@ -43,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	# Apply velocity
 	linear_velocity += (input_vector * movement_speed * delta * (speed_mod / cast_length) +
 		(_get_intersect_velocity(up_cast) + _get_intersect_velocity(down_cast)
-		+ _get_intersect_velocity(left_cast) + _get_intersect_velocity(right_cast)) * delta)
+		+ _get_intersect_velocity(left_cast) + _get_intersect_velocity(right_cast)) * delta * sway_influece)
 
 
 ## Updates the cast length of the spider

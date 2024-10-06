@@ -23,8 +23,8 @@ var velocity : Vector2:
 		return vel_a + vel_b
 
 # Spring parameters
-var stiffness: float = 6400.0
-var damping: float = 256.0
+var stiffness: float = 2048.0
+var damping: float = 1024.0
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask

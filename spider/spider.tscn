@@ -82,21 +82,23 @@ texture = SubResource("GradientTexture2D_twskm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cslph")
 
-[node name="Downcast" type="RayCast2D" parent="."]
+[node name="MainRays" type="Node2D" parent="."]
+
+[node name="Downcast" type="RayCast2D" parent="MainRays"]
 collision_mask = 2
 hit_from_inside = true
 
-[node name="Upcast" type="RayCast2D" parent="."]
+[node name="Upcast" type="RayCast2D" parent="MainRays"]
 target_position = Vector2(0, -50)
 collision_mask = 2
 hit_from_inside = true
 
-[node name="Leftcast" type="RayCast2D" parent="."]
+[node name="Leftcast" type="RayCast2D" parent="MainRays"]
 target_position = Vector2(-50, 0)
 collision_mask = 2
 hit_from_inside = true
 
-[node name="Rightcast" type="RayCast2D" parent="."]
+[node name="Rightcast" type="RayCast2D" parent="MainRays"]
 target_position = Vector2(50, 0)
 collision_mask = 2
 hit_from_inside = true
@@ -150,6 +152,7 @@ position = Vector2(15, 3)
 rotation = -0.555756
 scale = Vector2(3, 3)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D2" type="Line2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(-0.107306, -0.459028)
@@ -160,6 +163,7 @@ default_color = Color(0, 0, 0, 1)
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R1/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
@@ -172,6 +176,7 @@ position = Vector2(-17, 3)
 rotation = -1.08407
 scale = Vector2(3, 3)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D2" type="Line2D" parent="Legs/Skeleton2D/L1"]
 position = Vector2(-0.107306, -0.459028)
@@ -184,6 +189,7 @@ position = Vector2(17, 1)
 rotation = 1.7243
 scale = Vector2(0.999995, 0.999995)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L1/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)

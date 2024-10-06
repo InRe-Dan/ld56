@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://web/web_factory.gd" id="1_rhbia"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8hd3"]
-radius = 20.0
+radius = 32.0
 
 [node name="WebFactory" type="Node2D" groups=["web_factory"]]
 script = ExtResource("1_rhbia")
@@ -11,9 +11,11 @@ script = ExtResource("1_rhbia")
 [node name="JointScout" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_e8hd3")
 target_position = Vector2(0, 0)
+max_results = 1
 collision_mask = 4
 
 [node name="WebScout" type="ShapeCast2D" parent="."]
 shape = SubResource("CircleShape2D_e8hd3")
 target_position = Vector2(0, 0)
+max_results = 1
 collision_mask = 2
