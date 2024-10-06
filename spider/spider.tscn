@@ -222,7 +222,8 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
-rotation = 0.0587557
+rotation = 0.0587552
+scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
@@ -234,7 +235,7 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="R2" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(18, 18)
-rotation = -0.535713
+rotation = -0.535714
 scale = Vector2(3, 3)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
@@ -258,7 +259,7 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="L1" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(-17, 3)
-rotation = -1.85613
+rotation = -1.85612
 scale = Vector2(3, 3)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
