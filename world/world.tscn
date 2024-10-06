@@ -20,13 +20,13 @@ point_count = 5
 _data = [Vector2(0, 0), 0.0, 0.982845, 0, 0, Vector2(1, 1), 1.08666, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wf2re"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s63mh"]
 shader = ExtResource("11_pcwd8")
 shader_parameter/rain_amount = 1000.0
-shader_parameter/near_rain_length = 0.04
-shader_parameter/far_rain_length = 0.04
-shader_parameter/near_rain_width = 0.5
-shader_parameter/far_rain_width = 0.3
+shader_parameter/near_rain_length = 0.03
+shader_parameter/far_rain_length = 0.03
+shader_parameter/near_rain_width = 0.4
+shader_parameter/far_rain_width = 0.2
 shader_parameter/near_rain_transparency = 0.3
 shader_parameter/far_rain_transparency = 0.5
 shader_parameter/rain_color = Color(0.8, 0.8, 0.8, 1)
@@ -61,9 +61,10 @@ position = Vector2(25, 10)
 position = Vector2(1904, 1070)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_wf2re")
+
 [node name="Backdrop" type="Sprite2D" parent="."]
 modulate = Color(0.8, 0.8, 0.8, 1)
+material = SubResource("ShaderMaterial_s63mh")
 texture = ExtResource("4_2hkic")
 centered = false
 
