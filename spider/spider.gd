@@ -1,13 +1,16 @@
 class_name Spider extends RigidBody2D
 
+const damping: float = 4.0
+
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
 var rotation_speed: float = 4.0
-var sway_influece : float = 2.0 # Influence of nearby velocities
+var sway_influence : float = 1.0 # Influence of nearby velocities
 
 var cast_length: float = 64.0:
 	set(x): update_cast_length(x)
 var safety_cast_length : float = 100
 
+@onready var destruction_zone: Area2D = $DestructionZone
 @onready var up_cast: RayCast2D = $MainRays/Upcast
 @onready var down_cast: RayCast2D = $MainRays/Downcast
 @onready var left_cast: RayCast2D = $MainRays/Leftcast
@@ -21,6 +24,14 @@ var safety_cast_length : float = 100
 func _ready() -> void:
 	# Configure lengths of rays
 	update_cast_length(cast_length)
+	linear_damp = damping
+
+
+## Called every frame
+func _process(delta: float) -> void:
+	# Draw destruction zone
+	for web : Web in _get_destruction_overlaps():
+		web.visual.modulate = Color.ORANGE
 
 
 ## Called every physics frame
@@ -41,10 +52,23 @@ func _physics_process(delta: float) -> void:
 		if safety_cast.is_colliding():
 			speed_mod = max(speed_mod, cast_length * 0.5)
 	
+	if is_zero_approx(speed_mod):
+		gravity_scale = 1.0
+		linear_damp = 0.0
+	else:
+		gravity_scale = 0.0
+		linear_damp = damping
+	
 	# Apply velocity
 	linear_velocity += (input_vector * movement_speed * delta * (speed_mod / cast_length) +
 		(_get_intersect_velocity(up_cast) + _get_intersect_velocity(down_cast)
-		+ _get_intersect_velocity(left_cast) + _get_intersect_velocity(right_cast)) * delta * sway_influece)
+		+ _get_intersect_velocity(left_cast) + _get_intersect_velocity(right_cast)) * delta * sway_influence)
+
+
+## Handles input events from the input stack not previously handled this frame
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("fire_web"): shoot_web()
+	elif event.is_action_pressed("destroy_web"): destroy_webs()
 
 
 ## Updates the cast length of the spider
@@ -53,6 +77,16 @@ func update_cast_length(new_length: float) -> void:
 	down_cast.target_position = Vector2(0, cast_length)
 	left_cast.target_position = Vector2(-cast_length, 0)
 	right_cast.target_position = Vector2(cast_length, 0)
+
+
+## Returns a list of bodies within the destruction area
+func _get_destruction_overlaps() -> Array[Web]:
+	var webs : Array[Web]
+	var bodies: Array[Node2D] = destruction_zone.get_overlapping_bodies()
+	for body : Node2D in bodies:
+		if body is Web: webs.append(body as Web)
+
+	return webs
 
 
 ## Returns the intersection strength of the passed ray
@@ -85,14 +119,12 @@ func shoot_web() -> void:
 	web_cast.force_raycast_update()
 	if web_cast.is_colliding():
 		factory.create_web(global_position, web_cast.get_collision_point())
-	
 
-## Handles input events from the input stack not previously handled this frame
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		# Left mouse pressed
-		if event.button_index == 1 and event.pressed:
-			shoot_web()
+
+## Destroys the web in front of you
+func destroy_webs() -> void:
+	for web : Web in _get_destruction_overlaps():
+		web.destroy()
 
 
 func _on_mouth_area_entered(area: Area2D) -> void:

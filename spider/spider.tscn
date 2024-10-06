@@ -1,7 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3ud2rqlsvy6p"]
+[gd_scene load_steps=15 format=3 uid="uid://d3ud2rqlsvy6p"]
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
 [ext_resource type="Script" path="res://spider/legs.gd" id="3_yp1od"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1mhc7"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ra4ms"]
 radius = 20.0
@@ -62,6 +65,14 @@ linear_damp = 4.0
 angular_damp = 1.0
 script = ExtResource("1_gma0t")
 
+[node name="DestructionZone" type="Area2D" parent="."]
+position = Vector2(0, -48)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestructionZone"]
+shape = SubResource("CircleShape2D_1mhc7")
+
 [node name="Mouth" type="Area2D" parent="."]
 position = Vector2(1, -24)
 collision_layer = 0
@@ -71,11 +82,11 @@ collision_mask = 8
 position = Vector2(-1, 5)
 shape = SubResource("CircleShape2D_ra4ms")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Head" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
 texture = SubResource("GradientTexture2D_jljql")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="."]
 position = Vector2(0, 15)
 texture = SubResource("GradientTexture2D_twskm")
 

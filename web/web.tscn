@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://w40vath24c7j"]
+[gd_scene load_steps=3 format=3 uid="uid://w40vath24c7j"]
 
 [ext_resource type="Script" path="res://web/web.gd" id="1_7k0vh"]
+
+[sub_resource type="Gradient" id="Gradient_d6hpa"]
+offsets = PackedFloat32Array(0, 0.782443, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Web" type="StaticBody2D"]
 collision_layer = 2
@@ -12,6 +16,22 @@ width = 4.0
 joint_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, -1)
 build_mode = 1
-polygon = PackedVector2Array(-32, -75, 137, -3, 10, 82, -126, 47, -126, 47, -125, 14)
+
+[node name="DeathParticles" type="CPUParticles2D" parent="."]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 40)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_d6hpa")
+
+[node name="FreeTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FreeTimer" to="." method="_on_free_timer_timeout"]

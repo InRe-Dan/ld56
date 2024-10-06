@@ -33,10 +33,10 @@ func weld(web : Web) -> void:
 
 ## Splits a web into two, destroying the original. Returns the two segments' connecting joint.
 func split(web : Web, pos : Vector2) -> WebJoint:
-	print("split")
 	var new_joint : WebJoint = rigid_joint_scene.instantiate()
 	new_joint.global_position = pos
 	add_child(new_joint)
+	if not (is_instance_valid(web.point_a) and is_instance_valid(web.point_b)): return new_joint
 	_create_web_segment(web.point_a.global_position.distance_to(new_joint.global_position), web.point_a, new_joint)
 	_create_web_segment(web.point_b.global_position.distance_to(new_joint.global_position), new_joint, web.point_b)
 	web.destroy()
@@ -77,8 +77,9 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 			joint = static_joint_scene.instantiate()
 			joint.global_position = web_scout.get_collision_point(0)
 			add_child(joint)
-	
+
 	if not joint:
+		# Create arbitrary joint
 		joint = rigid_joint_scene.instantiate()
 		joint.global_position = pos
 		add_child(joint)

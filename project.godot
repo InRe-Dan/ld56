@@ -73,6 +73,16 @@ move_right={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
+destroy_web={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(398, 23),"global_position":Vector2(414, 103),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+fire_web={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(167, 8),"global_position":Vector2(183, 88),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -80,12 +90,12 @@ move_right={
 2d_physics/layer_2="Surface"
 2d_physics/layer_3="Joint"
 2d_physics/layer_4="Bug"
+2d_physics/layer_5="Tree"
 2d_physics/layer_9="Web (Bug avoidance)"
 
 [physics]
 
-2d/default_gravity=0.0
-2d/default_gravity_vector=Vector2(0, 0)
+2d/default_gravity=490.0
 2d/default_linear_damp=0.0
 2d/default_angular_damp=0.0
 2d/solver/default_constraint_bias=0.0

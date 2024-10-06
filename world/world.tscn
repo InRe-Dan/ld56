@@ -20,8 +20,8 @@ centered = false
 position = Vector2(544, 569)
 
 [node name="LeftTree" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 18
+collision_mask = 14
 
 [node name="VisualMask" type="Line2D" parent="LeftTree"]
 points = PackedVector2Array(480, 0, 600, 1080)
@@ -33,8 +33,8 @@ build_mode = 1
 polygon = PackedVector2Array(480, 0, 600, 1080)
 
 [node name="RightTree" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 0
+collision_layer = 18
+collision_mask = 14
 
 [node name="VisualMask" type="Line2D" parent="RightTree"]
 position = Vector2(0, -1)

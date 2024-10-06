@@ -6,12 +6,14 @@ Color.FIREBRICK, Color.LIGHT_CORAL, Color.GOLD, Color.YELLOW_GREEN, Color.VIOLET
 
 var point_a : WebJoint:
 	set(x):
-		x.add_web(self)
+		if x is WebJoint:
+			x.add_web(self)
 		point_a = x
 
 var point_b : WebJoint:
 	set(x):
-		x.add_web(self)
+		if x is WebJoint:
+			x.add_web(self)
 		point_b = x
 
 var velocity : Vector2:
@@ -23,12 +25,14 @@ var velocity : Vector2:
 		return vel_a + vel_b
 
 # Spring parameters
-var stiffness: float = 2048.0
+var stiffness: float = 4096.0
 var damping: float = 1024.0
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
 @onready var web_factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
+@onready var death_particles : CPUParticles2D = $DeathParticles
+@onready var free_timer : Timer = $FreeTimer
 
 
 ## Called when this node enters the scene tree for the first time
@@ -40,16 +44,27 @@ func _ready() -> void:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
-	if not (is_instance_valid(point_a) and is_instance_valid(point_b)): return
-
+	if not (is_instance_valid(point_a) and is_instance_valid(point_b)):
+		destroy()
+		return
+	
+	## Destroy if no neighbors
+	if (point_a.webs.size() == 1 and point_a.body is RigidBody2D) or (point_b.webs.size() == 1 and point_b.body is RigidBody2D):
+		if randf() < delta:
+			destroy()
+			return
+	
+	visual.modulate = Color.WHITE
+	
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
 	var distance : float = point_a.position.distance_to(point_b.position)
 	var magnitude: float = distance * stiffness
 	
 	# Destroy web if overstretched
-	if distance > Global.web_length * 3:
+	if distance > Global.web_length * 4:
 		destroy()
+		return
 	
 	var spring_force: Vector2 = (direction * magnitude - damping * (point_a.velocity - point_b.velocity)) * delta
 	if point_a.body is RigidBody2D:
@@ -68,6 +83,17 @@ func _physics_process(delta: float) -> void:
 
 ## Queues for deletion and removes itself from weblists
 func destroy() -> void:
-	point_a.update_web_list.call_deferred()
-	point_b.update_web_list.call_deferred()
+	if not free_timer.is_stopped(): return
+	if is_instance_valid(point_a): point_a.remove_web(self)
+	if is_instance_valid(point_b): point_b.remove_web(self)
+	death_particles.position = (point_a.position + point_b.position) / 2.0
+	point_a = null
+	point_b = null
+	visual.visible = false
+	death_particles.emitting = true
+	free_timer.start()
+
+
+## Frees the web
+func _on_free_timer_timeout() -> void:
 	queue_free()
