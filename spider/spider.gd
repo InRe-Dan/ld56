@@ -140,12 +140,17 @@ func get_websling_position() -> Vector2:
 		return web_cast.get_collision_point()
 	else: return Vector2(-1, -1)
 
-func make_web(to : Vector2) -> void:
+
+## Creates a web between two Vectors
+func make_web(from : Vector2, to : Vector2) -> void:
 	var pos : Vector2 = get_websling_position()
 	if pos != Vector2(-1, -1):
-		factory.create_web(global_position, to)
+		factory.create_web(from, to)
 
+
+## Fires a web creating projectile
 func shoot_web_bullet() -> void:
+	var from = global_position
 	if energy < web_cost + 10:
 		print("Can't make a web! Too low on energy!")
 		return
@@ -154,8 +159,9 @@ func shoot_web_bullet() -> void:
 	var bullet : WebBullet = bullet_scene.instantiate()
 	bullet.global_rotation = web_cast.global_position.direction_to(get_global_mouse_position()).angle()
 	bullet.global_position = web_cast.global_position
-	bullet.hit.connect(make_web)
+	bullet.hit.connect(func(to : Vector2): make_web(from, to))
 	add_sibling(bullet)
+
 
 ## Deprecated
 func shoot_web() -> void:

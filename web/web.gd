@@ -67,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	if distance > Global.web_length * 4:
 		destroy()
 		return
-	
+
 	var spring_force: Vector2 = (direction * magnitude - damping * (point_a.velocity - point_b.velocity)) * delta
 	if point_a.body is RigidBody2D:
 		point_a.body.apply_force(+ spring_force / 2)

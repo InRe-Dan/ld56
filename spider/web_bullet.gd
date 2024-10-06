@@ -1,5 +1,7 @@
 class_name WebBullet extends Node2D
 
+const speed : float = 2.0
+
 @onready var detection : ShapeCast2D = $Detection
 @onready var particles : CPUParticles2D = $CPUParticles2D
 
@@ -12,4 +14,4 @@ func _physics_process(delta: float) -> void:
 		particles.reparent(get_parent())
 		particles.emitting = false
 		get_tree().create_timer(particles.lifetime).timeout.connect(particles.queue_free)
-	global_position += global_transform.x * 1000 * delta
+	global_position += global_transform.x * 1000 * delta * speed
