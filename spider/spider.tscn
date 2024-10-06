@@ -82,6 +82,7 @@ joint_two_bone2d_node = NodePath("R4/Bone2D2")
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_u1nfu"]
 target_nodepath = NodePath("../LegTargets/L1/Follow")
+flip_bend_direction = true
 joint_one_bone_idx = 8
 joint_one_bone2d_node = NodePath("L1")
 joint_two_bone_idx = 9

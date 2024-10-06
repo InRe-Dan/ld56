@@ -5,7 +5,7 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 @export var energy_cap = 100
 @export var enery_drain_per_second = 0.5
 @export var web_cost = 2.5
-@export var jump_cost = 3
+@export var jump_cost = 5.0
 @onready var energy = energy_cap:
 	set(x):
 		energy = clamp(x, 0, energy_cap)
