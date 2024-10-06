@@ -35,9 +35,14 @@ func _physics_process(_delta: float) -> void:
 ## Adds a new web to this joint
 func add_web(web : Web) -> void:
 	webs.append(web)
-	
-	
+
+func recount() -> void:
+	if webs.size() == 0:
+		queue_free()
+
 ## Removes the passed web from this joint
 func remove_web(web : Web) -> void:
 	var index : int = webs.find(web)
 	if index >= 0: webs.remove_at(index)
+	recount.call_deferred()
+	
