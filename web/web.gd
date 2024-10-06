@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		if randf() < delta:
 			destroy()
 			return
-	
+
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
 	var distance : float = point_a.position.distance_to(point_b.position)

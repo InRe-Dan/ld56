@@ -15,7 +15,7 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 const damping: float = 4.0
 
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
-var rotation_speed: float = 4.0
+var rotation_speed: float = 1.0
 var sway_influence : float = 1.0 # Influence of nearby velocities
 
 var cast_length: float = 64.0:
@@ -126,7 +126,7 @@ func _get_intersect_velocity(ray : RayCast2D) -> Vector2:
 func get_websling_position() -> Vector2:
 	var dir : Vector2 = global_position.direction_to(get_global_mouse_position())
 	web_cast.global_rotation = 0
-	web_cast.global_position = global_position + dir * 50
+	web_cast.global_position = global_position + dir * cast_length * 2.0
 	web_cast.target_position = dir * 5000
 	web_cast.force_raycast_update()
 	if web_cast.is_colliding():
