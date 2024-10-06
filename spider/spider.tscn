@@ -82,7 +82,6 @@ joint_two_bone2d_node = NodePath("R4/Bone2D2")
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_u1nfu"]
 target_nodepath = NodePath("../LegTargets/L1/Follow")
-flip_bend_direction = true
 joint_one_bone_idx = 8
 joint_one_bone2d_node = NodePath("L1")
 joint_two_bone_idx = 9
@@ -125,7 +124,7 @@ modifications/6 = SubResource("SkeletonModification2DTwoBoneIK_64qvq")
 modifications/7 = SubResource("SkeletonModification2DTwoBoneIK_5ioob")
 
 [node name="Spider" type="RigidBody2D" groups=["spider"]]
-collision_mask = 0
+collision_mask = 32
 linear_damp = 4.0
 angular_damp = 1.0
 script = ExtResource("1_gma0t")

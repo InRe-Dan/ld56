@@ -97,6 +97,7 @@ jump={
 2d_physics/layer_3="Joint"
 2d_physics/layer_4="Bug"
 2d_physics/layer_5="Tree"
+2d_physics/layer_6="WorldBorder"
 2d_physics/layer_9="Web (Bug avoidance)"
 
 [physics]
