@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=17 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -8,6 +8,18 @@
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
 [ext_resource type="PackedScene" uid="uid://523036m0xuf1" path="res://menus/game_ui.tscn" id="10_y58tq"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jub1u"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wp2x1"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dbhsl"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfqg1"]
+size = Vector2(1920, 200)
 
 [sub_resource type="Curve" id="Curve_2coha"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228881, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.491438, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.828196, 0.478405), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -27,6 +39,31 @@ point_count = 4
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_m6c00")
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="Borders" type="StaticBody2D" parent="Bounds"]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Borders"]
+position = Vector2(979, 0)
+shape = SubResource("WorldBoundaryShape2D_jub1u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bounds/Borders"]
+position = Vector2(1, 465)
+shape = SubResource("WorldBoundaryShape2D_wp2x1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Bounds/Borders"]
+position = Vector2(1920, 568)
+shape = SubResource("WorldBoundaryShape2D_dbhsl")
+
+[node name="Killbox" type="Area2D" parent="Bounds"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Killbox"]
+position = Vector2(965, 1289)
+shape = SubResource("RectangleShape2D_wfqg1")
 
 [node name="MobSpawner" parent="." node_paths=PackedStringArray("top_left_marker", "bottom_right_marker") instance=ExtResource("7_8wlli")]
 z_index = 1
@@ -55,7 +92,7 @@ collision_layer = 18
 collision_mask = 14
 
 [node name="VisualMask" type="Line2D" parent="Trees/LeftTree"]
-points = PackedVector2Array(480, 0, 495, 161, 519.11, 351.989, 537, 454, 546, 667, 591, 930, 600, 1080)
+points = PackedVector2Array(480, 0, 495, 161, 519.11, 351.989, 537, 454, 546, 667, 591, 930, 618, 1234)
 width = 60.0
 width_curve = SubResource("Curve_l8ggl")
 default_color = Color(0.13, 0.06747, 0.0338, 1)
@@ -64,7 +101,7 @@ end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree"]
 build_mode = 1
-polygon = PackedVector2Array(480, 0, 600, 1080)
+polygon = PackedVector2Array(480, 0, 619, 1251)
 
 [node name="RightTree" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
@@ -72,7 +109,7 @@ collision_mask = 14
 
 [node name="VisualMask" type="Line2D" parent="Trees/RightTree"]
 position = Vector2(0, -1)
-points = PackedVector2Array(1440, 0, 1422, 183, 1394, 372, 1373, 640, 1331, 891, 1320, 1080)
+points = PackedVector2Array(1440, 0, 1422, 183, 1394, 372, 1373, 640, 1331, 891, 1293, 1236)
 width = 60.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
@@ -81,7 +118,7 @@ end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree"]
 build_mode = 1
-polygon = PackedVector2Array(1440, 0, 1320, 1080)
+polygon = PackedVector2Array(1440, 0, 1300, 1250)
 
 [node name="RightBranch" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
@@ -185,3 +222,5 @@ position = Vector2(544, 569)
 layer = 5
 
 [node name="GameUI" parent="UI" instance=ExtResource("10_y58tq")]
+
+[connection signal="body_entered" from="Bounds/Killbox" to="." method="_on_killbox_body_entered"]

@@ -125,7 +125,7 @@ modifications/6 = SubResource("SkeletonModification2DTwoBoneIK_64qvq")
 modifications/7 = SubResource("SkeletonModification2DTwoBoneIK_5ioob")
 
 [node name="Spider" type="RigidBody2D" groups=["spider"]]
-collision_mask = 0
+collision_mask = 32
 linear_damp = 4.0
 angular_damp = 1.0
 script = ExtResource("1_gma0t")
