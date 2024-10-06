@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MobData" load_steps=3 format=3 uid="uid://cq0t7gbt2mrw3"]
+
+[ext_resource type="PackedScene" uid="uid://dmyotpujac7a" path="res://insects/fly.tscn" id="1_4lkaj"]
+[ext_resource type="Script" path="res://insects/data/mob_data.gd" id="1_8pw5m"]
+
+[resource]
+script = ExtResource("1_8pw5m")
+scene = ExtResource("1_4lkaj")
+spawn_weight = 1.0
+spawn_cost = 1.0
+difficulty_requirement = 0

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2kdgbkrdrcu7"]
+
+[ext_resource type="Script" path="res://insects/spawner/mob_spawner.gd" id="1_nyfpr"]
+
+[node name="MobSpawner" type="Node2D"]
+script = ExtResource("1_nyfpr")

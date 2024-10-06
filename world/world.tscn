@@ -1,14 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=12 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
+[ext_resource type="Script" path="res://insects/data/mob_data.gd" id="3_ivcbe"]
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
 [ext_resource type="Texture2D" uid="uid://bxw34dyx2cgac" path="res://assets/background_1.png" id="4_2hkic"]
+[ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
 [ext_resource type="PackedScene" uid="uid://dmyotpujac7a" path="res://insects/fly.tscn" id="5_lpks7"]
 [ext_resource type="Texture2D" uid="uid://dctbj2786bciq" path="res://assets/I am literally Picasso.png" id="6_lh8ic"]
+[ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
+
+[sub_resource type="Curve" id="Curve_2coha"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228881, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.491438, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.828196, 0.478405), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_ek8vk"]
+_data = [Vector2(0, 0), 0.0, 0.982845, 0, 0, Vector2(1, 1), 1.08666, 0.0, 0, 0]
+point_count = 2
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_m6c00")
+
+[node name="MobSpawner" parent="." node_paths=PackedStringArray("top_left_marker", "bottom_right_marker") instance=ExtResource("7_8wlli")]
+z_index = 1
+top_left_marker = NodePath("TopLeft")
+bottom_right_marker = NodePath("BottomRight")
+horizontal_spread = SubResource("Curve_2coha")
+vertical_spread = SubResource("Curve_ek8vk")
+mobs = Array[ExtResource("3_ivcbe")]([ExtResource("4_ytwgf")])
+
+[node name="TopLeft" type="Marker2D" parent="MobSpawner"]
+position = Vector2(25, 10)
+
+[node name="BottomRight" type="Marker2D" parent="MobSpawner"]
+position = Vector2(1904, 1070)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_2hkic")

@@ -14,19 +14,22 @@ var change_dir_time : float = 1 + randf()
 
 func enable() -> void:
 	$SpawnFlourish.emitting = true
+	$Hurtbox/CollisionShape2D.disabled = false
 	spawning = false
 	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	modulate.a = 0.6
+	$Hurtbox/CollisionShape2D.disabled = true
+	modulate.a = 0
 	var mod_tween : Tween = create_tween()
+	mod_tween.tween_property(self, "modulate:a", 0.5, 0.5)
 	mod_tween.tween_property(self, "modulate:a", 1.0, 1.0)
 	mod_tween.tween_callback(enable)
 
 	var scale_tween : Tween = create_tween()
 	scale = scale * 0.1
-	scale_tween.tween_property(self, "scale", scale * 10, 1.0)
+	scale_tween.tween_property(self, "scale", scale * 10, 1.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
