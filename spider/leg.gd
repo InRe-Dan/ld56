@@ -11,7 +11,7 @@ class_name Leg extends Node2D
 @onready var pref_marker : Marker2D = $Preferred
 
 # How far a leg has to be before it is moved
-const distance_threshold : float = 50
+const distance_threshold : float = 70
 var marker_target_position : Vector2
 var stepping : bool = false
 var stepping_to : Vector2
@@ -31,6 +31,7 @@ func _ready() -> void:
 	assert(marker)
 	assert(pref_marker)
 	marker_target_position = marker.global_position
+	marker.global_position = pref_marker.global_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -58,5 +59,5 @@ func _physics_process(delta: float) -> void:
 		stepping = false
 	
 	if stepping:
-		marker.global_position = lerp(marker.global_position, stepping_to, clamp(10 * delta, 0, 1.0))
+		marker.global_position = marker.global_position.move_toward(stepping_to, 400 * delta,)
 		

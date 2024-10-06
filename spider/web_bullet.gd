@@ -8,6 +8,9 @@ const speed : float = 2.0
 signal hit(pos : Vector2)
 
 func _physics_process(delta: float) -> void:
+	var dist_to_travel : float = 1000 * delta * speed + 16
+	detection.target_position.x = dist_to_travel
+	detection.force_shapecast_update()
 	if detection.is_colliding():
 		hit.emit(detection.get_collision_point(0))
 		queue_free()

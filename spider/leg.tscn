@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq076erj3xhfp"]
 
-[ext_resource type="Script" path="res://spider/leg.gd" id="1_doe6g"]
+[ext_resource type="Script" path="res://spider/leg.gd" id="1_cxsfo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m4wpf"]
 radius = 67.0
 height = 182.0
 
 [node name="R1" type="Node2D"]
-script = ExtResource("1_doe6g")
+script = ExtResource("1_cxsfo")
 
 [node name="Follow" type="Marker2D" parent="."]
 top_level = true
@@ -18,6 +18,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_m4wpf")
-debug_color = Color(0, 0.6, 0.701961, 0.0196078)
+debug_color = Color(0, 0.6, 0.701961, 0.117647)
 
 [node name="Preferred" type="Marker2D" parent="."]
