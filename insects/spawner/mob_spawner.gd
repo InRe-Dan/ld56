@@ -60,7 +60,6 @@ func spawn() -> void:
 	var mob_data : MobData = candidates[index]
 	var mob : Node2D = mob_data.scene.instantiate()
 	mob.global_position = get_random_spawn_pos()
-	print(mob.global_position)
 	add_child(mob)
 	
 	

@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 	change_dir_time -= delta
 	avoidance_cooldown -= delta
 	
-	if avoidance_cooldown < 0:
+	if avoidance_cooldown < 0: 
 		eyes.target_position = velocity.normalized() * 100
 		eyes.force_raycast_update()
 		if eyes.is_colliding():
