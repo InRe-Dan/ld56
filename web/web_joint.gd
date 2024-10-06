@@ -16,6 +16,7 @@ func _ready() -> void:
 	assert(body)
 	body.top_level = true
 	body.global_position = global_position
+	if body is StaticBody2D: print("static")
 
 
 ## Called every physics frame

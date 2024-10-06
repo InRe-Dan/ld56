@@ -68,16 +68,15 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 	# Otherwise check if branches or webs exist
 	elif web_scout.is_colliding():
 		var object : PhysicsBody2D = web_scout.get_collider(0)
-		if object is StaticBody2D:
+		if object is Web:
+			# This must be a web. We need to split it into two and make a pivot here.
+			var web : Web = object as Web
+			joint = split(web, pos)
+		else:
 			# This must be a tree
 			joint = static_joint_scene.instantiate()
 			joint.global_position = web_scout.get_collision_point(0)
 			add_child(joint)
-		elif object is RigidBody2D:
-			# This must be a web. We need to split it into two and make a pivot here.
-			var web : Web = object as Web
-			joint = split(web, pos)
-		else: assert(false) # huh
 	
 	if not joint:
 		joint = rigid_joint_scene.instantiate()
