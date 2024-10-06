@@ -5,8 +5,8 @@ var web_scene : PackedScene = preload("res://web/web.tscn")
 var static_joint_scene : PackedScene = preload("res://web/static_joint.tscn")
 var rigid_joint_scene : PackedScene = preload("res://web/rigid_joint.tscn")
 
-@onready var web_scout: ShapeCast2D = $WebScout
-@onready var joint_scout : ShapeCast2D = $JointScout
+@onready var final_scout : ShapeCast2D = $FinalScout
+@onready var initial_scout : ShapeCast2D = $InitialScout
 @onready var webindicator = $"../WebIndicator"
 
 ## Turns a web's two joints into one, destroying the web in the process.
@@ -44,38 +44,35 @@ func split(web : Web, pos : Vector2) -> WebJoint:
 	
 
 ## Return true if there is a webbable point here (branch, joint or web)
-func check_for_object(pos : Vector2) -> bool:
-	joint_scout.global_position = pos
-	web_scout.global_position = pos
-	joint_scout.force_shapecast_update()
-	web_scout.force_shapecast_update()
-	return web_scout.is_colliding() or joint_scout.is_colliding()
+func check_for_object(scout : ShapeCast2D, pos : Vector2) -> bool:
+	scout.global_position = pos
+	scout.force_shapecast_update()
+	return scout.is_colliding()
 
 
 ## This will either check for an existing joint near this point 
 ## or create and add a new one to the scene tree.
-func get_joint_at(pos : Vector2) -> WebJoint:
-	joint_scout.global_position = pos
-	web_scout.global_position = pos
-	joint_scout.force_shapecast_update()
-	web_scout.force_shapecast_update()
+func get_joint_at(scout : ShapeCast2D, pos : Vector2) -> WebJoint:
+	scout.global_position = pos
+	scout.force_shapecast_update()
 	var joint : WebJoint = null
 
-	# First check if any pivots already exist here
-	if joint_scout.is_colliding():
-		joint = joint_scout.get_collider(0)
-
 	# Otherwise check if branches or webs exist
-	elif web_scout.is_colliding():
-		var object : PhysicsBody2D = web_scout.get_collider(0)
-		if object is Web:
+	if scout.is_colliding():
+		var scout_pos : Vector2 = scout.get_collision_point(0)
+		var object : Node2D = scout.get_collider(0)
+
+		if object is WebJoint:
+			# Joint already here
+			joint = object as WebJoint
+		elif object is Web:
 			# This must be a web. We need to split it into two and make a pivot here.
 			var web : Web = object as Web
 			joint = split(web, pos)
 		else:
 			# This must be a tree
 			joint = static_joint_scene.instantiate()
-			joint.global_position = web_scout.get_collision_point(0)
+			joint.global_position = scout_pos
 			add_child(joint)
 
 	if not joint:
@@ -89,7 +86,7 @@ func get_joint_at(pos : Vector2) -> WebJoint:
 
 ## Creates a web between two points
 func create_web(point_a: Vector2, point_b: Vector2) -> void:
-	if not (check_for_object(point_a) and check_for_object(point_b)):
+	if not (check_for_object(initial_scout, point_a) and check_for_object(final_scout, point_b)):
 		print("Can't create web here. (No anchor)")
 		webindicator.visible = true
 		$"../Spider/WebIndicatorTimer".start(2)
@@ -105,7 +102,7 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 	var distance_created: float = 0
 	var direction: Vector2 = point_a.direction_to(point_b)
 	
-	var start_joint: WebJoint = get_joint_at(point_a)
+	var start_joint: WebJoint = get_joint_at(initial_scout, point_a)
 
 	while distance > 0:
 		# Calculate distance of next segment
@@ -120,11 +117,10 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 		distance_created += new_web_length
 		var end = point_a + direction * distance_created
 		
-		var new_joint: WebJoint = get_joint_at(end)
+		var new_joint: WebJoint = get_joint_at(final_scout, end)
 		if not new_joint:
 			return
-		assert(start_joint.global_position != Vector2())
-		
+
 		_create_web_segment(new_web_length, start_joint, new_joint)
 		start_joint = new_joint
 		distance -= new_web_length

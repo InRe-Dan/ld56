@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0ckbq1mytq2s"]
+
+[ext_resource type="Script" path="res://global.gd" id="1_rfklv"]
+[ext_resource type="AudioStream" uid="uid://bgrd03yxwav51" path="res://assets/sound/ld56_1_demo.mp3" id="2_5nxam"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_0vt7p"]
+stream_count = 1
+stream_0 = ExtResource("2_5nxam")
+
+[node name="Global" type="Node2D"]
+script = ExtResource("1_rfklv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_0vt7p")
+autoplay = true
