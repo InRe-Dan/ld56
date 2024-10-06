@@ -4,8 +4,9 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 
 @export var energy_cap = 100
 @export var enery_drain_per_second = 0.5
-@export var web_cost = 3
-@onready var energy = energy_cap * 0.8:
+@export var web_cost = 2.5
+@export var jump_cost = 5.0
+@onready var energy = energy_cap:
 	set(x):
 		energy = clamp(x, 0, energy_cap)
 		if energy == 0:
@@ -15,7 +16,7 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 const damping: float = 4.0
 
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
-var rotation_speed: float = 4.0
+var rotation_speed: float = 2.5
 var sway_influence : float = 1.0 # Influence of nearby velocities
 
 var cast_length: float = 64.0:
@@ -39,13 +40,6 @@ func _ready() -> void:
 	# Configure lengths of rays
 	update_cast_length(cast_length)
 	linear_damp = damping
-
-
-## Called every frame
-func _process(delta: float) -> void:
-	# Draw destruction zone
-	for web : Web in _get_destruction_overlaps():
-		web.visual.modulate = Color.ORANGE
 
 ## Returns ratio of legs planted on a web or on a branch
 func get_groundedness() -> float:
@@ -90,7 +84,20 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire_web"): shoot_web_bullet() # shoot_web()
 	elif event.is_action_pressed("destroy_web"): destroy_webs()
+	elif event.is_action_pressed("jump"): jump()
 
+
+func jump() -> void:
+	if get_groundedness() == 0:
+		return
+	if energy < jump_cost:
+		return
+	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
+	if input_vector == Vector2.ZERO:
+		return
+	energy -= jump_cost
+	linear_velocity = 500 * input_vector
+	
 
 ## Updates the cast length of the spider
 func update_cast_length(new_length: float) -> void:
@@ -133,7 +140,7 @@ func _get_intersect_velocity(ray : RayCast2D) -> Vector2:
 func get_websling_position() -> Vector2:
 	var dir : Vector2 = global_position.direction_to(get_global_mouse_position())
 	web_cast.global_rotation = 0
-	web_cast.global_position = global_position + dir * 50
+	web_cast.global_position = global_position + dir * cast_length * 1.5
 	web_cast.target_position = dir * 5000
 	web_cast.force_raycast_update()
 	if web_cast.is_colliding():
@@ -181,9 +188,6 @@ func destroy_webs() -> void:
 
 
 func _on_mouth_area_entered(area: Area2D) -> void:
-	var opp : Fly = area.get_parent()
-	energy += opp.energy_gain
+	var opp : Insect = area.get_parent()
+	energy += opp.mob_data.energy_gain
 	opp.kill($Mouth.global_position.direction_to(area.global_position))
-
-func _on_web_indicator_timer_timeout() -> void:
-		$"../WebIndicator".visible = false

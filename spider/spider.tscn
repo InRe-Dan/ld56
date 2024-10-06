@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://d3ud2rqlsvy6p"]
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
-[ext_resource type="PackedScene" uid="uid://cq076erj3xhfp" path="res://leg.tscn" id="2_7yvgd"]
+[ext_resource type="PackedScene" uid="uid://cq076erj3xhfp" path="res://spider/leg.tscn" id="2_7yvgd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1mhc7"]
 radius = 16.0
@@ -36,8 +36,8 @@ fill_from = Vector2(0.5, 0.5)
 radius = 30.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ai1cj"]
-radius = 55.0
-height = 110.0
+radius = 23.0
+height = 136.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6sqcd"]
 radius = 56.0
@@ -53,6 +53,7 @@ height = 118.0
 
 [sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_k8175"]
 target_nodepath = NodePath("../LegTargets/R1/Follow")
+flip_bend_direction = true
 joint_one_bone_idx = 0
 joint_one_bone2d_node = NodePath("R1")
 joint_two_bone_idx = 1
@@ -194,16 +195,17 @@ collision_mask = 2
 [node name="R1" parent="Legs/LegTargets" instance=ExtResource("2_7yvgd")]
 
 [node name="Follow" parent="Legs/LegTargets/R1" index="0"]
-position = Vector2(79, -90)
+position = Vector2(26, -89)
 
 [node name="Area2D" parent="Legs/LegTargets/R1" index="1"]
-position = Vector2(79, -90)
+position = Vector2(24, -99)
+rotation = 1.5708
 
 [node name="CollisionShape2D" parent="Legs/LegTargets/R1/Area2D" index="0"]
 shape = SubResource("CapsuleShape2D_ai1cj")
 
 [node name="Preferred" parent="Legs/LegTargets/R1" index="2"]
-position = Vector2(79, -90)
+position = Vector2(26, -131)
 
 [node name="R2" parent="Legs/LegTargets" instance=ExtResource("2_7yvgd")]
 position = Vector2(16, 31)
@@ -212,7 +214,7 @@ position = Vector2(16, 31)
 position = Vector2(98, -28)
 
 [node name="Area2D" parent="Legs/LegTargets/R2" index="1"]
-position = Vector2(66, -62)
+position = Vector2(66, -36)
 
 [node name="CollisionShape2D" parent="Legs/LegTargets/R2/Area2D" index="0"]
 shape = SubResource("CapsuleShape2D_6sqcd")
@@ -254,16 +256,17 @@ position = Vector2(-36, 6)
 position = Vector2(-22, 23)
 
 [node name="Follow" parent="Legs/LegTargets/L1" index="0"]
-position = Vector2(-83, -81)
+position = Vector2(-29, -89)
 
 [node name="Area2D" parent="Legs/LegTargets/L1" index="1"]
-position = Vector2(-61, -102)
+position = Vector2(9, -122)
+rotation = 1.5708
 
 [node name="CollisionShape2D" parent="Legs/LegTargets/L1/Area2D" index="0"]
 shape = SubResource("CapsuleShape2D_ai1cj")
 
 [node name="Preferred" parent="Legs/LegTargets/L1" index="2"]
-position = Vector2(-63, -104)
+position = Vector2(-7, -154)
 
 [node name="L2" parent="Legs/LegTargets" instance=ExtResource("2_7yvgd")]
 position = Vector2(-22, 49)
@@ -272,7 +275,7 @@ position = Vector2(-22, 49)
 position = Vector2(-106, -22)
 
 [node name="Area2D" parent="Legs/LegTargets/L2" index="1"]
-position = Vector2(-68, -72)
+position = Vector2(-68, -46)
 
 [node name="CollisionShape2D" parent="Legs/LegTargets/L2/Area2D" index="0"]
 shape = SubResource("CapsuleShape2D_6sqcd")
@@ -315,8 +318,8 @@ modification_stack = SubResource("SkeletonModificationStack2D_fuwid")
 
 [node name="R1" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(13, -30)
-rotation = -1.23235
-scale = Vector2(3, 3)
+rotation = -0.691234
+scale = Vector2(2.5, 2.5)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
 
@@ -329,14 +332,14 @@ end_cap_mode = 2
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
-rotation = 0.394411
+rotation = 0.394413
 scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R1/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.5686, -6.71891, 21.3148, -0.654059)
+points = PackedVector2Array(6.5686, -6.71891, 20.8442, -0.685163)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -363,7 +366,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R2/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.50004, -6.25544, 12.4676, 8.06046)
+points = PackedVector2Array(6.50004, -6.25544, 12.2753, 8.00909)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -382,20 +385,20 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R3"]
 position = Vector2(17, 1)
-rotation = 0.0587552
+rotation = 0.0587595
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R3/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.84407, -6.47482, 22.1915, -5.94079)
+points = PackedVector2Array(6.84407, -6.47482, 22.1916, -5.72323)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="R4" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(15, -2)
-rotation = 0.793568
+rotation = 0.793569
 scale = Vector2(3, 3)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
@@ -413,14 +416,14 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R4/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.28714, -6.76053, 22.4972, -7.13242)
+points = PackedVector2Array(6.28714, -6.76053, 23.0195, -7.13297)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="L1" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(-16, -28)
-rotation = -2.01783
-scale = Vector2(3, 3)
+rotation = -2.52753
+scale = Vector2(2.5, 2.5)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
 
@@ -439,7 +442,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L1/Bone2D2"]
 position = Vector2(-4.90957, -8.55546)
-points = PackedVector2Array(3.07021, -7.30197, 4.86101, 8.41524)
+points = PackedVector2Array(3.49494, -6.43739, 4.86101, 8.41524)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -459,13 +462,13 @@ default_color = Color(0, 0, 0, 1)
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/L2"]
 position = Vector2(17, 1)
 rotation = -1.66554
-scale = Vector2(0.999994, 0.999994)
+scale = Vector2(0.999993, 0.999993)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L2/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)
-points = PackedVector2Array(4.35825, -6.30134, 2.21802, -22.1076)
+points = PackedVector2Array(4.35825, -6.30134, 2.38333, -21.8681)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -491,7 +494,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L3/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)
-points = PackedVector2Array(4.09887, -6.41423, 2.35089, -22.4133)
+points = PackedVector2Array(4.09887, -6.41423, 2.72718, -21.8598)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -517,14 +520,11 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L4/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)
-points = PackedVector2Array(3.80493, -6.55391, 2.68116, -22.3681)
+points = PackedVector2Array(3.80493, -6.55391, 2.25205, -22.3137)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="WebIndicatorTimer" type="Timer" parent="."]
-
 [connection signal="area_entered" from="Mouth" to="." method="_on_mouth_area_entered"]
-[connection signal="timeout" from="WebIndicatorTimer" to="." method="_on_web_indicator_timer_timeout"]
 
 [editable path="Legs/LegTargets/R1"]
 [editable path="Legs/LegTargets/R2"]

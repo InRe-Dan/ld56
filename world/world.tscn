@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=13 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
 [ext_resource type="Texture2D" uid="uid://bxw34dyx2cgac" path="res://assets/background_1.png" id="4_2hkic"]
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
-[ext_resource type="PackedScene" uid="uid://dmyotpujac7a" path="res://insects/fly.tscn" id="5_lpks7"]
-[ext_resource type="Texture2D" uid="uid://dctbj2786bciq" path="res://assets/I am literally Picasso.png" id="6_lh8ic"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
 [ext_resource type="PackedScene" uid="uid://523036m0xuf1" path="res://menus/game_ui.tscn" id="10_y58tq"]
 [ext_resource type="Shader" path="res://world/Rain.gdshader" id="11_pcwd8"]
@@ -76,7 +74,7 @@ collision_mask = 14
 
 [node name="VisualMask" type="Line2D" parent="Trees/LeftTree"]
 points = PackedVector2Array(480, 0, 495, 161, 519.11, 351.989, 537, 454, 546, 667, 591, 930, 600, 1080)
-width = 25.0
+width = 60.0
 width_curve = SubResource("Curve_l8ggl")
 default_color = Color(0.13, 0.06747, 0.0338, 1)
 begin_cap_mode = 2
@@ -93,7 +91,7 @@ collision_mask = 14
 [node name="VisualMask" type="Line2D" parent="Trees/RightTree"]
 position = Vector2(0, -1)
 points = PackedVector2Array(1440, 0, 1422, 183, 1394, 372, 1373, 640, 1331, 891, 1320, 1080)
-width = 25.0
+width = 60.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
 begin_cap_mode = 2
@@ -200,15 +198,6 @@ polygon = PackedVector2Array(1792, 475, 1358, 778)
 
 [node name="Spider" parent="." instance=ExtResource("3_pypjb")]
 position = Vector2(544, 569)
-
-[node name="Fly" parent="." instance=ExtResource("5_lpks7")]
-position = Vector2(1027, 476)
-
-[node name="WebIndicator" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(904, 310)
-scale = Vector2(3, 3)
-texture = ExtResource("6_lh8ic")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 5

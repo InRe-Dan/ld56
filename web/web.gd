@@ -3,9 +3,6 @@ class_name Web extends StaticBody2D
 
 signal destroyed
 
-const debug_colors: Array = [Color.AQUA, Color.AQUAMARINE, Color.CORAL, Color.CADET_BLUE, Color.DARK_SALMON,
-Color.FIREBRICK, Color.LIGHT_CORAL, Color.GOLD, Color.YELLOW_GREEN, Color.VIOLET]
-
 var point_a : WebJoint:
 	set(x):
 		if x is WebJoint:
@@ -29,14 +26,18 @@ var velocity : Vector2:
 # Spring parameters
 var stiffness: float = 4096.0
 var damping: float = 1024.0
+var lifetime : float = 60
 
 var health : float = 1.0
+
+@export var damage_gradient : Gradient
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
 @onready var web_factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 @onready var death_particles : CPUParticles2D = $DeathParticles
 @onready var free_timer : Timer = $FreeTimer
+@onready var width : float = visual.width
 
 var blood_radius = 130;
 
@@ -46,8 +47,8 @@ func _ready() -> void:
 	assert(point_a)
 	assert(point_b)
 	#visual.modulate = debug_colors.pick_random()
-	if $"../..".has_node("Fly"):
-		$"../../Fly".connect("SPLAT",GetBloody)
+	if $"../..".has_node("Insect"):
+		$"../../Insect".connect("SPLAT",GetBloody)
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
@@ -58,11 +59,9 @@ func _physics_process(delta: float) -> void:
 	## Destroy if no neighbors
 	if (point_a.webs.size() == 1 and point_a.body is RigidBody2D) or (point_b.webs.size() == 1 and point_b.body is RigidBody2D):
 		if randf() < delta:
-			destroy()
+			damage(0.25)
 			return
-	
-	visual.modulate = Color.WHITE
-	
+
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
 	var distance : float = point_a.position.distance_to(point_b.position)
@@ -88,6 +87,12 @@ func _physics_process(delta: float) -> void:
 	collision.polygon = endpoints
 
 
+func _process(delta: float) -> void:
+	damage(delta * 1 / lifetime)
+	visual.default_color = damage_gradient.sample(health)
+	visual.width = width * health + 2.0
+
+
 ## Queues for deletion and removes itself from weblists
 func destroy() -> void:
 	if not free_timer.is_stopped(): return
@@ -108,8 +113,9 @@ func damage(amount : float) -> void:
 	if health <= 0.0: destroy()
 
 
-func GetBloody(fly_position):
-	$VisualMask.material.set_shader_parameter("blood_position", fly_position)
+func GetBloody(insect_position):
+	return
+	$VisualMask.material.set_shader_parameter("blood_position", insect_position)
 	$VisualMask.material.set_shader_parameter("blood_radius", blood_radius)
 	StartBloodFade()
 

@@ -14,12 +14,12 @@ extends Node2D
 		return mobs.duplicate()
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-
-
 var spawn_timer : float = 0.0
 
 # Should increase in some way as the player progresses
 var difficulty_metric = 0
+
+@onready var insect_scene : PackedScene = preload("res://insects/insect.tscn")
 
 
 ## Removes any mobs in the array that shouldn't be spawned right now.
@@ -58,7 +58,8 @@ func spawn() -> void:
 		weights.append(candidate.spawn_weight)
 	var index : int = rng.rand_weighted(weights)
 	var mob_data : MobData = candidates[index]
-	var mob : Node2D = mob_data.scene.instantiate()
+	var mob : Insect = insect_scene.instantiate()
+	mob.mob_data = mob_data
 	mob.global_position = get_random_spawn_pos()
 	add_child(mob)
 	
