@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://523036m0xuf1"]
+[gd_scene load_steps=12 format=3 uid="uid://523036m0xuf1"]
 
 [ext_resource type="Theme" uid="uid://cutyu3701iivq" path="res://resources/theme/purple.tres" id="1_eq5wu"]
 [ext_resource type="Script" path="res://menus/game_ui.gd" id="1_i8rq3"]
+[ext_resource type="Texture2D" uid="uid://dfgg6xhjeixi2" path="res://assets/placeholder_cobweb.png" id="3_eqy71"]
 
 [sub_resource type="Gradient" id="Gradient_uqv8m"]
 offsets = PackedFloat32Array(0, 0.645161, 0.680645)
@@ -87,3 +88,8 @@ offset_right = 1067.0
 offset_bottom = 998.0
 text = "Energy"
 label_settings = SubResource("LabelSettings_xe5ga")
+
+[node name="WebReticle" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.654902)
+texture_filter = 1
+texture = ExtResource("3_eqy71")

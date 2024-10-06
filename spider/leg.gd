@@ -56,5 +56,5 @@ func _physics_process(delta: float) -> void:
 		stepping = false
 	
 	if stepping:
-		marker.global_position = lerp(marker.global_position, marker_target_position, 10 * delta)
+		marker.global_position = lerp(marker.global_position, marker_target_position, clamp(10 * delta, 0, 1.0))
 		

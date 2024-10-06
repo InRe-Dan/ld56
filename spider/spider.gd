@@ -128,18 +128,23 @@ func _get_intersect_velocity(ray : RayCast2D) -> Vector2:
 	else:
 		return Vector2.ZERO
 
+func get_websling_position() -> Vector2:
+	var dir : Vector2 = global_position.direction_to(get_global_mouse_position())
+	web_cast.global_rotation = 0
+	web_cast.global_position = global_position + dir * 50
+	web_cast.target_position = dir * 5000
+	web_cast.force_raycast_update()
+	if web_cast.is_colliding():
+		return web_cast.get_collision_point()
+	else: return Vector2(-1, -1)
 
 ## Fires a web at the current mouse position
 func shoot_web() -> void:
 	if energy < web_cost + 10:
 		print("Can't make a web! Too low on energy!")
 		return
-	web_cast.global_rotation = 0
-	var dir : Vector2 = global_position.direction_to(get_global_mouse_position())
-	web_cast.global_position = global_position + dir * 50
-	web_cast.target_position = dir * 5000
-	web_cast.force_raycast_update()
-	if web_cast.is_colliding():
+	var pos : Vector2 = get_websling_position()
+	if pos != Vector2(-1, -1):
 		energy -= web_cost
 		factory.create_web(global_position, web_cast.get_collision_point())
 

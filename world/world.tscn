@@ -177,5 +177,6 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_lh8ic")
 
 [node name="UI" type="CanvasLayer" parent="."]
+layer = 5
 
 [node name="GameUI" parent="UI" instance=ExtResource("10_y58tq")]
