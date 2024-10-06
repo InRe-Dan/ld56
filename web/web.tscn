@@ -1,39 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://w40vath24c7j"]
+[gd_scene load_steps=4 format=3 uid="uid://w40vath24c7j"]
 
 [ext_resource type="Script" path="res://web/web.gd" id="1_7k0vh"]
-[ext_resource type="Shader" path="res://web/Blood.gdshader" id="2_8qghp"]
 
-[sub_resource type="Gradient" id="Gradient_6q7k0"]
-offsets = PackedFloat32Array(0, 0.991803)
-colors = PackedColorArray(0, 0, 0, 1, 1, 0.180392, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_dx6wq"]
-frequency = 0.0868
-domain_warp_amplitude = 200.0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mp6o7"]
-generate_mipmaps = false
-seamless = true
-bump_strength = 31.0
-color_ramp = SubResource("Gradient_6q7k0")
-noise = SubResource("FastNoiseLite_dx6wq")
-
-[sub_resource type="Gradient" id="Gradient_88qbu"]
-offsets = PackedFloat32Array(0.57377)
-colors = PackedColorArray(0.945098, 0.980392, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_eesat"]
-gradient = SubResource("Gradient_88qbu")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_amtg6"]
-resource_local_to_scene = true
-shader = ExtResource("2_8qghp")
-shader_parameter/blood_position = Vector2(0, 0)
-shader_parameter/blood_radius = 100.0
-shader_parameter/blood_coef = 0.865
-shader_parameter/color = Color(0.513753, 1.72067e-06, 4.81308e-08, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_mp6o7")
-shader_parameter/web_texture = SubResource("GradientTexture1D_eesat")
+[sub_resource type="Gradient" id="Gradient_arccy"]
+offsets = PackedFloat32Array(0, 0.17378, 0.326219, 1)
+colors = PackedColorArray(0.996733, 0.551842, 3.85046e-07, 1, 0.983392, 0.630478, 0.195578, 1, 0.937256, 0.902427, 0.871951, 1, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_d6hpa"]
 offsets = PackedFloat32Array(0, 0.782443, 1)
@@ -43,13 +14,14 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 collision_layer = 258
 collision_mask = 0
 script = ExtResource("1_7k0vh")
+damage_gradient = SubResource("Gradient_arccy")
 
 [node name="VisualMask" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_amtg6")
 width = 3.0
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+antialiased = true
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="."]
 build_mode = 1

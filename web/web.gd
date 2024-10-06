@@ -3,9 +3,6 @@ class_name Web extends StaticBody2D
 
 signal destroyed
 
-const debug_colors: Array = [Color.AQUA, Color.AQUAMARINE, Color.CORAL, Color.CADET_BLUE, Color.DARK_SALMON,
-Color.FIREBRICK, Color.LIGHT_CORAL, Color.GOLD, Color.YELLOW_GREEN, Color.VIOLET]
-
 var point_a : WebJoint:
 	set(x):
 		if x is WebJoint:
@@ -29,8 +26,11 @@ var velocity : Vector2:
 # Spring parameters
 var stiffness: float = 4096.0
 var damping: float = 1024.0
+var lifetime : float = 30
 
 var health : float = 1.0
+
+@export var damage_gradient : Gradient
 
 @onready var visual: Line2D = $VisualMask
 @onready var collision: CollisionPolygon2D = $CollisionMask
@@ -61,8 +61,6 @@ func _physics_process(delta: float) -> void:
 			destroy()
 			return
 	
-	visual.modulate = Color.WHITE
-	
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
 	var distance : float = point_a.position.distance_to(point_b.position)
@@ -87,6 +85,9 @@ func _physics_process(delta: float) -> void:
 	visual.points = endpoints
 	collision.polygon = endpoints
 
+func _process(delta: float) -> void:
+	damage(delta * 1 / lifetime)
+	visual.default_color = damage_gradient.sample(health)
 
 ## Queues for deletion and removes itself from weblists
 func destroy() -> void:
@@ -109,6 +110,7 @@ func damage(amount : float) -> void:
 
 
 func GetBloody(fly_position):
+	return
 	$VisualMask.material.set_shader_parameter("blood_position", fly_position)
 	$VisualMask.material.set_shader_parameter("blood_radius", blood_radius)
 	StartBloodFade()

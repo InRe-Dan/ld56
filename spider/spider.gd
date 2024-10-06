@@ -40,13 +40,6 @@ func _ready() -> void:
 	update_cast_length(cast_length)
 	linear_damp = damping
 
-
-## Called every frame
-func _process(delta: float) -> void:
-	# Draw destruction zone
-	for web : Web in _get_destruction_overlaps():
-		web.visual.modulate = Color.ORANGE
-
 ## Returns ratio of legs planted on a web or on a branch
 func get_groundedness() -> float:
 	var sum : float = 0
