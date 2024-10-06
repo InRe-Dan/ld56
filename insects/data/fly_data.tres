@@ -1,11 +1,17 @@
 [gd_resource type="Resource" script_class="MobData" load_steps=3 format=3 uid="uid://cq0t7gbt2mrw3"]
 
-[ext_resource type="PackedScene" uid="uid://dmyotpujac7a" path="res://insects/fly.tscn" id="1_4lkaj"]
 [ext_resource type="Script" path="res://insects/data/mob_data.gd" id="1_8pw5m"]
+[ext_resource type="Texture2D" uid="uid://cpetqx71af6pt" path="res://icon.svg" id="2_38er0"]
 
 [resource]
 script = ExtResource("1_8pw5m")
-scene = ExtResource("1_4lkaj")
+texture = ExtResource("2_38er0")
+spin_speed = 0.4
+acceleration = 40.0
+max_speed = 100.0
+energy_gain = 10.0
 spawn_weight = 1.0
 spawn_cost = 1.0
 difficulty_requirement = 0
+initial_damage = 0.2
+struggle_damage = 0.05

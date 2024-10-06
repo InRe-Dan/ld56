@@ -47,8 +47,8 @@ func _ready() -> void:
 	assert(point_a)
 	assert(point_b)
 	#visual.modulate = debug_colors.pick_random()
-	if $"../..".has_node("Fly"):
-		$"../../Fly".connect("SPLAT",GetBloody)
+	if $"../..".has_node("Insect"):
+		$"../../Insect".connect("SPLAT",GetBloody)
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	## Destroy if no neighbors
 	if (point_a.webs.size() == 1 and point_a.body is RigidBody2D) or (point_b.webs.size() == 1 and point_b.body is RigidBody2D):
 		if randf() < delta:
-			damage(0.1)
+			damage(0.25)
 			return
 
 	# Apply spring physics
@@ -113,9 +113,9 @@ func damage(amount : float) -> void:
 	if health <= 0.0: destroy()
 
 
-func GetBloody(fly_position):
+func GetBloody(insect_position):
 	return
-	$VisualMask.material.set_shader_parameter("blood_position", fly_position)
+	$VisualMask.material.set_shader_parameter("blood_position", insect_position)
 	$VisualMask.material.set_shader_parameter("blood_radius", blood_radius)
 	StartBloodFade()
 
