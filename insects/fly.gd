@@ -9,7 +9,12 @@ var spawning : bool = true
 var velocity : Vector2 
 var target_dir : Vector2 = Vector2.from_angle(TAU * randf())
 var change_dir_time : float = 1 + randf()
+var initial_damage : float = 0.5
+var struggle_damage : float = 0.1
+var stuck_to : Web
+
 signal SPLAT(position)
+
 @onready var eyes : RayCast2D = $Eyes
 @onready var avoidance_cooldown : float = 0
 
@@ -40,6 +45,16 @@ func _process(delta: float) -> void:
 		change_dir_time = 1 + randf()
 		target_dir = Vector2.from_angle(TAU * randf())
 	
+	# Deal damage to web if stuck
+	if is_instance_valid(stuck_to):
+		if randf() < delta:
+			stuck_to.damage(struggle_damage)
+		
+		if not is_instance_valid(stuck_to) or not (is_instance_valid(stuck_to.point_a) and is_instance_valid(stuck_to.point_b)): return
+		global_position = (stuck_to.point_a.global_position + stuck_to.point_b.global_position) / 2.0
+	else:
+		stuck_to = null
+
 	change_dir_time -= delta
 	avoidance_cooldown -= delta
 	
@@ -55,6 +70,7 @@ func _process(delta: float) -> void:
 	velocity = velocity.limit_length(max_speed)
 	global_position += velocity * delta
 
+
 func kill(blood_splatter_dir : Vector2) -> void:
 	$Blood.direction = blood_splatter_dir
 	$Blood.emitting = true
@@ -64,9 +80,19 @@ func kill(blood_splatter_dir : Vector2) -> void:
 	SPLAT.emit(fly_position)
 	queue_free()
 
+
 func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if is_instance_valid(stuck_to) or stuck_to != null: return
 	var web : Web = body as Web
 	assert(web)
 	# Placeholder logic
-	web.destroy()
+	stuck_to = web
+	web.destroyed.connect(_on_capturing_web_destroyed)
+	web.damage(initial_damage)
 	velocity = Vector2(0, 0)
+
+
+## Web that this insect is stuck to was destroyed
+func _on_capturing_web_destroyed() -> void:
+	if is_instance_valid(stuck_to): stuck_to.destroyed.disconnect(_on_capturing_web_destroyed)
+	stuck_to = null
