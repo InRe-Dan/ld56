@@ -13,7 +13,8 @@ class_name Leg extends Node2D
 # How far a leg has to be before it is moved
 const distance_threshold : float = 50
 var marker_target_position : Vector2
-var stepping = false
+var stepping : bool = false
+var on_branch : bool = false
 
 func NearestPointOnLine(start : Vector2, end : Vector2, pnt : Vector2) -> Vector2:
 	var lineDir = start.direction_to(end)
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 	var pref_position : Vector2 = pref_marker.global_position
 	var marker_target_position = rest_position
 	var best_dist = 100000
+	on_branch = false
 	if area.has_overlapping_bodies():
 		for object : PhysicsBody2D in area.get_overlapping_bodies():
 			for object_child : Node in object.get_children():
@@ -45,6 +47,7 @@ func _physics_process(delta: float) -> void:
 					if closest != Vector2(-1, -1):
 						best_dist = closest.distance_to(pref_position)
 						marker_target_position = closest
+						on_branch = true
 
 	var dist = marker_target_position.distance_to(marker.global_position)
 	if dist > distance_threshold:

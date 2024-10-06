@@ -29,6 +29,8 @@ var safety_cast_length : float = 100
 @onready var web_cast : RayCast2D = $WebCast
 @onready var factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 
+@onready var legs : Array[Node] = $Legs/LegTargets.get_children()
+
 
 ## Called when the node enters the scene tree for the first time
 func _ready() -> void:
@@ -43,6 +45,12 @@ func _process(delta: float) -> void:
 	for web : Web in _get_destruction_overlaps():
 		web.visual.modulate = Color.ORANGE
 
+## Returns ratio of legs planted on a web or on a branch
+func get_groundedness() -> float:
+	var sum : float = 0
+	for leg : Leg in legs:
+		if leg.on_branch: sum += 1
+	return sum / legs.size()
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
@@ -71,7 +79,7 @@ func _physics_process(delta: float) -> void:
 		linear_damp = damping
 	
 	# Apply velocity
-	linear_velocity += (input_vector * movement_speed * delta * (speed_mod / cast_length) +
+	linear_velocity += (input_vector * get_groundedness() * 4 * movement_speed * delta * (speed_mod / cast_length) +
 		(_get_intersect_velocity(up_cast) + _get_intersect_velocity(down_cast)
 		+ _get_intersect_velocity(left_cast) + _get_intersect_velocity(right_cast)) * delta * sway_influence)
 

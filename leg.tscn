@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://spider/leg.gd" id="1_doe6g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m4wpf"]
-radius = 58.0
-height = 160.0
+radius = 67.0
+height = 182.0
 
 [node name="R1" type="Node2D"]
 position = Vector2(20, 22)
