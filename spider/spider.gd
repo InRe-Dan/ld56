@@ -5,7 +5,8 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 @export var energy_cap = 100
 @export var enery_drain_per_second = 0.5
 @export var web_cost = 3
-@onready var energy = energy_cap * 0.8:
+@export var jump_cost = 3
+@onready var energy = energy_cap:
 	set(x):
 		energy = clamp(x, 0, energy_cap)
 		if energy == 0:
@@ -83,7 +84,20 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire_web"): shoot_web_bullet() # shoot_web()
 	elif event.is_action_pressed("destroy_web"): destroy_webs()
+	elif event.is_action_pressed("jump"): jump()
 
+
+func jump() -> void:
+	if get_groundedness() == 0:
+		return
+	if energy < jump_cost:
+		return
+	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
+	if input_vector == Vector2.ZERO:
+		return
+	energy -= jump_cost
+	linear_velocity = 500 * input_vector
+	
 
 ## Updates the cast length of the spider
 func update_cast_length(new_length: float) -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://d3ud2rqlsvy6p"]
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
-[ext_resource type="PackedScene" uid="uid://cq076erj3xhfp" path="res://leg.tscn" id="2_7yvgd"]
+[ext_resource type="PackedScene" uid="uid://cq076erj3xhfp" path="res://spider/leg.tscn" id="2_7yvgd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1mhc7"]
 radius = 16.0
@@ -317,7 +317,7 @@ modification_stack = SubResource("SkeletonModificationStack2D_fuwid")
 
 [node name="R1" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(13, -30)
-rotation = -1.34227
+rotation = -0.691234
 scale = Vector2(2.5, 2.5)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
@@ -331,14 +331,14 @@ end_cap_mode = 2
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
-rotation = 0.394411
+rotation = 0.394413
 scale = Vector2(0.999996, 0.999996)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R1/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.5686, -6.71891, 21.1088, -0.391999)
+points = PackedVector2Array(6.5686, -6.71891, 20.8442, -0.685163)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -365,7 +365,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R2/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.50004, -6.25544, 12.1998, 7.86202)
+points = PackedVector2Array(6.50004, -6.25544, 12.2753, 8.00909)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -384,14 +384,14 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R3"]
 position = Vector2(17, 1)
-rotation = 0.0587547
+rotation = 0.058759
 scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R3/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.84407, -6.47482, 22.1915, -5.94079)
+points = PackedVector2Array(6.84407, -6.47482, 22.1916, -5.72323)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -410,19 +410,18 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R4"]
 position = Vector2(17, 1)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R4/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
-points = PackedVector2Array(6.28714, -6.76053, 22.2131, -6.75625)
+points = PackedVector2Array(6.28714, -6.76053, 23.0195, -7.13297)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="L1" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(-16, -28)
-rotation = -2.35185
+rotation = -2.52753
 scale = Vector2(2.5, 2.5)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
@@ -442,7 +441,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L1/Bone2D2"]
 position = Vector2(-4.90957, -8.55546)
-points = PackedVector2Array(2.85775, -8.27914, 4.86101, 8.41524)
+points = PackedVector2Array(3.49494, -6.43739, 4.86101, 8.41524)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -468,7 +467,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L2/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)
-points = PackedVector2Array(4.35825, -6.30134, 2.82944, -21.8418)
+points = PackedVector2Array(4.35825, -6.30134, 2.38333, -21.8681)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -494,7 +493,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L3/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)
-points = PackedVector2Array(4.09887, -6.41423, 2.24446, -22.7291)
+points = PackedVector2Array(4.09887, -6.41423, 2.72718, -21.8598)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
@@ -520,7 +519,7 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L4/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)
-points = PackedVector2Array(3.80493, -6.55391, 2.3057, -22.083)
+points = PackedVector2Array(3.80493, -6.55391, 2.25205, -22.3137)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
