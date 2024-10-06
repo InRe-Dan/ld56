@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 			for object_child : Node in object.get_children():
 				if object_child is CollisionPolygon2D:
 					var points : PackedVector2Array = object_child.polygon
-					var closest : Vector2 = NearestPointOnLine(points[0], points[1], pref_position)
+					var closest : Vector2 = NearestPointOnLine(object_child.to_global(points[0]), object_child.to_global(points[1]), pref_position)
 					if closest != Vector2(-1, -1):
 						best_dist = closest.distance_to(pref_position)
 						marker_target_position = closest
