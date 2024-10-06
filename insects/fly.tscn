@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dmyotpujac7a"]
+[gd_scene load_steps=10 format=3 uid="uid://dmyotpujac7a"]
 
 [ext_resource type="Texture2D" uid="uid://cpetqx71af6pt" path="res://icon.svg" id="1_v1rba"]
 [ext_resource type="Script" path="res://insects/fly.gd" id="1_wqne1"]
@@ -17,9 +17,6 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="Gradient" id="Gradient_bp4ll"]
 offsets = PackedFloat32Array(0, 0.367925, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.339623, 1, 1, 1, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_faphp"]
-size = Vector2(45, 45)
 
 [sub_resource type="Gradient" id="Gradient_npsr0"]
 offsets = PackedFloat32Array(0, 0.312903, 0.6, 0.622581, 0.651613)
@@ -58,11 +55,6 @@ color_ramp = SubResource("Gradient_bp4ll")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_v1rba")
 
-[node name="WebDetection" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WebDetection"]
-shape = SubResource("RectangleShape2D_faphp")
-
 [node name="Eyes" type="RayCast2D" parent="."]
 collision_mask = 256
 
@@ -88,11 +80,12 @@ color_ramp = SubResource("Gradient_ainn8")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_7d8kf")
 
-[connection signal="area_entered" from="WebDetection" to="." method="_on_web_detection_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

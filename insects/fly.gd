@@ -61,7 +61,10 @@ func kill(blood_splatter_dir : Vector2) -> void:
 	$Blood.finished.connect($Blood.queue_free)
 	$Blood.reparent(get_parent())
 	queue_free()
-	
 
-func _on_web_detection_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	var web : Web = body as Web
+	assert(web)
+	# Placeholder logic
+	web.destroy()
+	velocity = Vector2(0, 0)

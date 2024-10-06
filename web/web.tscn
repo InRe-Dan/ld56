@@ -7,7 +7,7 @@ offsets = PackedFloat32Array(0, 0.782443, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Web" type="StaticBody2D"]
-collision_layer = 2
+collision_layer = 258
 collision_mask = 0
 script = ExtResource("1_7k0vh")
 
