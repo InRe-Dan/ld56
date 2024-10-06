@@ -189,7 +189,7 @@ position = Vector2(-68, 19)
 position = Vector2(0, 0)
 
 [node name="Preferred" parent="Legs/LegTargets/L2" index="2"]
-position = Vector2(-54, -23)
+position = Vector2(-62, -16)
 
 [node name="Skeleton2D" type="Skeleton2D" parent="Legs"]
 modification_stack = SubResource("SkeletonModificationStack2D_fuwid")
@@ -209,7 +209,8 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
-rotation = 0.86238
+rotation = 0.0587557
+scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
@@ -221,7 +222,7 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="R2" type="Bone2D" parent="Legs/Skeleton2D"]
 position = Vector2(18, 18)
-rotation = -0.535714
+rotation = -0.535713
 scale = Vector2(3, 3)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 metadata/_local_pose_override_enabled_ = true
@@ -234,7 +235,6 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R2"]
 position = Vector2(17, 1)
-rotation = 0.776652
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
@@ -259,7 +259,7 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/L1"]
 position = Vector2(17, 1)
-rotation = 0.702675
+rotation = -1.66554
 scale = Vector2(0.999995, 0.999995)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
@@ -285,8 +285,8 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/L2"]
 position = Vector2(17, 1)
-rotation = 0.737476
-scale = Vector2(0.999995, 0.999995)
+rotation = -1.66554
+scale = Vector2(0.999994, 0.999994)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
