@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	## Destroy if no neighbors
 	if (point_a.webs.size() == 1 and point_a.body is RigidBody2D) or (point_b.webs.size() == 1 and point_b.body is RigidBody2D):
 		if randf() < delta:
-			destroy()
+			damage(0.1)
 			return
 
 	# Apply spring physics

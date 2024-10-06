@@ -521,10 +521,7 @@ points = PackedVector2Array(3.80493, -6.55391, 2.68116, -22.3681)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
-[node name="WebIndicatorTimer" type="Timer" parent="."]
-
 [connection signal="area_entered" from="Mouth" to="." method="_on_mouth_area_entered"]
-[connection signal="timeout" from="WebIndicatorTimer" to="." method="_on_web_indicator_timer_timeout"]
 
 [editable path="Legs/LegTargets/R1"]
 [editable path="Legs/LegTargets/R2"]

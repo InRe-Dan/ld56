@@ -7,7 +7,6 @@ var rigid_joint_scene : PackedScene = preload("res://web/rigid_joint.tscn")
 
 @onready var final_scout : ShapeCast2D = $FinalScout
 @onready var initial_scout : ShapeCast2D = $InitialScout
-@onready var webindicator = $"../WebIndicator"
 
 ## Turns a web's two joints into one, destroying the web in the process.
 func weld(web : Web) -> void:
@@ -87,16 +86,10 @@ func get_joint_at(scout : ShapeCast2D, pos : Vector2) -> WebJoint:
 ## Creates a web between two points
 func create_web(point_a: Vector2, point_b: Vector2) -> void:
 	if not (check_for_object(initial_scout, point_a) and check_for_object(final_scout, point_b)):
-		print("Can't create web here. (No anchor)")
-		webindicator.visible = true
-		$"../Spider/WebIndicatorTimer".start(2)
 		return
 
 	var distance: float = point_a.distance_to(point_b)
 	if distance < Global.web_length:
-		print("Can't create web here. (Too short)")
-		webindicator.visible = true
-		$"../Spider/WebIndicatorTimer".start(2)
 		return
 
 	var distance_created: float = 0

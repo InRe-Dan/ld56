@@ -4,7 +4,7 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 
 @export var energy_cap = 100
 @export var enery_drain_per_second = 0.5
-@export var web_cost = 3
+@export var web_cost = 2.5
 @onready var energy = energy_cap * 0.8:
 	set(x):
 		energy = clamp(x, 0, energy_cap)
@@ -126,7 +126,7 @@ func _get_intersect_velocity(ray : RayCast2D) -> Vector2:
 func get_websling_position() -> Vector2:
 	var dir : Vector2 = global_position.direction_to(get_global_mouse_position())
 	web_cast.global_rotation = 0
-	web_cast.global_position = global_position + dir * cast_length * 2.0
+	web_cast.global_position = global_position + dir * cast_length * 1.6
 	web_cast.target_position = dir * 5000
 	web_cast.force_raycast_update()
 	if web_cast.is_colliding():
@@ -177,6 +177,3 @@ func _on_mouth_area_entered(area: Area2D) -> void:
 	var opp : Fly = area.get_parent()
 	energy += opp.energy_gain
 	opp.kill($Mouth.global_position.direction_to(area.global_position))
-
-func _on_web_indicator_timer_timeout() -> void:
-		$"../WebIndicator".visible = false

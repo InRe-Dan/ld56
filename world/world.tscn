@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=14 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bxw34dyx2cgac" path="res://assets/background_1.png" id="4_2hkic"]
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
 [ext_resource type="PackedScene" uid="uid://dmyotpujac7a" path="res://insects/fly.tscn" id="5_lpks7"]
-[ext_resource type="Texture2D" uid="uid://dctbj2786bciq" path="res://assets/I am literally Picasso.png" id="6_lh8ic"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
 [ext_resource type="PackedScene" uid="uid://523036m0xuf1" path="res://menus/game_ui.tscn" id="10_y58tq"]
 
@@ -185,12 +184,6 @@ position = Vector2(544, 569)
 
 [node name="Fly" parent="." instance=ExtResource("5_lpks7")]
 position = Vector2(1027, 476)
-
-[node name="WebIndicator" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(904, 310)
-scale = Vector2(3, 3)
-texture = ExtResource("6_lh8ic")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 5

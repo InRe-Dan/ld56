@@ -9,8 +9,8 @@ var spawning : bool = true
 var velocity : Vector2 
 var target_dir : Vector2 = Vector2.from_angle(TAU * randf())
 var change_dir_time : float = 1 + randf()
-var initial_damage : float = 0.5
-var struggle_damage : float = 0.1
+var initial_damage : float = 0.2
+var struggle_damage : float = 0.05
 var stuck_to : Web
 
 signal SPLAT(position)
@@ -48,7 +48,6 @@ func _process(delta: float) -> void:
 	# Deal damage to web if stuck
 	if is_instance_valid(stuck_to):
 		if randf() < delta:
-			print(self, " ", stuck_to)
 			stuck_to.damage(struggle_damage)
 		
 		if not is_instance_valid(stuck_to) or not (is_instance_valid(stuck_to.point_a) and is_instance_valid(stuck_to.point_b)): return
