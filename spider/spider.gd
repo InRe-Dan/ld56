@@ -15,7 +15,7 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 const damping: float = 4.0
 
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
-var rotation_speed: float = 1.0
+var rotation_speed: float = 2.5
 var sway_influence : float = 1.0 # Influence of nearby velocities
 
 var cast_length: float = 64.0:

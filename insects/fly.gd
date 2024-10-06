@@ -48,6 +48,7 @@ func _process(delta: float) -> void:
 	# Deal damage to web if stuck
 	if is_instance_valid(stuck_to):
 		if randf() < delta:
+			print(self, " ", stuck_to)
 			stuck_to.damage(struggle_damage)
 		
 		if not is_instance_valid(stuck_to) or not (is_instance_valid(stuck_to.point_a) and is_instance_valid(stuck_to.point_b)): return

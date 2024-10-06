@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://web/web.gd" id="1_7k0vh"]
 
 [sub_resource type="Gradient" id="Gradient_arccy"]
-offsets = PackedFloat32Array(0, 0.17378, 0.326219, 1)
-colors = PackedColorArray(0.996733, 0.551842, 3.85046e-07, 1, 0.983392, 0.630478, 0.195578, 1, 0.937256, 0.902427, 0.871951, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.0989399, 0.303887, 0.515901, 1)
+colors = PackedColorArray(1, 0.2, 0, 1, 1, 0.2, 0, 1, 0.983392, 0.630478, 0.195578, 1, 0.937256, 0.902427, 0.871951, 1, 1, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_d6hpa"]
 offsets = PackedFloat32Array(0, 0.782443, 1)
@@ -17,7 +17,7 @@ script = ExtResource("1_7k0vh")
 damage_gradient = SubResource("Gradient_arccy")
 
 [node name="VisualMask" type="Line2D" parent="."]
-width = 3.0
+width = 2.0
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2

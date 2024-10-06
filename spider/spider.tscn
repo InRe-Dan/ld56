@@ -408,7 +408,6 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R4"]
 position = Vector2(17, 1)
-scale = Vector2(1, 1)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 

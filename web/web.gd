@@ -26,7 +26,7 @@ var velocity : Vector2:
 # Spring parameters
 var stiffness: float = 4096.0
 var damping: float = 1024.0
-var lifetime : float = 30
+var lifetime : float = 60
 
 var health : float = 1.0
 
@@ -37,6 +37,7 @@ var health : float = 1.0
 @onready var web_factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 @onready var death_particles : CPUParticles2D = $DeathParticles
 @onready var free_timer : Timer = $FreeTimer
+@onready var width : float = visual.width
 
 var blood_radius = 130;
 
@@ -85,9 +86,12 @@ func _physics_process(delta: float) -> void:
 	visual.points = endpoints
 	collision.polygon = endpoints
 
+
 func _process(delta: float) -> void:
 	damage(delta * 1 / lifetime)
 	visual.default_color = damage_gradient.sample(health)
+	visual.width = width * health + 2.0
+
 
 ## Queues for deletion and removes itself from weblists
 func destroy() -> void:
