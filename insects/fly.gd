@@ -9,7 +9,7 @@ var spawning : bool = true
 var velocity : Vector2 
 var target_dir : Vector2 = Vector2.from_angle(TAU * randf())
 var change_dir_time : float = 1 + randf()
-
+signal SPLAT(position)
 @onready var eyes : RayCast2D = $Eyes
 @onready var avoidance_cooldown : float = 0
 
@@ -60,6 +60,8 @@ func kill(blood_splatter_dir : Vector2) -> void:
 	$Blood.emitting = true
 	$Blood.finished.connect($Blood.queue_free)
 	$Blood.reparent(get_parent())
+	var fly_position = position
+	SPLAT.emit(fly_position)
 	queue_free()
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
