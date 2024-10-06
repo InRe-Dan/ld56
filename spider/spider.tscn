@@ -59,7 +59,7 @@ modification_count = 2
 modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_cpe7q")
 modifications/1 = SubResource("SkeletonModification2DTwoBoneIK_mgb5j")
 
-[node name="Spider" type="RigidBody2D"]
+[node name="Spider" type="RigidBody2D" groups=["spider"]]
 collision_mask = 0
 linear_damp = 4.0
 angular_damp = 1.0

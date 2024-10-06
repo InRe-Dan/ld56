@@ -46,6 +46,7 @@ folder_colors={
 [global_group]
 
 web_factory=""
+spider="Player Character"
 
 [input]
 

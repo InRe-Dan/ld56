@@ -3,6 +3,7 @@ class_name Fly extends Node2D
 @export var spin_speed : float = 0.4
 @export var acceleration : float = 40
 @export var max_speed : float = 100
+@export var energy_gain : float = 10
 
 var spawning : bool = true
 var velocity : Vector2 

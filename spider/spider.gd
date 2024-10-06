@@ -1,5 +1,15 @@
 class_name Spider extends RigidBody2D
 
+@export var energy_cap = 100
+@export var enery_drain_per_second = 0.5
+@export var web_cost = 3
+@onready var energy = energy_cap * 0.8:
+	set(x):
+		energy = clamp(x, 0, energy_cap)
+		if energy == 0:
+			# TODO
+			print("GAME OVER!!!")
+
 const damping: float = 4.0
 
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
@@ -36,6 +46,7 @@ func _process(delta: float) -> void:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
+	energy -= delta
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	# Speed formula
@@ -112,12 +123,16 @@ func _get_intersect_velocity(ray : RayCast2D) -> Vector2:
 
 ## Fires a web at the current mouse position
 func shoot_web() -> void:
+	if energy < web_cost + 10:
+		print("Can't make a web! Too low on energy!")
+		return
 	web_cast.global_rotation = 0
 	var dir : Vector2 = global_position.direction_to(get_global_mouse_position())
 	web_cast.global_position = global_position + dir * 50
 	web_cast.target_position = dir * 5000
 	web_cast.force_raycast_update()
 	if web_cast.is_colliding():
+		energy -= web_cost
 		factory.create_web(global_position, web_cast.get_collision_point())
 
 
@@ -128,7 +143,9 @@ func destroy_webs() -> void:
 
 
 func _on_mouth_area_entered(area: Area2D) -> void:
-	(area.get_parent() as Fly).kill($Mouth.global_position.direction_to(area.global_position))
+	var opp : Fly = area.get_parent()
+	energy += opp.energy_gain
+	opp.kill($Mouth.global_position.direction_to(area.global_position))
 
 func _on_web_indicator_timer_timeout() -> void:
 		$"../WebIndicator".visible = false
