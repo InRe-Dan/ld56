@@ -222,14 +222,15 @@ default_color = Color(0, 0, 0, 1)
 
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/R1"]
 position = Vector2(17, 1)
-rotation = 0.0587557
+rotation = 0.0587552
+scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R1/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
 scale = Vector2(0.345679, 0.244191)
-points = PackedVector2Array(20.4605, -25.9337, 65.6356, -27.9966)
+points = PackedVector2Array(20.4605, -25.9337, 65.9944, -23.3914)
 default_color = Color(0, 0, 0, 1)
 
 [node name="R2" type="Bone2D" parent="Legs/Skeleton2D"]
@@ -253,7 +254,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/R2/Bone2D2"]
 position = Vector2(-6.54321, 6.80228)
 scale = Vector2(0.345679, 0.244191)
-points = PackedVector2Array(20.4605, -25.9337, 65.6356, -27.9966)
+points = PackedVector2Array(20.4605, -25.9337, 67.0871, -28.5078)
 default_color = Color(0, 0, 0, 1)
 
 [node name="L1" type="Bone2D" parent="Legs/Skeleton2D"]
@@ -272,14 +273,14 @@ default_color = Color(0, 0, 0, 1)
 [node name="Bone2D2" type="Bone2D" parent="Legs/Skeleton2D/L1"]
 position = Vector2(17, 1)
 rotation = -1.66554
-scale = Vector2(0.999994, 0.999994)
+scale = Vector2(0.999993, 0.999993)
 rest = Transform2D(1, 0, 0, 1, 17, 1)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L1/Bone2D2"]
 position = Vector2(-4.90957, -8.55546)
 scale = Vector2(0.162642, 0.244191)
-points = PackedVector2Array(20.4605, -25.9337, 31.7612, 36.3436)
+points = PackedVector2Array(20.0492, -31.4406, 31.7612, 36.3436)
 default_color = Color(0, 0, 0, 1)
 
 [node name="L2" type="Bone2D" parent="Legs/Skeleton2D"]
@@ -305,7 +306,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Line2D" type="Line2D" parent="Legs/Skeleton2D/L2/Bone2D2"]
 position = Vector2(-3.86452, 6.48502)
 scale = Vector2(0.162642, 0.244191)
-points = PackedVector2Array(20.4605, -25.9337, 14.1641, -89.8649)
+points = PackedVector2Array(20.4605, -25.9337, 12.5189, -92.2348)
 default_color = Color(0, 0, 0, 1)
 
 [node name="WebIndicatorTimer" type="Timer" parent="."]
