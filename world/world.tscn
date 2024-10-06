@@ -45,7 +45,8 @@ position = Vector2(25, 10)
 [node name="BottomRight" type="Marker2D" parent="MobSpawner"]
 position = Vector2(1904, 1070)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Backdrop" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.8, 0.8, 1)
 texture = ExtResource("4_2hkic")
 centered = false
 
@@ -60,6 +61,8 @@ points = PackedVector2Array(480, 0, 495, 161, 519.11, 351.989, 537, 454, 546, 66
 width = 25.0
 width_curve = SubResource("Curve_l8ggl")
 default_color = Color(0.13, 0.06747, 0.0338, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree"]
 build_mode = 1
@@ -75,6 +78,8 @@ points = PackedVector2Array(1440, 0, 1422, 183, 1394, 372, 1373, 640, 1331, 891,
 width = 25.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree"]
 build_mode = 1
@@ -90,6 +95,8 @@ points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
 width = 25.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightBranch"]
 build_mode = 1
@@ -107,6 +114,8 @@ points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
 width = 25.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightBranch2"]
 build_mode = 1
@@ -124,6 +133,8 @@ points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
 width = 25.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch"]
 build_mode = 1
@@ -141,6 +152,8 @@ points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
 width = 25.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch2"]
 build_mode = 1
@@ -158,6 +171,8 @@ points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
 width = 25.0
 width_curve = SubResource("Curve_qf50r")
 default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch3"]
 build_mode = 1
