@@ -8,3 +8,8 @@ func _ready() -> void:
 
 func game_over() -> void:
 	pass
+
+
+func _on_killbox_body_entered(body: Node2D) -> void:
+	# classic
+	(body as Spider).energy -= 99999999
