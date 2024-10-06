@@ -44,8 +44,13 @@ func _physics_process(delta: float) -> void:
 
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
-	var magnitude: float = point_a.position.distance_to(point_b.position) * stiffness
-
+	var distance : float = point_a.position.distance_to(point_b.position)
+	var magnitude: float = distance * stiffness
+	
+	# Destroy web if overstretched
+	if distance > Global.web_length * 3:
+		destroy()
+	
 	var spring_force: Vector2 = (direction * magnitude - damping * (point_a.velocity - point_b.velocity)) * delta
 	if point_a.body is RigidBody2D:
 		point_a.body.apply_force(+ spring_force / 2)
