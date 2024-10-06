@@ -14,6 +14,7 @@ class_name Leg extends Node2D
 const distance_threshold : float = 50
 var marker_target_position : Vector2
 var stepping : bool = false
+var stepping_to : Vector2
 var on_branch : bool = false
 
 func NearestPointOnLine(start : Vector2, end : Vector2, pnt : Vector2) -> Vector2:
@@ -52,9 +53,10 @@ func _physics_process(delta: float) -> void:
 	var dist = marker_target_position.distance_to(marker.global_position)
 	if dist > distance_threshold:
 		stepping = true
+		stepping_to = marker_target_position
 	if dist < 5:
 		stepping = false
 	
 	if stepping:
-		marker.global_position = lerp(marker.global_position, marker_target_position, clamp(10 * delta, 0, 1.0))
+		marker.global_position = lerp(marker.global_position, stepping_to, clamp(10 * delta, 0, 1.0))
 		
