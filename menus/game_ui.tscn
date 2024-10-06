@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://523036m0xuf1"]
+[gd_scene load_steps=11 format=3 uid="uid://523036m0xuf1"]
 
 [ext_resource type="Theme" uid="uid://cutyu3701iivq" path="res://resources/theme/purple.tres" id="1_eq5wu"]
 [ext_resource type="Script" path="res://menus/game_ui.gd" id="1_i8rq3"]
@@ -30,6 +30,29 @@ gradient = SubResource("Gradient_6q31q")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="FontFile" id="FontFile_coed3"]
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_xe5ga"]
+font = SubResource("FontFile_coed3")
+font_size = 30
+outline_size = 5
+outline_color = Color(0.57, 1, 0.57, 0.431373)
+
 [node name="GameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -43,12 +66,21 @@ script = ExtResource("1_i8rq3")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = 1436.0
-offset_top = 705.0
-offset_right = 1500.0
-offset_bottom = 769.0
+offset_left = 886.0
+offset_top = 957.0
+offset_right = 950.0
+offset_bottom = 1021.0
 step = 0.0
 fill_mode = 4
 texture_under = SubResource("GradientTexture2D_vif3w")
 texture_over = SubResource("GradientTexture2D_t8y6r")
 texture_progress = SubResource("GradientTexture2D_37tsx")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 874.0
+offset_top = 911.0
+offset_right = 1067.0
+offset_bottom = 998.0
+text = "Energy"
+label_settings = SubResource("LabelSettings_xe5ga")

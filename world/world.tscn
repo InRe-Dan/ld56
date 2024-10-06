@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=15 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -18,6 +18,14 @@ point_count = 5
 [sub_resource type="Curve" id="Curve_ek8vk"]
 _data = [Vector2(0, 0), 0.0, 0.982845, 0, 0, Vector2(1, 1), 1.08666, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_l8ggl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.166096, 0.864721), 0.0, 0.0, 0, 0, Vector2(0.291667, 1), 0.0, 0.0, 0, 0, Vector2(0.505708, 1), 0.0, 0.0, 0, 0, Vector2(0.628425, 1), 0.0, 0.0, 0, 0, Vector2(0.739726, 1), 0.0, 0.0, 0, 0, Vector2(0.83105, 0.815228), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 8
+
+[sub_resource type="Curve" id="Curve_qf50r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.211758, 0.707995), 0.0, 0.0, 0, 0, Vector2(0.497146, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.74099), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_m6c00")
@@ -40,37 +48,124 @@ position = Vector2(1904, 1070)
 texture = ExtResource("4_2hkic")
 centered = false
 
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="LeftTree" type="StaticBody2D" parent="Trees"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="VisualMask" type="Line2D" parent="Trees/LeftTree"]
+points = PackedVector2Array(480, 0, 495, 161, 519.11, 351.989, 537, 454, 546, 667, 591, 930, 600, 1080)
+width = 25.0
+width_curve = SubResource("Curve_l8ggl")
+default_color = Color(0.13, 0.06747, 0.0338, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree"]
+build_mode = 1
+polygon = PackedVector2Array(480, 0, 600, 1080)
+
+[node name="RightTree" type="StaticBody2D" parent="Trees"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="VisualMask" type="Line2D" parent="Trees/RightTree"]
+position = Vector2(0, -1)
+points = PackedVector2Array(1440, 0, 1422, 183, 1394, 372, 1373, 640, 1331, 891, 1320, 1080)
+width = 25.0
+width_curve = SubResource("Curve_qf50r")
+default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree"]
+build_mode = 1
+polygon = PackedVector2Array(1440, 0, 1320, 1080)
+
+[node name="RightBranch" type="StaticBody2D" parent="Trees"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="VisualMask" type="Line2D" parent="Trees/RightBranch"]
+position = Vector2(0, -1)
+points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
+width = 25.0
+width_curve = SubResource("Curve_qf50r")
+default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightBranch"]
+build_mode = 1
+polygon = PackedVector2Array(1792, 475, 1358, 778)
+
+[node name="RightBranch2" type="StaticBody2D" parent="Trees"]
+position = Vector2(777, -1179)
+rotation = 0.630475
+collision_layer = 18
+collision_mask = 14
+
+[node name="VisualMask" type="Line2D" parent="Trees/RightBranch2"]
+position = Vector2(0, -1)
+points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
+width = 25.0
+width_curve = SubResource("Curve_qf50r")
+default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightBranch2"]
+build_mode = 1
+polygon = PackedVector2Array(1792, 475, 1358, 778)
+
+[node name="LeftBranch" type="StaticBody2D" parent="Trees"]
+position = Vector2(-91, -921)
+rotation = 0.949372
+collision_layer = 18
+collision_mask = 14
+
+[node name="VisualMask" type="Line2D" parent="Trees/LeftBranch"]
+position = Vector2(0, -1)
+points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
+width = 25.0
+width_curve = SubResource("Curve_qf50r")
+default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch"]
+build_mode = 1
+polygon = PackedVector2Array(1792, 475, 1358, 778)
+
+[node name="LeftBranch2" type="StaticBody2D" parent="Trees"]
+position = Vector2(688, -1399)
+rotation = 1.39924
+collision_layer = 18
+collision_mask = 14
+
+[node name="VisualMask" type="Line2D" parent="Trees/LeftBranch2"]
+position = Vector2(0, -1)
+points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
+width = 25.0
+width_curve = SubResource("Curve_qf50r")
+default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch2"]
+build_mode = 1
+polygon = PackedVector2Array(1792, 475, 1358, 778)
+
+[node name="LeftBranch3" type="StaticBody2D" parent="Trees"]
+position = Vector2(1230, -871)
+rotation = 1.84048
+collision_layer = 18
+collision_mask = 14
+
+[node name="VisualMask" type="Line2D" parent="Trees/LeftBranch3"]
+position = Vector2(0, -1)
+points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
+width = 25.0
+width_curve = SubResource("Curve_qf50r")
+default_color = Color(0.129412, 0.0666667, 0.0352941, 1)
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch3"]
+build_mode = 1
+polygon = PackedVector2Array(1792, 475, 1358, 778)
+
 [node name="WebFactory" parent="." instance=ExtResource("2_u3u5w")]
 
 [node name="Spider" parent="." instance=ExtResource("3_pypjb")]
 position = Vector2(544, 569)
-
-[node name="LeftTree" type="StaticBody2D" parent="."]
-collision_layer = 18
-collision_mask = 14
-
-[node name="VisualMask" type="Line2D" parent="LeftTree"]
-points = PackedVector2Array(480, 0, 600, 1080)
-width = 2.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="CollisionMask" type="CollisionPolygon2D" parent="LeftTree"]
-build_mode = 1
-polygon = PackedVector2Array(480, 0, 600, 1080)
-
-[node name="RightTree" type="StaticBody2D" parent="."]
-collision_layer = 18
-collision_mask = 14
-
-[node name="VisualMask" type="Line2D" parent="RightTree"]
-position = Vector2(0, -1)
-points = PackedVector2Array(1440, 0, 1320, 1080)
-width = 2.0
-default_color = Color(0, 0, 0, 1)
-
-[node name="CollisionMask" type="CollisionPolygon2D" parent="RightTree"]
-build_mode = 1
-polygon = PackedVector2Array(1440, 0, 1320, 1080)
 
 [node name="Fly" parent="." instance=ExtResource("5_lpks7")]
 position = Vector2(1027, 476)
