@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=15 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
 [ext_resource type="PackedScene" uid="uid://523036m0xuf1" path="res://menus/game_ui.tscn" id="10_y58tq"]
+[ext_resource type="Shader" path="res://world/Rain.gdshader" id="11_pcwd8"]
 
 [sub_resource type="Curve" id="Curve_2coha"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228881, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.491438, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.828196, 0.478405), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -16,6 +17,20 @@ point_count = 5
 [sub_resource type="Curve" id="Curve_ek8vk"]
 _data = [Vector2(0, 0), 0.0, 0.982845, 0, 0, Vector2(1, 1), 1.08666, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wf2re"]
+shader = ExtResource("11_pcwd8")
+shader_parameter/rain_amount = 1000.0
+shader_parameter/near_rain_length = 0.04
+shader_parameter/far_rain_length = 0.04
+shader_parameter/near_rain_width = 0.5
+shader_parameter/far_rain_width = 0.3
+shader_parameter/near_rain_transparency = 0.3
+shader_parameter/far_rain_transparency = 0.5
+shader_parameter/rain_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/base_rain_speed = 1.0
+shader_parameter/additional_rain_speed = 0.1
+shader_parameter/slant = 4.75e-08
 
 [sub_resource type="Curve" id="Curve_l8ggl"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.166096, 0.864721), 0.0, 0.0, 0, 0, Vector2(0.291667, 1), 0.0, 0.0, 0, 0, Vector2(0.505708, 1), 0.0, 0.0, 0, 0, Vector2(0.628425, 1), 0.0, 0.0, 0, 0, Vector2(0.739726, 1), 0.0, 0.0, 0, 0, Vector2(0.83105, 0.815228), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -44,7 +59,7 @@ position = Vector2(25, 10)
 position = Vector2(1904, 1070)
 
 [node name="Backdrop" type="Sprite2D" parent="."]
-modulate = Color(0.8, 0.8, 0.8, 1)
+material = SubResource("ShaderMaterial_wf2re")
 texture = ExtResource("4_2hkic")
 centered = false
 
