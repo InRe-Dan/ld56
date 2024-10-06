@@ -34,13 +34,15 @@ var damping: float = 1024.0
 @onready var death_particles : CPUParticles2D = $DeathParticles
 @onready var free_timer : Timer = $FreeTimer
 
+var blood_radius = 130;
 
 ## Called when this node enters the scene tree for the first time
 func _ready() -> void:
 	assert(point_a)
 	assert(point_b)
 	#visual.modulate = debug_colors.pick_random()
-
+	if $"../..".has_node("Fly"):
+		$"../../Fly".connect("SPLAT",GetBloody)
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
@@ -92,6 +94,22 @@ func destroy() -> void:
 	visual.visible = false
 	death_particles.emitting = true
 	free_timer.start()
+
+
+func GetBloody(fly_position):
+	$VisualMask.material.set_shader_parameter("blood_position", fly_position)
+	$VisualMask.material.set_shader_parameter("blood_radius", blood_radius)
+	StartBloodFade()
+	
+func StartBloodFade():
+	await get_tree().create_timer(2.0).timeout
+	fade_blood_effect()
+
+func fade_blood_effect():
+	while blood_radius > 0:  # Continue fading until radius is fully reduced
+		blood_radius -= 1  # Gradually decrease the radius
+		$VisualMask.material.set_shader_parameter("blood_radius", blood_radius)
+		await get_tree().create_timer(0.1).timeout  # Delay before next decrease
 
 
 ## Frees the web
