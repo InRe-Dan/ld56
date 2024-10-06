@@ -7,20 +7,16 @@ radius = 67.0
 height = 182.0
 
 [node name="R1" type="Node2D"]
-position = Vector2(20, 22)
 script = ExtResource("1_doe6g")
 
 [node name="Follow" type="Marker2D" parent="."]
 top_level = true
-position = Vector2(-6, 6)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(96, 8)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-24, 2)
 shape = SubResource("CapsuleShape2D_m4wpf")
 debug_color = Color(0, 0.6, 0.701961, 0.0196078)
 
