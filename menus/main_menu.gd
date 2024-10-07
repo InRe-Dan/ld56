@@ -7,6 +7,8 @@ extends Control
 
 ## Node entered the scene tree for the first time
 func _ready() -> void:
+	Global.toggle_track(false)
+	Global.sample_tracks(1.0)
 	AudioServer.set_bus_volume_db(0, linear_to_db(Global.global_volume/volume_slider.max_value))
 	volume_label.text = str(round(Global.global_volume)) + "%"
 	if Global.phobia_mode:

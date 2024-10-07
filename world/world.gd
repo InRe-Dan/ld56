@@ -6,6 +6,7 @@ extends Node2D
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.toggle_track(true)
 	Global.toggle_band_pass(true)
 	
 	Global.time_played = 0.0

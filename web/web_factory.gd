@@ -114,7 +114,7 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 		var new_joint: WebJoint = get_joint_at(final_scout, end)
 		if not new_joint:
 			return
-		
+
 		_create_web_segment(is_static, new_web_length, start_joint, new_joint)
 		start_joint = new_joint
 		distance -= new_web_length
