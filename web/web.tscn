@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://w40vath24c7j"]
+[gd_scene load_steps=5 format=3 uid="uid://w40vath24c7j"]
 
 [ext_resource type="Script" path="res://web/web.gd" id="1_7k0vh"]
+[ext_resource type="Texture2D" uid="uid://brgsdied4nn0x" path="res://assets/net.png" id="2_e76gi"]
 
 [sub_resource type="Gradient" id="Gradient_arccy"]
 offsets = PackedFloat32Array(0, 0.0989399, 0.303887, 0.515901, 1)
@@ -17,7 +18,9 @@ script = ExtResource("1_7k0vh")
 damage_gradient = SubResource("Gradient_arccy")
 
 [node name="VisualMask" type="Line2D" parent="."]
-width = 2.0
+width = 15.0
+texture = ExtResource("2_e76gi")
+texture_mode = 2
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
