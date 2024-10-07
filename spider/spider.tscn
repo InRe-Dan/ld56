@@ -1,7 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3ud2rqlsvy6p"]
+[gd_scene load_steps=27 format=3 uid="uid://d3ud2rqlsvy6p"]
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
 [ext_resource type="PackedScene" uid="uid://cq076erj3xhfp" path="res://spider/leg.tscn" id="2_7yvgd"]
+[ext_resource type="AudioStream" uid="uid://cyh126353dj74" path="res://assets/sound/sfx/Websling2Alsocrunch.ogg" id="2_vcq5e"]
+[ext_resource type="AudioStream" uid="uid://cgxpcgn4eaqsn" path="res://assets/sound/sfx/webslingsnaptry1.ogg" id="3_iogig"]
+[ext_resource type="AudioStream" uid="uid://tc7i3ukwstov" path="res://assets/sound/sfx/insectexplosineat.ogg" id="4_c5alw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1mhc7"]
 radius = 16.0
@@ -128,6 +131,17 @@ collision_mask = 32
 linear_damp = 4.0
 angular_damp = 1.0
 script = ExtResource("1_gma0t")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vcq5e")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_iogig")
+volume_db = 8.041
+
+[node name="Eat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_c5alw")
+volume_db = 10.186
 
 [node name="DestructionZone" type="Area2D" parent="."]
 position = Vector2(0, -48)

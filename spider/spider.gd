@@ -32,6 +32,11 @@ var safety_cast_length : float = 100
 @onready var web_cast : RayCast2D = $WebCast
 @onready var factory : WebFactory = get_tree().get_first_node_in_group("web_factory")
 
+@onready var shoot_sfx : AudioStreamPlayer = $Shoot
+@onready var jump_sfx : AudioStreamPlayer = $Jump
+@onready var make_web_sfx : AudioStreamPlayer = $MakeWeb
+@onready var eat_sfx : AudioStreamPlayer = $Eat
+
 @onready var legs : Array[Node] = $Legs/LegTargets.get_children()
 
 
@@ -102,6 +107,7 @@ func jump() -> void:
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	if input_vector == Vector2.ZERO:
 		return
+	jump_sfx.play()
 	energy -= jump_cost
 	linear_velocity = 500 * input_vector
 	
@@ -168,6 +174,7 @@ func shoot_web_bullet() -> void:
 	if energy < web_cost + 10:
 		print("Can't make a web! Too low on energy!")
 		return
+	shoot_sfx.play()
 	energy -= web_cost
 	var pos : Vector2 = get_global_mouse_position()
 	var bullet : WebBullet = bullet_scene.instantiate()
@@ -197,4 +204,5 @@ func destroy_webs() -> void:
 func _on_mouth_area_entered(area: Area2D) -> void:
 	var opp : Insect = area.get_parent()
 	energy += opp.mob_data.energy_gain
+	eat_sfx.play()
 	opp.kill($Mouth.global_position.direction_to(area.global_position))

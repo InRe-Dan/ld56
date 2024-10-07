@@ -17,6 +17,7 @@ func _ready() -> void:
 
 ## Play button pressed
 func _on_play_button_pressed() -> void:
+	Global.play_click_sound()
 	get_tree().change_scene_to_file("res://world/world.tscn")
 
 
@@ -29,6 +30,7 @@ func _on_volume_value_changed(value: float) -> void:
 
 ## Arachnophobia button pressed
 func _on_phobia_button_pressed() -> void:
+	Global.play_click_sound()
 	Global.phobia_mode = not Global.phobia_mode
 	if Global.phobia_mode:
 		phobia_button.text = "ON"

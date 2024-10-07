@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqyqlpicgb0dq"]
+[gd_scene load_steps=5 format=3 uid="uid://dqyqlpicgb0dq"]
 
 [ext_resource type="Script" path="res://web/web_factory.gd" id="1_rhbia"]
+[ext_resource type="AudioStream" uid="uid://cx25vne2wnvi4" path="res://assets/sound/sfx/WebSling1Try1.ogg" id="2_aicyh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8hd3"]
 radius = 24.0
@@ -22,3 +23,6 @@ shape = SubResource("CircleShape2D_jrxfq")
 target_position = Vector2(0, 0)
 max_results = 1
 collision_mask = 22
+
+[node name="MakeWeb" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_aicyh")

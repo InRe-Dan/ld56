@@ -92,6 +92,8 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 	if distance < Global.web_length:
 		return
 
+	$MakeWeb.playing = true
+
 	var distance_created: float = 0
 	var direction: Vector2 = point_a.direction_to(point_b)
 	

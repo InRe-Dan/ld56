@@ -106,6 +106,7 @@ func destroy() -> void:
 	death_particles.emitting = true
 	destroyed.emit()
 	free_timer.start()
+	Global.play_snap_sound()
 
 
 ## Damages the web

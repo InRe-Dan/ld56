@@ -1,15 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0ckbq1mytq2s"]
+[gd_scene load_steps=9 format=3 uid="uid://d0ckbq1mytq2s"]
 
 [ext_resource type="Script" path="res://global.gd" id="1_rfklv"]
 [ext_resource type="AudioStream" uid="uid://bgrd03yxwav51" path="res://assets/sound/ld56_1_demo.mp3" id="2_5nxam"]
+[ext_resource type="AudioStream" uid="uid://csi8dyukrdqg5" path="res://assets/sound/sfx/click1.ogg" id="3_6ps6f"]
+[ext_resource type="AudioStream" uid="uid://dvq0nwsv11nf8" path="res://assets/sound/sfx/weaksnap1.ogg" id="4_5jgsr"]
+[ext_resource type="AudioStream" uid="uid://d354sbe50nhyo" path="res://assets/sound/sfx/weaksnap2.ogg" id="5_drhvb"]
+[ext_resource type="AudioStream" uid="uid://dm6mboy3882gn" path="res://assets/sound/sfx/weaksnap3.ogg" id="6_2wpmw"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_0vt7p"]
 stream_count = 1
 stream_0 = ExtResource("2_5nxam")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2dheb"]
+random_pitch = 1.05
+streams_count = 3
+stream_0/stream = ExtResource("4_5jgsr")
+stream_1/stream = ExtResource("5_drhvb")
+stream_2/stream = ExtResource("6_2wpmw")
+
 [node name="Global" type="Node2D"]
 script = ExtResource("1_rfklv")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_0vt7p")
 autoplay = true
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6ps6f")
+volume_db = 19.175
+
+[node name="Snap" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_2dheb")
+volume_db = 10.361
