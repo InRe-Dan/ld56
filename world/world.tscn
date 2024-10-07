@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
-[ext_resource type="Texture2D" uid="uid://do3b5ncvb62fy" path="res://assets/woopd.png" id="7_86lbx"]
+[ext_resource type="Texture2D" uid="uid://do3b5ncvb62fy" path="res://assets/wood.png" id="7_86lbx"]
 [ext_resource type="Script" path="res://world/background.gd" id="7_iuor6"]
 [ext_resource type="Texture2D" uid="uid://vkbehguryo40" path="res://assets/background_icons/tree_branches.png" id="8_l0u6f"]
 [ext_resource type="Texture2D" uid="uid://da06dyhn5luhw" path="res://assets/background_icons/leaf1.png" id="10_4eig0"]

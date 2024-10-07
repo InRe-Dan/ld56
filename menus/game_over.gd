@@ -16,4 +16,5 @@ func _ready() -> void:
 
 ## Main menu button pressed
 func _on_menu_button_pressed() -> void:
+	Global.play_click_sound()
 	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
