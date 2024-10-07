@@ -53,13 +53,14 @@ func _process(delta: float) -> void:
 	if spawning:
 		return
 	
-	anim_time_current += delta
-	if anim_time_current > anim_frame_time:
-		anim_time_current -= anim_frame_time
-		if sprite.frame == sprite.hframes - 1:
-			sprite.frame = 0
-		else:
-			sprite.frame += 1
+	if not(stuck_to and is_instance_valid(stuck_to)):
+		anim_time_current += delta
+		if anim_time_current > anim_frame_time:
+			anim_time_current -= anim_frame_time
+			if sprite.frame == sprite.hframes - 1:
+				sprite.frame = 0
+			else:
+				sprite.frame += 1
 	
 	if change_dir_time < 0:
 		change_dir_time = 1 + randf()
