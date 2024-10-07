@@ -1,4 +1,3 @@
-@icon("res://assets/editor_icons/node_2D/icon_flag.png")
 extends Node2D
 
 @onready var spider : Spider = $Spider
