@@ -18,8 +18,8 @@ offsets = PackedFloat32Array(0, 0.367925, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.339623, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_npsr0"]
-offsets = PackedFloat32Array(0, 0.312903, 0.6, 0.622581, 0.651613)
-colors = PackedColorArray(0.64, 0, 0, 1, 0.64, 0, 0, 0.924488, 0.64, 0, 0, 0.297735, 0.64, 0, 0, 0.280349, 0.64, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.493827, 0.746032)
+colors = PackedColorArray(0, 0, 0, 1, 0.33, 0, 0, 1, 0.64, 0.3328, 0.3328, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kfsrl"]
 gradient = SubResource("Gradient_npsr0")
@@ -62,18 +62,18 @@ scale = Vector2(3.3, 3.1)
 
 [node name="Blood" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 20
+amount = 16
 one_shot = true
 explosiveness = 1.0
 texture = SubResource("GradientTexture2D_kfsrl")
 emission_shape = 1
-emission_sphere_radius = 15.0
+emission_sphere_radius = 8.0
 direction = Vector2(1, -1)
 gravity = Vector2(0, 300)
-initial_velocity_max = 248.61
+initial_velocity_max = 100.0
 angle_min = 39.2
 angle_max = 278.5
-scale_amount_max = 3.0
+scale_amount_max = 2.0
 color_ramp = SubResource("Gradient_ainn8")
 
 [node name="Hurtbox" type="Area2D" parent="."]

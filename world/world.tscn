@@ -20,7 +20,7 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfqg1"]
-size = Vector2(1920, 200)
+size = Vector2(3840, 200)
 
 [sub_resource type="Curve" id="Curve_2coha"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228881, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.491438, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.828196, 0.478405), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -116,7 +116,7 @@ end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree"]
 build_mode = 1
-polygon = PackedVector2Array(480, 0, 619, 1251)
+polygon = PackedVector2Array(440, -320, 619, 1251)
 
 [node name="RightTree" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
@@ -133,7 +133,7 @@ end_cap_mode = 2
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree"]
 build_mode = 1
-polygon = PackedVector2Array(1440, 0, 1300, 1250)
+polygon = PackedVector2Array(1480, -320, 1290, 1250)
 
 [node name="RightBranch" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
