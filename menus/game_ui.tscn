@@ -81,6 +81,7 @@ theme_override_font_sizes/font_size = 45
 text = "Energy"
 
 [node name="WebReticle" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.654902)
 texture_filter = 1
 rotation = 1.5708
