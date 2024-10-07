@@ -38,3 +38,13 @@ func _on_phobia_button_pressed() -> void:
 		phobia_button.text = "ON"
 	else:
 		phobia_button.text = "OFF"
+
+
+func _on_fullscreen_pressed() -> void:
+	var mode : DisplayServer.WindowMode = DisplayServer.window_get_mode()
+	if mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		$VBoxContainer/Fullscreen/Fullscreen.text = "OFF"
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		$VBoxContainer/Fullscreen/Fullscreen.text = "ON"

@@ -333,10 +333,6 @@ theme_override_styles/pressed = SubResource("StyleBoxLine_yuu4k")
 theme_override_styles/normal = SubResource("StyleBoxLine_kdcgq")
 text = "PLAY"
 
-[node name="Spacer3" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-
 [node name="VolumeSlider" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(512, 110)
 layout_mode = 2
@@ -396,9 +392,51 @@ theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_2fi1s")
 theme_override_styles/slider = SubResource("StyleBoxLine_5wpxw")
 value = 20.0
 
-[node name="Spacer4" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+[node name="Fullscreen" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(1024, 120)
 layout_mode = 2
+texture = SubResource("GradientTexture1D_wu63y")
+
+[node name="Label" type="Label" parent="VBoxContainer/Fullscreen"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 3.0
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.701961, 0.678431, 0.631373, 1)
+theme_override_fonts/font = ExtResource("11_4erei")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y6ydl")
+text = "Fullscreen
+"
+horizontal_alignment = 1
+
+[node name="Fullscreen" type="Button" parent="VBoxContainer/Fullscreen"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -55.0
+offset_right = 48.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(0.85, 0.835833, 0.8075, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.7, 0.676667, 0.63, 1)
+theme_override_fonts/font = ExtResource("11_4erei")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxLine_clf18")
+theme_override_styles/pressed = SubResource("StyleBoxLine_4g6lp")
+theme_override_styles/normal = SubResource("StyleBoxLine_i61ni")
+text = "Off"
 
 [node name="ArachnophobiaMode" type="TextureRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(1024, 120)
@@ -447,4 +485,5 @@ text = "Off"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="value_changed" from="VBoxContainer/VolumeSlider/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Fullscreen/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="VBoxContainer/ArachnophobiaMode/PhobiaButton" to="." method="_on_phobia_button_pressed"]
