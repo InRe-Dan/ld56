@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=32 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -33,6 +33,12 @@ size = Vector2(3840, 200)
 _data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0, Vector2(0.4, 0.5), 0.0, 0.0, 0, 0, Vector2(0.6, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.9), 0.0, 0.0, 0, 0]
 point_count = 4
 metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_5avqb"]
+_data = [Vector2(0.2, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.6), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
 
 [sub_resource type="Curve" id="Curve_iddc0"]
 _data = [Vector2(0.00946373, 0.0457968), 0.0, 0.0, 0, 0, Vector2(0.217666, 1), 0.0, 0.0, 0, 0, Vector2(0.769716, 1), 0.0, 0.0, 0, 0, Vector2(0.996845, 0), 0.0, 0.0, 0, 0]
@@ -150,6 +156,7 @@ position = Vector2(1904, 1070)
 
 [node name="Background" type="Node2D" parent="."]
 script = ExtResource("7_iuor6")
+rain_curve = SubResource("Curve_5avqb")
 
 [node name="BackgroundImage" type="Sprite2D" parent="Background"]
 unique_name_in_owner = true
