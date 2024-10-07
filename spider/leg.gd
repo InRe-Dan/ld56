@@ -37,17 +37,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var rest_position : Vector2 = global_position
 	var pref_position : Vector2 = pref_marker.global_position
-	var marker_target_position = rest_position
-	var best_dist = 100000
+	marker_target_position = rest_position
 	on_branch = false
 	if area.has_overlapping_bodies():
+		var _best_dist = 100000
 		for object : PhysicsBody2D in area.get_overlapping_bodies():
 			for object_child : Node in object.get_children():
 				if object_child is CollisionPolygon2D:
 					var points : PackedVector2Array = object_child.polygon
 					var closest : Vector2 = NearestPointOnLine(object_child.to_global(points[0]), object_child.to_global(points[1]), pref_position)
 					if closest != Vector2(-1, -1):
-						best_dist = closest.distance_to(pref_position)
+						_best_dist = closest.distance_to(pref_position)
 						marker_target_position = closest
 						on_branch = true
 

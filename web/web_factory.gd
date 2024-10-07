@@ -108,7 +108,6 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 			new_web_length = distance
 		
 		# Place points
-		var start = point_a + direction * distance_created
 		distance_created += new_web_length
 		var end = point_a + direction * distance_created
 		

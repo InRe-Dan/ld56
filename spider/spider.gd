@@ -13,14 +13,16 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 			var tree = get_tree()
 			game_over.call_deferred(tree)
 
-const damping: float = 4.0
+const damping: float = 3.5
 
 var movement_speed: float = 512.0 # Actual velocity divides damping factor
 var rotation_speed: float = 2.5
 var sway_influence : float = 1.0 # Influence of nearby velocities
 
 var cast_length: float = 64.0:
-	set(x): update_cast_length(x)
+	set(x): 
+		cast_length = x
+		update_cast_length()
 var safety_cast_length : float = 100
 
 @onready var destruction_zone: Area2D = $DestructionZone
@@ -34,7 +36,6 @@ var safety_cast_length : float = 100
 
 @onready var shoot_sfx : AudioStreamPlayer = $Shoot
 @onready var jump_sfx : AudioStreamPlayer = $Jump
-@onready var make_web_sfx : AudioStreamPlayer = $MakeWeb
 @onready var eat_sfx : AudioStreamPlayer = $Eat
 
 @onready var legs : Array[Node] = $Legs/LegTargets.get_children()
@@ -48,7 +49,7 @@ func game_over(tree : SceneTree) -> void:
 ## Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	# Configure lengths of rays
-	update_cast_length(cast_length)
+	update_cast_length()
 	linear_damp = damping
 
 ## Returns ratio of legs planted on a web or on a branch
@@ -113,7 +114,7 @@ func jump() -> void:
 	
 
 ## Updates the cast length of the spider
-func update_cast_length(new_length: float) -> void:
+func update_cast_length() -> void:
 	up_cast.target_position = Vector2(0, -cast_length)
 	down_cast.target_position = Vector2(0, cast_length)
 	left_cast.target_position = Vector2(-cast_length, 0)
@@ -176,7 +177,6 @@ func shoot_web_bullet() -> void:
 		return
 	shoot_sfx.play()
 	energy -= web_cost
-	var pos : Vector2 = get_global_mouse_position()
 	var bullet : WebBullet = bullet_scene.instantiate()
 	bullet.global_rotation = web_cast.global_position.direction_to(get_global_mouse_position()).angle()
 	bullet.global_position = web_cast.global_position

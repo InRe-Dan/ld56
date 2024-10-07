@@ -48,8 +48,7 @@ func _ready() -> void:
 	assert(point_a)
 	assert(point_b)
 	#visual.modulate = debug_colors.pick_random()
-	if $"../..".has_node("Insect"):
-		$"../../Insect".connect("SPLAT",GetBloody)
+
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
@@ -113,13 +112,6 @@ func destroy() -> void:
 func damage(amount : float) -> void:
 	health -= amount
 	if health <= 0.0: destroy()
-
-
-func GetBloody(insect_position):
-	return
-	$VisualMask.material.set_shader_parameter("blood_position", insect_position)
-	$VisualMask.material.set_shader_parameter("blood_radius", blood_radius)
-	StartBloodFade()
 
 
 func StartBloodFade():
