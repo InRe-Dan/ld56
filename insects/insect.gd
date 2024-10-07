@@ -63,8 +63,8 @@ func _process(delta: float) -> void:
 	
 	if change_dir_time < 0:
 		change_dir_time = 1 + randf()
-		target_dir = Vector2.from_angle(TAU * randf())
-	
+		target_dir = (Vector2.from_angle(TAU * randf()) + global_position.direction_to(Vector2(960, 540))) / 2.0
+
 	# Deal damage to web if stuck
 	if is_instance_valid(stuck_to):
 		if randf() < delta:
