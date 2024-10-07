@@ -62,7 +62,7 @@ scale = Vector2(3.3, 3.1)
 
 [node name="Blood" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 50
+amount = 20
 one_shot = true
 explosiveness = 1.0
 texture = SubResource("GradientTexture2D_kfsrl")
@@ -73,7 +73,7 @@ gravity = Vector2(0, 300)
 initial_velocity_max = 248.61
 angle_min = 39.2
 angle_max = 278.5
-scale_amount_max = 6.52
+scale_amount_max = 3.0
 color_ramp = SubResource("Gradient_ainn8")
 
 [node name="Hurtbox" type="Area2D" parent="."]

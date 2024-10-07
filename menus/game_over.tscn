@@ -1,0 +1,247 @@
+[gd_scene load_steps=16 format=3 uid="uid://brhwb7l7lrnxs"]
+
+[ext_resource type="Theme" uid="uid://hho5m4qd8ohe" path="res://resources/theme/main.tres" id="1_jvn0s"]
+[ext_resource type="Script" path="res://menus/game_over.gd" id="2_y2u1g"]
+[ext_resource type="Texture2D" uid="uid://cyfy7gcikdkv5" path="res://assets/background_2.png" id="3_b11a3"]
+[ext_resource type="Texture2D" uid="uid://bk08bwsv6oc7i" path="res://assets/web_border.png" id="4_5oeln"]
+[ext_resource type="FontFile" uid="uid://dtxv5fan8134q" path="res://resources/theme/fonts/Not Jam Signature 21.ttf" id="5_fuj8u"]
+[ext_resource type="FontFile" uid="uid://b0gt7i5501rrl" path="res://resources/theme/fonts/NotJamScrawl12.ttf" id="6_f3n3r"]
+
+[sub_resource type="Gradient" id="Gradient_23x0y"]
+offsets = PackedFloat32Array(0.3, 0.5, 0.7)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wu63y"]
+gradient = SubResource("Gradient_23x0y")
+width = 512
+
+[sub_resource type="Gradient" id="Gradient_dric6"]
+offsets = PackedFloat32Array(0.1, 0.4, 0.6, 0.9)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_huigv"]
+gradient = SubResource("Gradient_dric6")
+width = 512
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_syjvi"]
+content_margin_left = 20.0
+content_margin_top = 4.0
+content_margin_right = 20.0
+content_margin_bottom = 4.0
+color = Color(1, 0.8, 0.5, 1)
+thickness = 8
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_yuu4k"]
+content_margin_left = 20.0
+content_margin_top = 4.0
+content_margin_right = 20.0
+content_margin_bottom = 4.0
+color = Color(1, 0.86, 0.65, 1)
+thickness = 10
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_kdcgq"]
+content_margin_left = 20.0
+content_margin_top = 4.0
+content_margin_right = 20.0
+content_margin_bottom = 4.0
+color = Color(1, 0.733333, 0.329412, 1)
+thickness = 6
+vertical = true
+
+[sub_resource type="Gradient" id="Gradient_wuv11"]
+offsets = PackedFloat32Array(0.1, 0.3, 0.7, 0.9)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bu1gb"]
+gradient = SubResource("Gradient_wuv11")
+width = 1024
+
+[node name="GameOver" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jvn0s")
+script = ExtResource("2_y2u1g")
+
+[node name="Backdrop" type="TextureRect" parent="."]
+modulate = Color(0.8, 0.8, 0.8, 1)
+layout_mode = 0
+offset_right = 721.0
+offset_bottom = 540.0
+texture = ExtResource("3_b11a3")
+
+[node name="Border" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_5oeln")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacer" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 168)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_wu63y")
+
+[node name="Label" type="Label" parent="VBoxContainer/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.732, 0.33, 1)
+theme_override_fonts/font = ExtResource("5_fuj8u")
+theme_override_font_sizes/font_size = 189
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="MenuButton" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 72)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture1D_huigv")
+
+[node name="MenuButton" type="Button" parent="VBoxContainer/MenuButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = -40.5
+offset_right = 106.5
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.85, 0.835833, 0.8075, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.7, 0.676667, 0.63, 1)
+theme_override_fonts/font = ExtResource("6_f3n3r")
+theme_override_font_sizes/font_size = 72
+theme_override_styles/hover = SubResource("StyleBoxLine_syjvi")
+theme_override_styles/pressed = SubResource("StyleBoxLine_yuu4k")
+theme_override_styles/normal = SubResource("StyleBoxLine_kdcgq")
+text = "MENU"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="Stats" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture1D_bu1gb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Stats"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimePlayed" type="HBoxContainer" parent="VBoxContainer/Stats/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/VBoxContainer/TimePlayed"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_f3n3r")
+theme_override_font_sizes/font_size = 36
+text = "Time Played:"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/Stats/VBoxContainer/TimePlayed"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="VBoxContainer/Stats/VBoxContainer/TimePlayed"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.733333, 0.329412, 1)
+theme_override_fonts/font = ExtResource("6_f3n3r")
+theme_override_font_sizes/font_size = 36
+text = "000"
+horizontal_alignment = 2
+
+[node name="InsectsDevoured" type="HBoxContainer" parent="VBoxContainer/Stats/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/VBoxContainer/InsectsDevoured"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_f3n3r")
+theme_override_font_sizes/font_size = 36
+text = "Insects Devoured:"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/Stats/VBoxContainer/InsectsDevoured"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="VBoxContainer/Stats/VBoxContainer/InsectsDevoured"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.733333, 0.329412, 1)
+theme_override_fonts/font = ExtResource("6_f3n3r")
+theme_override_font_sizes/font_size = 36
+text = "000"
+horizontal_alignment = 2
+
+[node name="WebsCreated" type="HBoxContainer" parent="VBoxContainer/Stats/VBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Stats/VBoxContainer/WebsCreated"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_f3n3r")
+theme_override_font_sizes/font_size = 36
+text = "Webs Created:"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/Stats/VBoxContainer/WebsCreated"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Value" type="Label" parent="VBoxContainer/Stats/VBoxContainer/WebsCreated"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.733333, 0.329412, 1)
+theme_override_fonts/font = ExtResource("6_f3n3r")
+theme_override_font_sizes/font_size = 36
+text = "000"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/MenuButton/MenuButton" to="." method="_on_menu_button_pressed"]

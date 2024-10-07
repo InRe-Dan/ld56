@@ -10,8 +10,8 @@ var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 	set(x):
 		energy = clamp(x, 0, energy_cap)
 		if energy == 0:
-			# TODO
-			print("GAME OVER!!!")
+			var tree = get_tree()
+			game_over.call_deferred(tree)
 
 const damping: float = 4.0
 
@@ -35,6 +35,11 @@ var safety_cast_length : float = 100
 @onready var legs : Array[Node] = $Legs/LegTargets.get_children()
 
 
+## Ends the game
+func game_over(tree : SceneTree) -> void:
+	tree.change_scene_to_file("res://menus/game_over.tscn")
+
+
 ## Called when the node enters the scene tree for the first time
 func _ready() -> void:
 	# Configure lengths of rays
@@ -50,6 +55,8 @@ func get_groundedness() -> float:
 
 ## Called every physics frame
 func _physics_process(delta: float) -> void:
+	Global.time_played += delta
+	
 	energy -= delta
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()

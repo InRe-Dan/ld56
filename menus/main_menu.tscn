@@ -107,7 +107,7 @@ metadata/_snap_enabled = true
 gradient = SubResource("Gradient_oi0wb")
 width = 1024
 
-[node name="Main Menu" type="Control"]
+[node name="MainMenu" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15

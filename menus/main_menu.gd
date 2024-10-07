@@ -7,8 +7,12 @@ extends Control
 
 ## Node entered the scene tree for the first time
 func _ready() -> void:
-	AudioServer.set_bus_volume_db(0, linear_to_db(volume_slider.value/volume_slider.max_value))
-	volume_label.text = str(round(volume_slider.value)) + "%"
+	AudioServer.set_bus_volume_db(0, linear_to_db(Global.global_volume/volume_slider.max_value))
+	volume_label.text = str(round(Global.global_volume)) + "%"
+	if Global.phobia_mode:
+		phobia_button.text = "ON"
+	else:
+		phobia_button.text = "OFF"
 
 
 ## Play button pressed
@@ -18,6 +22,7 @@ func _on_play_button_pressed() -> void:
 
 ## Volume slider adjusted
 func _on_volume_value_changed(value: float) -> void:
+	Global.global_volume = value
 	volume_label.text = str(round(value)) + "%"
 	AudioServer.set_bus_volume_db(0, linear_to_db(value/volume_slider.max_value))
 

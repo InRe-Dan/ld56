@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
 [ext_resource type="Script" path="res://insects/data/mob_data.gd" id="3_ivcbe"]
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
-[ext_resource type="Texture2D" uid="uid://bxw34dyx2cgac" path="res://assets/background_1.png" id="4_2hkic"]
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
+[ext_resource type="Texture2D" uid="uid://cyfy7gcikdkv5" path="res://assets/background_2.png" id="6_qy8av"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
 [ext_resource type="PackedScene" uid="uid://523036m0xuf1" path="res://menus/game_ui.tscn" id="10_y58tq"]
 [ext_resource type="Shader" path="res://world/Rain.gdshader" id="11_pcwd8"]
@@ -32,7 +32,7 @@ point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wf2re"]
 shader = ExtResource("11_pcwd8")
-shader_parameter/rain_amount = 1000.0
+shader_parameter/rain_amount = 300.0
 shader_parameter/near_rain_length = 0.04
 shader_parameter/far_rain_length = 0.04
 shader_parameter/near_rain_width = 0.5
@@ -42,7 +42,7 @@ shader_parameter/far_rain_transparency = 0.5
 shader_parameter/rain_color = Color(0.8, 0.8, 0.8, 1)
 shader_parameter/base_rain_speed = 1.0
 shader_parameter/additional_rain_speed = 0.1
-shader_parameter/slant = 4.75e-08
+shader_parameter/slant = 0.02
 
 [sub_resource type="Curve" id="Curve_l8ggl"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.166096, 0.864721), 0.0, 0.0, 0, 0, Vector2(0.291667, 1), 0.0, 0.0, 0, 0, Vector2(0.505708, 1), 0.0, 0.0, 0, 0, Vector2(0.628425, 1), 0.0, 0.0, 0, 0, Vector2(0.739726, 1), 0.0, 0.0, 0, 0, Vector2(0.83105, 0.815228), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -97,7 +97,7 @@ position = Vector2(1904, 1070)
 
 [node name="Backdrop" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_wf2re")
-texture = ExtResource("4_2hkic")
+texture = ExtResource("6_qy8av")
 centered = false
 
 [node name="Trees" type="Node2D" parent="."]

@@ -117,6 +117,8 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 		_create_web_segment(new_web_length, start_joint, new_joint)
 		start_joint = new_joint
 		distance -= new_web_length
+	
+	Global.webs_created += 1
 
 
 ## Creates a new web segment

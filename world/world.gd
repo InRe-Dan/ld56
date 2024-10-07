@@ -6,6 +6,10 @@ extends Node2D
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.time_played = 0.0
+	Global.insects_devoured = 0
+	Global.webs_created = 0
+	
 	if Global.phobia_mode:
 		spider.get_node("Legs").visible = false
 		spider.get_node("Body").visible = false

@@ -74,6 +74,7 @@ func _process(delta: float) -> void:
 
 
 func kill(blood_splatter_dir : Vector2) -> void:
+	Global.insects_devoured += 1
 	$Blood.direction = blood_splatter_dir
 	$Blood.emitting = true
 	$Blood.finished.connect($Blood.queue_free)
