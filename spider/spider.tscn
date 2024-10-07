@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
 [ext_resource type="PackedScene" uid="uid://cq076erj3xhfp" path="res://spider/leg.tscn" id="2_7yvgd"]
-[ext_resource type="AudioStream" uid="uid://cyh126353dj74" path="res://assets/sound/sfx/Websling2Alsocrunch.ogg" id="2_vcq5e"]
-[ext_resource type="AudioStream" uid="uid://cgxpcgn4eaqsn" path="res://assets/sound/sfx/webslingsnaptry1.ogg" id="3_iogig"]
+[ext_resource type="AudioStream" uid="uid://dxi61dll7t02c" path="res://assets/sound/sfx/woosh2_pesh.mp3" id="3_dyjfu"]
+[ext_resource type="AudioStream" uid="uid://bpxqbkk17bk85" path="res://assets/sound/sfx/pop1.ogg" id="3_f3n7t"]
 [ext_resource type="AudioStream" uid="uid://tc7i3ukwstov" path="res://assets/sound/sfx/insectexplosineat.ogg" id="4_c5alw"]
 [ext_resource type="Texture2D" uid="uid://gtx37skopcec" path="res://assets/spider/spiderBody.png" id="5_gjbyk"]
 
@@ -133,12 +133,12 @@ angular_damp = 1.0
 script = ExtResource("1_gma0t")
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_vcq5e")
-pitch_scale = 0.8
+stream = ExtResource("3_dyjfu")
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_iogig")
-volume_db = 8.041
+stream = ExtResource("3_f3n7t")
+volume_db = 16.0
+pitch_scale = 0.8
 
 [node name="Eat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_c5alw")

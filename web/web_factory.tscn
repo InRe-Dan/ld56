@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqyqlpicgb0dq"]
 
 [ext_resource type="Script" path="res://web/web_factory.gd" id="1_rhbia"]
-[ext_resource type="AudioStream" uid="uid://cx25vne2wnvi4" path="res://assets/sound/sfx/WebSling1Try1.ogg" id="2_aicyh"]
+[ext_resource type="AudioStream" uid="uid://br2ofp8s50fu8" path="res://assets/sound/sfx/boing2.ogg" id="2_5oakn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e8hd3"]
 radius = 24.0
@@ -25,6 +25,6 @@ max_results = 1
 collision_mask = 22
 
 [node name="MakeWeb" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_aicyh")
-volume_db = -8.0
-pitch_scale = 0.8
+stream = ExtResource("2_5oakn")
+volume_db = 18.0
+pitch_scale = 1.2
