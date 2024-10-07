@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://da2p0ov55kinc"
-path="res://.godot/imported/CaveatBrush-Regular.ttf-280c1536ec97d752d5189d7c20009cd2.fontdata"
+uid="uid://y31430mh6y0g"
+path="res://.godot/imported/JollyLodger-Regular.ttf-f8e01035eb17d1165a153e32b49d5645.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/CaveatBrush-Regular.ttf"
-dest_files=["res://.godot/imported/CaveatBrush-Regular.ttf-280c1536ec97d752d5189d7c20009cd2.fontdata"]
+source_file="res://assets/fonts/JollyLodger-Regular.ttf"
+dest_files=["res://.godot/imported/JollyLodger-Regular.ttf-f8e01035eb17d1165a153e32b49d5645.fontdata"]
 
 [params]
 

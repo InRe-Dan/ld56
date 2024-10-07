@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dya60mvgd2ntm"]
+[gd_scene load_steps=36 format=3 uid="uid://dya60mvgd2ntm"]
 
 [ext_resource type="Theme" uid="uid://hho5m4qd8ohe" path="res://resources/theme/main.tres" id="1_3evos"]
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="2_y1f7y"]
@@ -10,13 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://bvbuvch1rxf6e" path="res://assets/background_icons/leaf2.png" id="7_ypjsf"]
 [ext_resource type="Texture2D" uid="uid://cflssl2bbhkl0" path="res://assets/background_icons/leaf3.png" id="8_34vv8"]
 [ext_resource type="Texture2D" uid="uid://cq4sexdsflati" path="res://assets/background_icons/leaf4.png" id="9_xy084"]
-[ext_resource type="FontFile" uid="uid://da2p0ov55kinc" path="res://assets/fonts/CaveatBrush-Regular.ttf" id="11_50el4"]
+[ext_resource type="FontFile" uid="uid://byvnesw64mp7n" path="res://assets/fonts/Schoolbell-Regular.ttf" id="11_4erei"]
 
 [sub_resource type="Curve" id="Curve_dpcxj"]
 _data = [Vector2(0.00946373, 0.0457968), 0.0, 0.0, 0, 0, Vector2(0.217666, 1), 0.0, 0.0, 0, 0, Vector2(0.769716, 1), 0.0, 0.0, 0, 0, Vector2(0.996845, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_nwjmk"]
+[sub_resource type="CurveTexture" id="CurveTexture_q1kre"]
 curve = SubResource("Curve_dpcxj")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3vt50"]
@@ -33,19 +33,19 @@ tangential_accel_min = -8.95
 tangential_accel_max = 3.55
 scale_min = 0.0
 scale_max = 5.0
-scale_curve = SubResource("CurveTexture_nwjmk")
+scale_curve = SubResource("CurveTexture_q1kre")
 color = Color(0.9, 0.81675, 0.567, 0.768627)
 hue_variation_min = -0.09
 hue_variation_max = 0.05
 turbulence_enabled = true
 turbulence_noise_strength = 4.15
 
-[sub_resource type="Gradient" id="Gradient_qkkmx"]
+[sub_resource type="Gradient" id="Gradient_3ia46"]
 offsets = PackedFloat32Array(0, 0.0342679, 0.046729)
 colors = PackedColorArray(0.973943, 0.966453, 0.926597, 1, 0.987944, 0.984478, 0.966037, 0.462687, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4yawm"]
-gradient = SubResource("Gradient_qkkmx")
+gradient = SubResource("Gradient_3ia46")
 fill = 1
 fill_from = Vector2(0.547009, 0.482906)
 
@@ -86,8 +86,8 @@ shader_parameter/wave_frequency = 20.0
 shader_parameter/wave_length = 200.0
 
 [sub_resource type="Gradient" id="Gradient_23x0y"]
-offsets = PackedFloat32Array(0.1, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 0.9)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0.875, 0, 0, 0, 1, 0, 0, 0, 0.875, 0, 0, 0, 0.5, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0.1, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.916667)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0.499998, 0, 0, 0, 0.875, 0, 0, 0, 1, 0, 0, 0, 0.875, 0, 0, 0, 0.5, 0, 0, 0, 0)
 metadata/_snap_enabled = true
 metadata/_snap_count = 12
 
@@ -100,7 +100,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.8, 0.5, 1)
+color = Color(1, 0.8, 0.5, 0)
 thickness = 8
 vertical = true
 
@@ -109,7 +109,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.86, 0.65, 1)
+color = Color(1, 0.86, 0.65, 0)
 thickness = 10
 vertical = true
 
@@ -118,7 +118,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.733333, 0.329412, 1)
+color = Color(1, 0.732, 0.33, 0)
 thickness = 6
 vertical = true
 
@@ -158,6 +158,33 @@ fill_from = Vector2(0.5, 0.5)
 color = Color(0.8, 0.8, 0.8, 1)
 thickness = 4
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_clf18"]
+content_margin_left = 20.0
+content_margin_top = 4.0
+content_margin_right = 20.0
+content_margin_bottom = 4.0
+color = Color(1, 0.8, 0.5, 1)
+thickness = 8
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_4g6lp"]
+content_margin_left = 20.0
+content_margin_top = 4.0
+content_margin_right = 20.0
+content_margin_bottom = 4.0
+color = Color(1, 0.86, 0.65, 1)
+thickness = 10
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_i61ni"]
+content_margin_left = 20.0
+content_margin_top = 4.0
+content_margin_right = 20.0
+content_margin_bottom = 4.0
+color = Color(1, 0.732, 0.33, 1)
+thickness = 6
+vertical = true
+
 [node name="MainMenu" type="Control"]
 texture_filter = 1
 layout_mode = 3
@@ -177,8 +204,15 @@ position = Vector2(960, 540)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_71okx")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Background"]
+position = Vector2(898, 528)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_3vt50")
+texture = SubResource("GradientTexture2D_4yawm")
+lifetime = 10.0
+
 [node name="Border" type="TextureRect" parent="Background"]
-visible = false
+modulate = Color(1, 1, 1, 0.411765)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -188,13 +222,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_x3dha")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Background"]
-position = Vector2(898, 528)
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_3vt50")
-texture = SubResource("GradientTexture2D_4yawm")
-lifetime = 10.0
+metadata/_edit_use_anchors_ = true
 
 [node name="TreeBranches" type="Sprite2D" parent="Background"]
 unique_name_in_owner = true
@@ -250,13 +278,17 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -36.5
-offset_bottom = 22.5
+offset_top = -30.0
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.908, 0.54, 1)
-theme_override_fonts/font = ExtResource("11_50el4")
-theme_override_font_sizes/font_size = 180
+theme_override_colors/font_color = Color(0.734053, 0.75768, 0.433527, 1)
+theme_override_colors/font_outline_color = Color(0.682129, 0.516149, 0.119649, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("11_4erei")
+theme_override_font_sizes/font_size = 172
 text = "Weaver"
 horizontal_alignment = 1
 
@@ -265,7 +297,7 @@ custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="PlayButton" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(256, 72)
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_wu63y")
 
@@ -284,10 +316,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.85, 0.835833, 0.8075, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(0.7, 0.676667, 0.63, 1)
-theme_override_fonts/font = ExtResource("11_50el4")
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(1, 0.852115, 0.652964, 1)
+theme_override_colors/font_pressed_color = Color(0.999999, 0.743252, 0.361661, 1)
+theme_override_colors/font_color = Color(0.999999, 0.772822, 0.448921, 1)
+theme_override_fonts/font = ExtResource("11_4erei")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/hover = SubResource("StyleBoxLine_syjvi")
 theme_override_styles/pressed = SubResource("StyleBoxLine_yuu4k")
@@ -295,11 +328,11 @@ theme_override_styles/normal = SubResource("StyleBoxLine_kdcgq")
 text = "PLAY"
 
 [node name="Spacer3" type="Control" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 128)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
 [node name="VolumeSlider" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(512, 100)
+custom_minimum_size = Vector2(512, 110)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_wu63y")
 
@@ -307,11 +340,11 @@ texture = SubResource("GradientTexture1D_wu63y")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -11.0
-offset_bottom = 59.0
+offset_top = -7.0
+offset_bottom = 55.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.701961, 0.678431, 0.631373, 1)
-theme_override_fonts/font = ExtResource("11_50el4")
+theme_override_fonts/font = ExtResource("11_4erei")
 theme_override_font_sizes/font_size = 39
 theme_override_styles/normal = SubResource("StyleBoxEmpty_y6ydl")
 text = "Volume"
@@ -325,13 +358,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -46.0
-offset_top = -22.5
+offset_top = -27.0
 offset_right = 46.0
-offset_bottom = 22.5
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.85098, 0.835294, 0.807843, 1)
-theme_override_fonts/font = ExtResource("11_50el4")
+theme_override_fonts/font = ExtResource("11_4erei")
 theme_override_font_sizes/font_size = 31
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jotcp")
 text = "20%"
@@ -345,10 +378,13 @@ anchor_left = 0.3
 anchor_top = 1.0
 anchor_right = 0.7
 anchor_bottom = 1.0
-offset_top = -6.0
+offset_left = 93.0
+offset_top = -24.0
+offset_right = -93.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_default_cursor_shape = 2
 theme_override_icons/grabber = SubResource("GradientTexture2D_87b1l")
 theme_override_icons/grabber_highlight = SubResource("GradientTexture2D_2fi1s")
 theme_override_styles/slider = SubResource("StyleBoxLine_5wpxw")
@@ -359,7 +395,7 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
 [node name="ArachnophobiaMode" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(1024, 100)
+custom_minimum_size = Vector2(1024, 120)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_wu63y")
 
@@ -367,11 +403,11 @@ texture = SubResource("GradientTexture1D_wu63y")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -10.0
-offset_bottom = 53.0
+offset_top = 3.0
+offset_bottom = 69.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.701961, 0.678431, 0.631373, 1)
-theme_override_fonts/font = ExtResource("11_50el4")
+theme_override_fonts/font = ExtResource("11_4erei")
 theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxEmpty_y6ydl")
 text = "Arachnophobia Mode"
@@ -385,21 +421,22 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -52.0
-offset_right = 10.0
+offset_left = -48.0
+offset_top = -55.0
+offset_right = 48.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(0.85, 0.835833, 0.8075, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0.7, 0.676667, 0.63, 1)
-theme_override_fonts/font = ExtResource("11_50el4")
+theme_override_fonts/font = ExtResource("11_4erei")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = SubResource("StyleBoxLine_syjvi")
-theme_override_styles/pressed = SubResource("StyleBoxLine_yuu4k")
-theme_override_styles/normal = SubResource("StyleBoxLine_kdcgq")
+theme_override_styles/hover = SubResource("StyleBoxLine_clf18")
+theme_override_styles/pressed = SubResource("StyleBoxLine_4g6lp")
+theme_override_styles/normal = SubResource("StyleBoxLine_i61ni")
 text = "Off"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton/PlayButton" to="." method="_on_play_button_pressed"]
