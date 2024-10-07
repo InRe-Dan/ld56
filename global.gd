@@ -11,8 +11,20 @@ var webs_created : int = 0
 
 @onready var snap : AudioStreamPlayer = $Snap
 
+
+func toggle_band_pass(state : bool) -> void:
+	if not state:
+		var bandpass_filter := AudioEffectBandPassFilter.new()
+		bandpass_filter.cutoff_hz = 900
+		bandpass_filter.resonance = 0.70
+		AudioServer.add_bus_effect(0, bandpass_filter, 0)
+	else:
+		AudioServer.remove_bus_effect(0, 0)
+
+
 func play_click_sound() -> void:
 	$ButtonClick.play()
+
 
 func play_snap_sound() -> void:
 	var new : AudioStreamPlayer = snap.duplicate()

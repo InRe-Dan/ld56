@@ -1,0 +1,10 @@
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://el02kq18qx4w"]
+
+[sub_resource type="AudioEffectBandPassFilter" id="AudioEffectBandPassFilter_npp5r"]
+resource_name = "BandPassFilter"
+cutoff_hz = 900.0
+resonance = 0.7
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectBandPassFilter_npp5r")
+bus/0/effect/0/enabled = true
