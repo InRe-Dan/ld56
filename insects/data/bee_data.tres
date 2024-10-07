@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MobData" load_steps=3 format=3 uid="uid://d0m6otktqidyh"]
+
+[ext_resource type="Script" path="res://insects/data/mob_data.gd" id="1_dlkn5"]
+[ext_resource type="Texture2D" uid="uid://cny2y2n7od4r0" path="res://assets/insects/bee_sheet.png" id="2_rvkiy"]
+
+[resource]
+script = ExtResource("1_dlkn5")
+texture = ExtResource("2_rvkiy")
+spin_speed = 4.0
+acceleration = 60.0
+max_speed = 120.0
+energy_gain = 10.0
+spawn_weight = 1.0
+spawn_cost = 1.0
+difficulty_requirement = 0
+initial_damage = 0.6
+struggle_damage = 0.04

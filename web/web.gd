@@ -27,7 +27,7 @@ var velocity : Vector2:
 var resting_length : float = 0.0
 var stiffness: float = 8192.0
 var damping: float = 2048.0
-var lifetime : float = 60
+var lifetime : float = 90
 
 var health : float = 1.0
 

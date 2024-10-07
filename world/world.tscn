@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=32 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
 [ext_resource type="Script" path="res://insects/data/mob_data.gd" id="3_ivcbe"]
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
+[ext_resource type="Resource" uid="uid://d0m6otktqidyh" path="res://insects/data/bee_data.tres" id="5_1vafj"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
 [ext_resource type="Script" path="res://world/background.gd" id="7_iuor6"]
 [ext_resource type="Texture2D" uid="uid://vkbehguryo40" path="res://assets/background_icons/tree_branches.png" id="8_l0u6f"]
@@ -144,7 +145,7 @@ bottom_right_marker = NodePath("BottomRight")
 horizontal_spread = SubResource("Curve_2coha")
 vertical_spread = SubResource("Curve_ek8vk")
 spawn_interval = 6.0
-mobs = Array[ExtResource("3_ivcbe")]([ExtResource("4_ytwgf")])
+mobs = Array[ExtResource("3_ivcbe")]([ExtResource("4_ytwgf"), ExtResource("5_1vafj")])
 
 [node name="TopLeft" type="Marker2D" parent="MobSpawner"]
 position = Vector2(25, 10)
