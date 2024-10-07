@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3ud2rqlsvy6p"]
+[gd_scene load_steps=30 format=3 uid="uid://d3ud2rqlsvy6p"]
 
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_gma0t"]
 [ext_resource type="PackedScene" uid="uid://cq076erj3xhfp" path="res://spider/leg.tscn" id="2_7yvgd"]
@@ -110,6 +110,26 @@ modifications/7 = SubResource("SkeletonModification2DTwoBoneIK_5ioob")
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvbcn"]
 atlas = ExtResource("7_l0m1q")
 region = Rect2(9.43427, 6.57895, 36.9474, 139.066)
+
+[sub_resource type="Gradient" id="Gradient_jmxvg"]
+offsets = PackedFloat32Array(0, 0.610879, 0.661088)
+colors = PackedColorArray(0.0924, 0.0924, 0.33, 1, 0.0924, 0.0924, 0.33, 1, 0.0924, 0.0924, 0.33, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gcmly"]
+gradient = SubResource("Gradient_jmxvg")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_0c0a8"]
+offsets = PackedFloat32Array(0, 0.610879, 0.661088)
+colors = PackedColorArray(0.0924, 0.0924, 0.33, 1, 0.0924, 0.0924, 0.33, 1, 0.0924, 0.0924, 0.33, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_igg4v"]
+gradient = SubResource("Gradient_0c0a8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Spider" type="RigidBody2D" groups=["spider"]]
 collision_mask = 32
@@ -516,7 +536,14 @@ width = 2.0
 default_color = Color(0.0980392, 0.105882, 0.176471, 1)
 texture = SubResource("AtlasTexture_vvbcn")
 
-[node name="Body" type="Sprite2D" parent="Legs"]
+[node name="BackupBody" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = SubResource("GradientTexture2D_gcmly")
+
+[node name="BackupBody2" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_igg4v")
+
+[node name="Body" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, -9.53674e-07)
 scale = Vector2(0.389121, 0.389121)
 texture = ExtResource("5_gjbyk")
