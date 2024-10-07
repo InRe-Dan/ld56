@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=31 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -30,12 +30,9 @@ normal = Vector2(-1, 0)
 size = Vector2(3840, 200)
 
 [sub_resource type="Curve" id="Curve_2coha"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.228881, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.491438, 0.48638), 0.0, 0.0, 0, 0, Vector2(0.828196, 0.478405), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="Curve" id="Curve_ek8vk"]
-_data = [Vector2(0, 0), 0.0, 0.982845, 0, 0, Vector2(1, 1), 1.08666, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0.1), 0.0, 0.0, 0, 0, Vector2(0.4, 0.5), 0.0, 0.0, 0, 0, Vector2(0.6, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0.9), 0.0, 0.0, 0, 0]
+point_count = 4
+metadata/_snap_enabled = true
 
 [sub_resource type="Curve" id="Curve_iddc0"]
 _data = [Vector2(0.00946373, 0.0457968), 0.0, 0.0, 0, 0, Vector2(0.217666, 1), 0.0, 0.0, 0, 0, Vector2(0.769716, 1), 0.0, 0.0, 0, 0, Vector2(0.996845, 0), 0.0, 0.0, 0, 0]
@@ -143,7 +140,6 @@ z_index = 1
 top_left_marker = NodePath("TopLeft")
 bottom_right_marker = NodePath("BottomRight")
 horizontal_spread = SubResource("Curve_2coha")
-vertical_spread = SubResource("Curve_ek8vk")
 spawn_interval = 6.0
 mobs = Array[ExtResource("3_ivcbe")]([ExtResource("4_ytwgf"), ExtResource("5_1vafj")])
 
@@ -179,7 +175,7 @@ texture = ExtResource("8_l0u6f")
 
 [node name="LeftTree" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree"]
 build_mode = 1
@@ -187,7 +183,7 @@ polygon = PackedVector2Array(240, -320, 580, 1400)
 
 [node name="Branch" type="StaticBody2D" parent="Trees/LeftTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch"]
 build_mode = 1
@@ -195,7 +191,7 @@ polygon = PackedVector2Array(480, -320, 350, 225)
 
 [node name="Branch2" type="StaticBody2D" parent="Trees/LeftTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch2"]
 build_mode = 1
@@ -203,7 +199,7 @@ polygon = PackedVector2Array(0, 0, 340, 190)
 
 [node name="Branch3" type="StaticBody2D" parent="Trees/LeftTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch3"]
 build_mode = 1
@@ -211,7 +207,7 @@ polygon = PackedVector2Array(40, 0, 420, 1080)
 
 [node name="Branch4" type="StaticBody2D" parent="Trees/LeftTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch4"]
 build_mode = 1
@@ -219,7 +215,7 @@ polygon = PackedVector2Array(0, 530, 370, 1080)
 
 [node name="Branch5" type="StaticBody2D" parent="Trees/LeftTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch5"]
 build_mode = 1
@@ -227,7 +223,7 @@ polygon = PackedVector2Array(200, 0, 440, 1080)
 
 [node name="RightTree" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree"]
 build_mode = 1
@@ -235,7 +231,7 @@ polygon = PackedVector2Array(1730, -320, 1500, 1400)
 
 [node name="Branch" type="StaticBody2D" parent="Trees/RightTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch"]
 build_mode = 1
@@ -243,7 +239,7 @@ polygon = PackedVector2Array(1540, -320, 1620, 500)
 
 [node name="Branch2" type="StaticBody2D" parent="Trees/RightTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch2"]
 build_mode = 1
@@ -251,7 +247,7 @@ polygon = PackedVector2Array(1800, 0, 1670, 100)
 
 [node name="Branch3" type="StaticBody2D" parent="Trees/RightTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch3"]
 build_mode = 1
@@ -259,7 +255,7 @@ polygon = PackedVector2Array(1880, 0, 1620, 1080)
 
 [node name="Branch4" type="StaticBody2D" parent="Trees/RightTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch4"]
 build_mode = 1
@@ -267,7 +263,7 @@ polygon = PackedVector2Array(1920, 530, 1680, 1080)
 
 [node name="Branch5" type="StaticBody2D" parent="Trees/RightTree"]
 collision_layer = 18
-collision_mask = 14
+collision_mask = 6
 
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch5"]
 build_mode = 1

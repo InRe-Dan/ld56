@@ -4,7 +4,6 @@ extends Node2D
 @export var top_left_marker : Marker2D
 @export var bottom_right_marker : Marker2D
 @export var horizontal_spread : Curve
-@export var vertical_spread : Curve
 
 @export var spawn_interval : float = 10
 @export var interval_variation : float = 5
@@ -28,7 +27,7 @@ func filter_by_spawnable() -> Array[MobData]:
 
 func get_random_spawn_pos() -> Vector2:
 	var h : float = horizontal_spread.sample(randf())
-	var v : float = vertical_spread.sample(randf())
+	var v : int = round(randf())
 	var tl : Vector2 = top_left_marker.global_position
 	var br : Vector2 = bottom_right_marker.global_position
 	return Vector2(
