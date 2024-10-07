@@ -26,7 +26,7 @@ var velocity : Vector2:
 # Spring parameters
 var resting_length : float = 0.0
 var stiffness: float = 8192.0
-var damping: float = 1024.0
+var damping: float = 2048.0
 var lifetime : float = 60
 
 var health : float = 1.0
@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	damage(delta * 1 / lifetime)
 	visual.default_color = damage_gradient.sample(health)
-	visual.width = width * health + 2.0
+	visual.width = width * health + 6.0
 
 
 ## Queues for deletion and removes itself from weblists

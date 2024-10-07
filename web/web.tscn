@@ -18,7 +18,7 @@ script = ExtResource("1_7k0vh")
 damage_gradient = SubResource("Gradient_arccy")
 
 [node name="VisualMask" type="Line2D" parent="."]
-width = 15.0
+width = 8.0
 texture = ExtResource("2_e76gi")
 texture_mode = 2
 joint_mode = 2

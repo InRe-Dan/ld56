@@ -12,7 +12,7 @@ var change_dir_time : float = 1 + randf()
 var stuck_to : Web
 
 var anim_time_current : float = 0.0
-var anim_frame_time : float = 0.1
+var anim_frame_time : float = 0.08
 
 signal SPLAT(position)
 
