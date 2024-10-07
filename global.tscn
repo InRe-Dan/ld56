@@ -27,7 +27,7 @@ autoplay = true
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6ps6f")
-volume_db = 19.175
+volume_db = 18.0
 
 [node name="Snap" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_2dheb")
