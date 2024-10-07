@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		reticle.visible = false
 	else:
 		if not reticle.visible:
-			reticle.visible = true
+			reticle.visible = false
 			reticle.global_position = aim
 		else:
 			reticle.global_position = lerp(reticle.global_position, aim, clamp(5 * delta, 0, 1.0))
