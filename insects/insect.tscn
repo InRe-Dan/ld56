@@ -18,8 +18,8 @@ offsets = PackedFloat32Array(0, 0.367925, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.339623, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_npsr0"]
-offsets = PackedFloat32Array(0, 0.493827, 0.746032)
-colors = PackedColorArray(0, 0, 0, 1, 0.33, 0, 0, 1, 0.64, 0.3328, 0.3328, 0)
+offsets = PackedFloat32Array(0.0744337, 0.493827, 0.746032)
+colors = PackedColorArray(0.505785, 0.199227, 0.164994, 0.92549, 0.52013, 0.000597531, 0.000327385, 1, 0.64, 0.3328, 0.3328, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kfsrl"]
 gradient = SubResource("Gradient_npsr0")
@@ -40,7 +40,8 @@ script = ExtResource("1_wqne1")
 
 [node name="SpawnFlourish" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 160
+amount = 100
+lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
 texture = SubResource("GradientTexture2D_svvyp")
@@ -48,6 +49,7 @@ spread = 180.0
 gravity = Vector2(0, 200)
 initial_velocity_min = 38.67
 initial_velocity_max = 243.09
+color = Color(0.97, 0.84196, 0.6208, 0.666667)
 color_ramp = SubResource("Gradient_bp4ll")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -63,18 +65,18 @@ scale = Vector2(3.3, 3.1)
 
 [node name="Blood" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 16
+amount = 32
 one_shot = true
 explosiveness = 1.0
 texture = SubResource("GradientTexture2D_kfsrl")
 emission_shape = 1
-emission_sphere_radius = 8.0
-direction = Vector2(1, -1)
+emission_sphere_radius = 32.0
+direction = Vector2(0, -0.5)
 gravity = Vector2(0, 300)
 initial_velocity_max = 100.0
 angle_min = 39.2
 angle_max = 278.5
-scale_amount_max = 2.0
+scale_amount_min = 0.5
 color_ramp = SubResource("Gradient_ainn8")
 
 [node name="Hurtbox" type="Area2D" parent="."]

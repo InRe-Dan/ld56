@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="LD56"
+config/name="Weaber"
 run/main_scene="res://menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://assets/spider/image.png"
 
 [autoload]
 

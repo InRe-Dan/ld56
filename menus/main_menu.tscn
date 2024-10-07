@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dya60mvgd2ntm"]
+[gd_scene load_steps=38 format=3 uid="uid://dya60mvgd2ntm"]
 
 [ext_resource type="Theme" uid="uid://hho5m4qd8ohe" path="res://resources/theme/main.tres" id="1_3evos"]
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="2_y1f7y"]
@@ -95,6 +95,15 @@ metadata/_snap_count = 12
 gradient = SubResource("Gradient_23x0y")
 width = 512
 
+[sub_resource type="FontVariation" id="FontVariation_v375e"]
+base_font = ExtResource("11_4erei")
+variation_embolden = -0.19
+spacing_glyph = -4
+
+[sub_resource type="FontVariation" id="FontVariation_uxy5u"]
+base_font = ExtResource("11_4erei")
+variation_embolden = 0.36
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_syjvi"]
 content_margin_left = 20.0
 content_margin_top = 4.0
@@ -173,7 +182,7 @@ content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
 color = Color(1, 0.86, 0.65, 1)
-thickness = 10
+thickness = 8
 vertical = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_i61ni"]
@@ -269,7 +278,7 @@ custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="Title" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 168)
+custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_wu63y")
 
@@ -278,17 +287,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -30.0
-offset_bottom = 23.0
+offset_top = -41.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.734053, 0.75768, 0.433527, 1)
+theme_override_colors/font_color = Color(0.83977, 0.8055, 0.393436, 1)
 theme_override_colors/font_outline_color = Color(0.682129, 0.516149, 0.119649, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/outline_size = 0
-theme_override_constants/shadow_outline_size = 20
-theme_override_fonts/font = ExtResource("11_4erei")
-theme_override_font_sizes/font_size = 172
+theme_override_fonts/font = SubResource("FontVariation_v375e")
+theme_override_font_sizes/font_size = 180
 text = "Weaver"
 horizontal_alignment = 1
 
@@ -317,10 +323,10 @@ grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_color = Color(1, 0.852115, 0.652964, 1)
-theme_override_colors/font_pressed_color = Color(0.999999, 0.743252, 0.361661, 1)
-theme_override_colors/font_color = Color(0.999999, 0.772822, 0.448921, 1)
-theme_override_fonts/font = ExtResource("11_4erei")
+theme_override_colors/font_hover_color = Color(1, 0.795964, 0.511522, 1)
+theme_override_colors/font_pressed_color = Color(0.9, 0.6768, 0.342, 1)
+theme_override_colors/font_color = Color(0.999999, 0.755171, 0.398143, 1)
+theme_override_fonts/font = SubResource("FontVariation_uxy5u")
 theme_override_font_sizes/font_size = 72
 theme_override_styles/hover = SubResource("StyleBoxLine_syjvi")
 theme_override_styles/pressed = SubResource("StyleBoxLine_yuu4k")
