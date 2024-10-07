@@ -140,7 +140,6 @@ z_index = 1
 top_left_marker = NodePath("TopLeft")
 bottom_right_marker = NodePath("BottomRight")
 horizontal_spread = SubResource("Curve_2coha")
-spawn_interval = 6.0
 mobs = Array[ExtResource("3_ivcbe")]([ExtResource("4_ytwgf"), ExtResource("5_1vafj")])
 
 [node name="TopLeft" type="Marker2D" parent="MobSpawner"]

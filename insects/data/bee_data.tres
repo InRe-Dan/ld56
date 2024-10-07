@@ -12,6 +12,6 @@ max_speed = 120.0
 energy_gain = 10.0
 spawn_weight = 1.0
 spawn_cost = 1.0
-difficulty_requirement = 0
+difficulty_requirement = 60
 initial_damage = 0.6
 struggle_damage = 0.04

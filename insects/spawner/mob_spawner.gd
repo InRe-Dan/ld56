@@ -1,12 +1,10 @@
-@icon("res://assets/editor_icons/node_2D/icon_skull.png")
 extends Node2D
 
 @export var top_left_marker : Marker2D
 @export var bottom_right_marker : Marker2D
 @export var horizontal_spread : Curve
 
-@export var spawn_interval : float = 10
-@export var interval_variation : float = 5
+@export var start_spawn_interval : float = 3
 
 @export var mobs : Array[MobData]:
 	get:
@@ -16,10 +14,11 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var spawn_timer : float = 0.0
 
 # Should increase in some way as the player progresses
-var difficulty_metric = 0
+var difficulty_metric = 1
 
 @onready var insect_scene : PackedScene = preload("res://insects/insect.tscn")
 
+var spawn_interval : float = 1
 
 ## Removes any mobs in the array that shouldn't be spawned right now.
 func filter_by_spawnable() -> Array[MobData]:
@@ -36,7 +35,7 @@ func get_random_spawn_pos() -> Vector2:
 	)
 
 func reset_timer() -> void:
-	spawn_timer = spawn_interval + randf_range(-1, 1) * interval_variation
+	spawn_timer = spawn_interval + randf_range(-0.5, 0.2) * spawn_interval
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +44,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	difficulty_metric += delta
+	# every 10 seconds the game gets sqrt(
+	spawn_interval = start_spawn_interval + pow(difficulty_metric * 0.05, 1.3)
 	spawn_timer -= delta
 	if spawn_timer <= 0:
 		reset_timer()

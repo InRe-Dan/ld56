@@ -1,4 +1,3 @@
-@icon("res://assets/editor_icons/control/icon_event.png")
 extends Control
 
 @onready var spider : Spider = get_tree().get_first_node_in_group("spider")
