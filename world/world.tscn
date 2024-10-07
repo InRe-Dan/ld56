@@ -40,12 +40,12 @@ point_count = 2
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
-[sub_resource type="Gradient" id="Gradient_qkkmx"]
+[sub_resource type="Gradient" id="Gradient_4vyqd"]
 offsets = PackedFloat32Array(0, 0.0342679, 0.046729)
 colors = PackedColorArray(0.973943, 0.966453, 0.926597, 1, 0.987944, 0.984478, 0.966037, 0.462687, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_byrso"]
-gradient = SubResource("Gradient_qkkmx")
+gradient = SubResource("Gradient_4vyqd")
 fill = 1
 fill_from = Vector2(0.547009, 0.482906)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://brhwb7l7lrnxs"]
+[gd_scene load_steps=28 format=3 uid="uid://brhwb7l7lrnxs"]
 
 [ext_resource type="Theme" uid="uid://hho5m4qd8ohe" path="res://resources/theme/main.tres" id="1_jvn0s"]
 [ext_resource type="Script" path="res://menus/game_over.gd" id="2_y2u1g"]
@@ -12,42 +12,18 @@
 [ext_resource type="Texture2D" uid="uid://cq4sexdsflati" path="res://assets/background_icons/leaf4.png" id="10_aww0j"]
 [ext_resource type="FontFile" uid="uid://4y2kwmcdk8ka" path="res://assets/fonts/Schoolbell-Regular.ttf" id="11_gyqhu"]
 
-[sub_resource type="Curve" id="Curve_x8rvv"]
-_data = [Vector2(0.00946373, 0.0457968), 0.0, 0.0, 0, 0, Vector2(0.217666, 1), 0.0, 0.0, 0, 0, Vector2(0.769716, 1), 0.0, 0.0, 0, 0, Vector2(0.996845, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_nwjmk"]
-curve = SubResource("Curve_x8rvv")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_40dot"]
-emission_shape = 3
-emission_box_extents = Vector3(1280, 720, 1)
-angle_min = -269.0
-angle_max = 336.6
-gravity = Vector3(0, -5, 0)
-linear_accel_min = -32.47
-linear_accel_max = 14.0
-radial_accel_min = -57.61
-radial_accel_max = 80.0
-tangential_accel_min = -8.95
-tangential_accel_max = 3.55
-scale_min = 0.0
-scale_max = 5.0
-scale_curve = SubResource("CurveTexture_nwjmk")
-color = Color(0.9, 0.81675, 0.567, 0.768627)
-hue_variation_min = -0.09
-hue_variation_max = 0.05
-turbulence_enabled = true
-turbulence_noise_strength = 4.15
-
-[sub_resource type="Gradient" id="Gradient_qkkmx"]
+[sub_resource type="Gradient" id="Gradient_kgond"]
 offsets = PackedFloat32Array(0, 0.0342679, 0.046729)
 colors = PackedColorArray(0.973943, 0.966453, 0.926597, 1, 0.987944, 0.984478, 0.966037, 0.462687, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_doew8"]
-gradient = SubResource("Gradient_qkkmx")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6et00"]
+gradient = SubResource("Gradient_kgond")
 fill = 1
 fill_from = Vector2(0.547009, 0.482906)
+
+[sub_resource type="Curve" id="Curve_pmwq7"]
+_data = [Vector2(0.00946373, 0.0457968), 0.0, 0.0, 0, 0, Vector2(0.217666, 1), 0.0, 0.0, 0, 0, Vector2(0.769716, 1), 0.0, 0.0, 0, 0, Vector2(0.996845, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ov0ai"]
 shader = ExtResource("6_ayvsr")
@@ -158,13 +134,6 @@ position = Vector2(960, 540)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_o1re5")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Background"]
-position = Vector2(898, 528)
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_40dot")
-texture = SubResource("GradientTexture2D_doew8")
-lifetime = 10.0
-
 [node name="Border" type="TextureRect" parent="Background"]
 modulate = Color(1, 1, 1, 0.411765)
 anchors_preset = 15
@@ -183,6 +152,33 @@ unique_name_in_owner = true
 position = Vector2(965, 541)
 scale = Vector2(1.067, 1.067)
 texture = ExtResource("5_4ishe")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="Background"]
+position = Vector2(898, 528)
+amount = 300
+lifetime = 10.0
+fixed_fps = 30
+draw_order = 1
+texture = SubResource("GradientTexture2D_6et00")
+emission_shape = 3
+emission_rect_extents = Vector2(1280, 720)
+spread = 180.0
+gravity = Vector2(0, -5)
+initial_velocity_max = 11.11
+linear_accel_min = -15.0
+linear_accel_max = 7.0
+radial_accel_min = -20.0
+radial_accel_max = 20.0
+tangential_accel_min = -4.0
+tangential_accel_max = 2.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_pmwq7")
+color = Color(0.901961, 0.815686, 0.568627, 0.560784)
+hue_variation_min = -0.09
+hue_variation_max = 0.05
 
 [node name="Foreground" type="Node2D" parent="."]
 
