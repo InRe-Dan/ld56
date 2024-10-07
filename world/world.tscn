@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=33 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -8,7 +8,6 @@
 [ext_resource type="Resource" uid="uid://d0m6otktqidyh" path="res://insects/data/bee_data.tres" id="5_1vafj"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
 [ext_resource type="Script" path="res://world/background.gd" id="7_iuor6"]
-[ext_resource type="Shader" path="res://world/rain.gdshader" id="7_tiqi7"]
 [ext_resource type="Texture2D" uid="uid://vkbehguryo40" path="res://assets/background_icons/tree_branches.png" id="8_l0u6f"]
 [ext_resource type="Texture2D" uid="uid://da06dyhn5luhw" path="res://assets/background_icons/leaf1.png" id="10_4eig0"]
 [ext_resource type="Shader" path="res://world/wind.gdshader" id="10_57em3"]
@@ -17,15 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://bvbuvch1rxf6e" path="res://assets/background_icons/leaf2.png" id="11_7l5q3"]
 [ext_resource type="Texture2D" uid="uid://cflssl2bbhkl0" path="res://assets/background_icons/leaf3.png" id="12_hh8ao"]
 [ext_resource type="Texture2D" uid="uid://cq4sexdsflati" path="res://assets/background_icons/leaf4.png" id="13_a1sk7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryc6q"]
-shader = ExtResource("7_tiqi7")
-shader_parameter/color = Color(0.5, 0.5, 0.5, 1)
-shader_parameter/speed = 2.0
-shader_parameter/density = 100.0
-shader_parameter/compression = 0.2
-shader_parameter/trail_size = 50.0
-shader_parameter/brightness = 5.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jub1u"]
 normal = Vector2(0, 1)
@@ -128,7 +118,6 @@ offsets = PackedFloat32Array(0, 0.508828, 1)
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.95, 0, 1, 0.110667, 0.83, 0, 1)
 
 [node name="World" type="Node2D"]
-material = SubResource("ShaderMaterial_ryc6q")
 script = ExtResource("1_m6c00")
 
 [node name="Bounds" type="Node2D" parent="."]
