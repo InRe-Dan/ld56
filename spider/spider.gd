@@ -67,10 +67,10 @@ func _physics_process(delta: float) -> void:
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	# Speed formula
-	var speed_mod: float = max(
+	var speed_mod: float = min(1.0, max(
 		2 * cast_length - max(_get_intersection_strength(up_cast) + _get_intersection_strength(down_cast), cast_length),
 		2 * cast_length - max(_get_intersection_strength(left_cast) + _get_intersection_strength(right_cast), cast_length)
-	)
+	))
 	
 	# Rotate spider to face input vector
 	if input_vector != Vector2.ZERO:

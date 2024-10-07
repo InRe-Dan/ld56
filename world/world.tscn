@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://4a2wbnhvgulj"]
+[gd_scene load_steps=31 format=3 uid="uid://4a2wbnhvgulj"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_m6c00"]
 [ext_resource type="PackedScene" uid="uid://dqyqlpicgb0dq" path="res://web/web_factory.tscn" id="2_u3u5w"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d3ud2rqlsvy6p" path="res://spider/spider.tscn" id="3_pypjb"]
 [ext_resource type="Resource" uid="uid://cq0t7gbt2mrw3" path="res://insects/data/fly_data.tres" id="4_ytwgf"]
 [ext_resource type="PackedScene" uid="uid://2kdgbkrdrcu7" path="res://insects/spawner/mob_spawner.tscn" id="7_8wlli"]
-[ext_resource type="Texture2D" uid="uid://do3b5ncvb62fy" path="res://assets/wood.png" id="7_86lbx"]
 [ext_resource type="Script" path="res://world/background.gd" id="7_iuor6"]
 [ext_resource type="Texture2D" uid="uid://vkbehguryo40" path="res://assets/background_icons/tree_branches.png" id="8_l0u6f"]
 [ext_resource type="Texture2D" uid="uid://da06dyhn5luhw" path="res://assets/background_icons/leaf1.png" id="10_4eig0"]
@@ -73,14 +72,6 @@ colors = PackedColorArray(0.973943, 0.966453, 0.926597, 1, 0.987944, 0.984478, 0
 gradient = SubResource("Gradient_qkkmx")
 fill = 1
 fill_from = Vector2(0.547009, 0.482906)
-
-[sub_resource type="Curve" id="Curve_qf50r"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.211758, 0.707995), 0.0, 0.0, 0, 0, Vector2(0.497146, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.74099), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Curve" id="Curve_l8ggl"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.166096, 0.864721), 0.0, 0.0, 0, 0, Vector2(0.291667, 1), 0.0, 0.0, 0, 0, Vector2(0.505708, 1), 0.0, 0.0, 0, 0, Vector2(0.628425, 1), 0.0, 0.0, 0, 0, Vector2(0.739726, 1), 0.0, 0.0, 0, 0, Vector2(0.83105, 0.815228), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 8
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_spqm1"]
 shader = ExtResource("10_57em3")
@@ -166,8 +157,8 @@ script = ExtResource("7_iuor6")
 
 [node name="BackgroundImage" type="Sprite2D" parent="Background"]
 unique_name_in_owner = true
-position = Vector2(965, 545)
-scale = Vector2(1.06667, 1.06667)
+position = Vector2(960, 540)
+scale = Vector2(1.1, 1.1)
 texture = ExtResource("11_4ijh7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Background"]
@@ -185,159 +176,101 @@ texture = ExtResource("8_l0u6f")
 
 [node name="Trees" type="Node2D" parent="."]
 
-[node name="RightBranch" type="StaticBody2D" parent="Trees"]
-collision_layer = 18
-collision_mask = 14
-
-[node name="VisualMask" type="Line2D" parent="Trees/RightBranch"]
-visible = false
-texture_repeat = 3
-position = Vector2(0, -1)
-points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
-width = 30.0
-width_curve = SubResource("Curve_qf50r")
-default_color = Color(0.84, 0.75964, 0.7224, 1)
-texture = ExtResource("7_86lbx")
-texture_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightBranch"]
-build_mode = 1
-polygon = PackedVector2Array(1940, 499, 1678, 1097)
-
-[node name="RightBranch2" type="StaticBody2D" parent="Trees"]
-position = Vector2(777, -1179)
-rotation = 0.630475
-collision_layer = 18
-collision_mask = 14
-
-[node name="VisualMask" type="Line2D" parent="Trees/RightBranch2"]
-visible = false
-texture_repeat = 3
-position = Vector2(0, -1)
-points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
-width = 30.0
-width_curve = SubResource("Curve_qf50r")
-default_color = Color(0.84, 0.75964, 0.7224, 1)
-texture = ExtResource("7_86lbx")
-texture_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightBranch2"]
-build_mode = 1
-polygon = PackedVector2Array(1631.91, 324.284, 1665.34, 614.344, 1880.29, 1034.38, 1658.13, 614.651)
-
-[node name="LeftBranch3" type="StaticBody2D" parent="Trees/RightBranch2"]
-position = Vector2(547.484, -18.2701)
-rotation = 1.21
-collision_layer = 18
-collision_mask = 14
-
-[node name="VisualMask" type="Line2D" parent="Trees/RightBranch2/LeftBranch3"]
-visible = false
-texture_repeat = 3
-position = Vector2(0, -1)
-points = PackedVector2Array(1774.03, 484.84, 1684, 546, 1492, 700, 1358, 778)
-width = 30.0
-width_curve = SubResource("Curve_qf50r")
-default_color = Color(0.84, 0.75964, 0.7224, 1)
-texture = ExtResource("7_86lbx")
-texture_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightBranch2/LeftBranch3"]
-build_mode = 1
-polygon = PackedVector2Array(2122.64, 247.425, 1600.88, 889.644)
-
-[node name="LeftBranch" type="StaticBody2D" parent="Trees"]
-position = Vector2(-91, -921)
-rotation = 0.949372
-collision_layer = 18
-collision_mask = 14
-
-[node name="VisualMask" type="Line2D" parent="Trees/LeftBranch"]
-visible = false
-texture_repeat = 3
-position = Vector2(0, -1)
-points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
-width = 30.0
-width_curve = SubResource("Curve_qf50r")
-default_color = Color(0.84, 0.75964, 0.7224, 1)
-texture = ExtResource("7_86lbx")
-texture_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch"]
-build_mode = 1
-polygon = PackedVector2Array(1842.54, 683.493, 910.477, 473.617)
-
-[node name="LeftBranch2" type="StaticBody2D" parent="Trees"]
-position = Vector2(688, -1399)
-rotation = 1.39924
-collision_layer = 18
-collision_mask = 14
-
-[node name="VisualMask" type="Line2D" parent="Trees/LeftBranch2"]
-visible = false
-texture_repeat = 3
-position = Vector2(0, -1)
-points = PackedVector2Array(1792, 475, 1684, 546, 1492, 700, 1358, 778)
-width = 30.0
-width_curve = SubResource("Curve_qf50r")
-default_color = Color(0.84, 0.75964, 0.7224, 1)
-texture = ExtResource("7_86lbx")
-texture_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
-[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftBranch2"]
-build_mode = 1
-polygon = PackedVector2Array(1542.75, 667.166, 1259.31, 873.812)
-
 [node name="LeftTree" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
 collision_mask = 14
 
-[node name="VisualMask" type="Line2D" parent="Trees/LeftTree"]
-visible = false
-texture_repeat = 3
-points = PackedVector2Array(480, 0, 495, 161, 519.11, 351.989, 537, 454, 546, 667, 591, 930, 618, 1234)
-width = 60.0
-width_curve = SubResource("Curve_l8ggl")
-default_color = Color(0.84, 0.75964, 0.7224, 1)
-texture = ExtResource("7_86lbx")
-texture_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree"]
 build_mode = 1
-polygon = PackedVector2Array(262, -11, 498, 1117)
+polygon = PackedVector2Array(240, -320, 580, 1400)
+
+[node name="Branch" type="StaticBody2D" parent="Trees/LeftTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch"]
+build_mode = 1
+polygon = PackedVector2Array(480, -320, 350, 225)
+
+[node name="Branch2" type="StaticBody2D" parent="Trees/LeftTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch2"]
+build_mode = 1
+polygon = PackedVector2Array(0, 0, 340, 190)
+
+[node name="Branch3" type="StaticBody2D" parent="Trees/LeftTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch3"]
+build_mode = 1
+polygon = PackedVector2Array(40, 0, 420, 1080)
+
+[node name="Branch4" type="StaticBody2D" parent="Trees/LeftTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch4"]
+build_mode = 1
+polygon = PackedVector2Array(0, 530, 370, 1080)
+
+[node name="Branch5" type="StaticBody2D" parent="Trees/LeftTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/LeftTree/Branch5"]
+build_mode = 1
+polygon = PackedVector2Array(200, 0, 440, 1080)
 
 [node name="RightTree" type="StaticBody2D" parent="Trees"]
 collision_layer = 18
 collision_mask = 14
 
-[node name="VisualMask" type="Line2D" parent="Trees/RightTree"]
-visible = false
-texture_repeat = 3
-position = Vector2(0, -1)
-points = PackedVector2Array(1440, 0, 1422, 183, 1394, 372, 1373, 640, 1331, 891, 1293, 1236)
-width = 60.0
-width_curve = SubResource("Curve_qf50r")
-default_color = Color(0.84, 0.75964, 0.7224, 1)
-texture = ExtResource("7_86lbx")
-texture_mode = 1
-begin_cap_mode = 2
-end_cap_mode = 2
-
 [node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree"]
 build_mode = 1
-polygon = PackedVector2Array(1600, -19, 1616, 549, 1546, 1125, 1624, 549)
+polygon = PackedVector2Array(1730, -320, 1500, 1400)
+
+[node name="Branch" type="StaticBody2D" parent="Trees/RightTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch"]
+build_mode = 1
+polygon = PackedVector2Array(1540, -320, 1620, 500)
+
+[node name="Branch2" type="StaticBody2D" parent="Trees/RightTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch2"]
+build_mode = 1
+polygon = PackedVector2Array(1800, 0, 1670, 100)
+
+[node name="Branch3" type="StaticBody2D" parent="Trees/RightTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch3"]
+build_mode = 1
+polygon = PackedVector2Array(1880, 0, 1620, 1080)
+
+[node name="Branch4" type="StaticBody2D" parent="Trees/RightTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch4"]
+build_mode = 1
+polygon = PackedVector2Array(1920, 530, 1680, 1080)
+
+[node name="Branch5" type="StaticBody2D" parent="Trees/RightTree"]
+collision_layer = 18
+collision_mask = 14
+
+[node name="CollisionMask" type="CollisionPolygon2D" parent="Trees/RightTree/Branch5"]
+build_mode = 1
+polygon = PackedVector2Array(1920, 0, 1650, 450)
 
 [node name="WebFactory" parent="." instance=ExtResource("2_u3u5w")]
 

@@ -13,5 +13,4 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	background_image.position = origin - spider.position*0.04
-	tree_branches.position = origin - spider.position*0.02
 	
