@@ -11,6 +11,9 @@ var target_dir : Vector2 = Vector2.from_angle(TAU * randf())
 var change_dir_time : float = 1 + randf()
 var stuck_to : Web
 
+var anim_time_current : float = 0.0
+var anim_frame_time : float = 0.1
+
 signal SPLAT(position)
 
 @onready var eyes : RayCast2D = $Eyes
@@ -43,6 +46,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if spawning:
 		return
+	
+	anim_time_current += delta
+	if anim_time_current > anim_frame_time:
+		anim_time_current -= anim_frame_time
+		if sprite.frame == sprite.hframes - 1:
+			sprite.frame = 0
+		else:
+			sprite.frame += 1
+	
 	if change_dir_time < 0:
 		change_dir_time = 1 + randf()
 		target_dir = Vector2.from_angle(TAU * randf())
@@ -71,6 +83,7 @@ func _process(delta: float) -> void:
 	velocity += target_dir * delta * mob_data.acceleration
 	velocity = velocity.limit_length(mob_data.max_speed)
 	global_position += velocity * delta
+	global_rotation = rotate_toward(global_rotation, velocity.angle() + PI/2, delta * mob_data.spin_speed)
 
 
 func kill(blood_splatter_dir : Vector2) -> void:
