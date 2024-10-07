@@ -23,7 +23,6 @@ func toggle_band_pass(state : bool) -> void:
 
 
 func play_click_sound() -> void:
-	print("play")
 	$ButtonClick.play()
 
 
