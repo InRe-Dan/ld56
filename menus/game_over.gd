@@ -9,6 +9,7 @@ const greatest_stat_value : int = 999
 
 ## Called when this node enters the scene tree for the first time
 func _ready() -> void:
+	Global.toggle_track(false)
 	Global.toggle_band_pass(false)
 	time_stat.text = str(min(greatest_stat_value, round(Global.time_played)))
 	devour_stat.text = str(min(greatest_stat_value, Global.insects_devoured))

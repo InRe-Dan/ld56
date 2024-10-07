@@ -1,5 +1,6 @@
-@icon("res://assets/editor_icons/control/icon_event.png")
 extends Control
+
+@export var energy_gradient : Gradient
 
 @onready var spider : Spider = get_tree().get_first_node_in_group("spider")
 @onready var reticle : Sprite2D = $WebReticle
@@ -12,6 +13,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$TextureProgressBar.value = spider.energy
+	$TextureProgressBar.tint_progress = energy_gradient.sample(spider.energy / spider.energy_cap)
 	
 	var aim : Vector2 = spider.get_websling_position()
 	if aim == Vector2(-1, -1):

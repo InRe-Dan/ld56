@@ -2,7 +2,7 @@ class_name Spider extends RigidBody2D
 
 var bullet_scene : PackedScene = preload("res://spider/web_bullet.tscn")
 
-@export var energy_cap = 100
+@export var energy_cap = 100.0
 @export var enery_drain_per_second = 0.5
 @export var web_cost = 2.5
 @export var jump_cost = 5.0
@@ -64,6 +64,7 @@ func _physics_process(delta: float) -> void:
 	Global.time_played += delta
 	
 	energy -= delta
+	Global.sample_tracks(energy / energy_cap)
 	# Get input vector
 	var input_vector = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	# Speed formula

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://hho5m4qd8ohe" path="res://resources/theme/main.tres" id="1_3evos"]
 [ext_resource type="Script" path="res://menus/main_menu.gd" id="2_y1f7y"]
-[ext_resource type="Texture2D" uid="uid://gukuv7yrrhqd" path="res://assets/background_icons/background.png" id="3_71okx"]
+[ext_resource type="Texture2D" uid="uid://w336v7metces" path="res://assets/background_icons/background2.png" id="3_drwuw"]
 [ext_resource type="Texture2D" uid="uid://vkbehguryo40" path="res://assets/background_icons/tree_branches.png" id="4_sw0q3"]
 [ext_resource type="Texture2D" uid="uid://bk08bwsv6oc7i" path="res://assets/web_border.png" id="4_x3dha"]
 [ext_resource type="Shader" path="res://world/wind.gdshader" id="5_2g2wx"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bvbuvch1rxf6e" path="res://assets/background_icons/leaf2.png" id="7_ypjsf"]
 [ext_resource type="Texture2D" uid="uid://cflssl2bbhkl0" path="res://assets/background_icons/leaf3.png" id="8_34vv8"]
 [ext_resource type="Texture2D" uid="uid://cq4sexdsflati" path="res://assets/background_icons/leaf4.png" id="9_xy084"]
-[ext_resource type="FontFile" uid="uid://byvnesw64mp7n" path="res://assets/fonts/Schoolbell-Regular.ttf" id="11_4erei"]
+[ext_resource type="FontFile" uid="uid://4y2kwmcdk8ka" path="res://assets/fonts/Schoolbell-Regular.ttf" id="11_4erei"]
 
 [sub_resource type="Curve" id="Curve_dpcxj"]
 _data = [Vector2(0.00946373, 0.0457968), 0.0, 0.0, 0, 0, Vector2(0.217666, 1), 0.0, 0.0, 0, 0, Vector2(0.769716, 1), 0.0, 0.0, 0, 0, Vector2(0.996845, 0), 0.0, 0.0, 0, 0]
@@ -109,7 +109,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.8, 0.5, 0)
+color = Color(0.69, 0.685975, 0.4485, 1)
 thickness = 8
 vertical = true
 
@@ -118,7 +118,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.86, 0.65, 0)
+color = Color(0.69, 0.68885, 0.621, 1)
 thickness = 10
 vertical = true
 
@@ -127,7 +127,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.732, 0.33, 0)
+color = Color(0.69, 0.68425, 0.345, 1)
 thickness = 6
 vertical = true
 
@@ -211,7 +211,7 @@ script = ExtResource("2_y1f7y")
 unique_name_in_owner = true
 position = Vector2(960, 540)
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("3_71okx")
+texture = ExtResource("3_drwuw")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Background"]
 position = Vector2(898, 528)
@@ -221,7 +221,7 @@ texture = SubResource("GradientTexture2D_4yawm")
 lifetime = 10.0
 
 [node name="Border" type="TextureRect" parent="Background"]
-modulate = Color(1, 1, 1, 0.411765)
+modulate = Color(1, 1, 1, 0.741176)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -291,7 +291,7 @@ offset_top = -41.0
 offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.83977, 0.8055, 0.393436, 1)
+theme_override_colors/font_color = Color(0.89, 0.838973, 0.5073, 1)
 theme_override_colors/font_outline_color = Color(0.682129, 0.516149, 0.119649, 1)
 theme_override_fonts/font = SubResource("FontVariation_v375e")
 theme_override_font_sizes/font_size = 180

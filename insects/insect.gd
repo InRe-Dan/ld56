@@ -19,6 +19,8 @@ signal SPLAT(position)
 @onready var eyes : RayCast2D = $Eyes
 @onready var avoidance_cooldown : float = 0
 @onready var sprite : Sprite2D = $Sprite2D
+@onready var visibility_notifier : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var despawn_timer : Timer = $DespawnTimer
 
 
 func enable() -> void:
@@ -26,6 +28,7 @@ func enable() -> void:
 	$Hurtbox/CollisionShape2D.disabled = false
 	spawning = false
 	pass
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,24 +44,28 @@ func _ready() -> void:
 	scale = scale * 0.1
 	scale_tween.tween_property(self, "scale", scale * 10, 1.5)
 	_update_mob_data()
+	
+	_on_visible_on_screen_notifier_2d_screen_exited()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if spawning:
 		return
 	
-	anim_time_current += delta
-	if anim_time_current > anim_frame_time:
-		anim_time_current -= anim_frame_time
-		if sprite.frame == sprite.hframes - 1:
-			sprite.frame = 0
-		else:
-			sprite.frame += 1
+	if not(stuck_to and is_instance_valid(stuck_to)):
+		anim_time_current += delta
+		if anim_time_current > anim_frame_time:
+			anim_time_current -= anim_frame_time
+			if sprite.frame == sprite.hframes - 1:
+				sprite.frame = 0
+			else:
+				sprite.frame += 1
 	
 	if change_dir_time < 0:
 		change_dir_time = 1 + randf()
-		target_dir = Vector2.from_angle(TAU * randf())
-	
+		target_dir = (Vector2.from_angle(TAU * randf()) + global_position.direction_to(Vector2(960, 540))) / 2.0
+
 	# Deal damage to web if stuck
 	if is_instance_valid(stuck_to):
 		if randf() < delta:
@@ -103,11 +110,11 @@ func _update_mob_data() -> void:
 		sprite.texture = mob_data.texture
 
 
+## Collided with web
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if is_instance_valid(stuck_to) or stuck_to != null: return
 	var web : Web = body as Web
 	assert(web)
-	# Placeholder logic
 	stuck_to = web
 	web.destroyed.connect(_on_capturing_web_destroyed)
 	web.damage(mob_data.initial_damage)
@@ -118,3 +125,15 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 func _on_capturing_web_destroyed() -> void:
 	if is_instance_valid(stuck_to): stuck_to.destroyed.disconnect(_on_capturing_web_destroyed)
 	stuck_to = null
+
+
+## Despawned
+func _on_despawn_timer_timeout() -> void:
+	if visibility_notifier.is_on_screen(): return
+	queue_free()
+
+
+## Exited view
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	despawn_timer.stop()
+	despawn_timer.start()

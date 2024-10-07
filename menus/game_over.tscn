@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://hho5m4qd8ohe" path="res://resources/theme/main.tres" id="1_jvn0s"]
 [ext_resource type="Script" path="res://menus/game_over.gd" id="2_y2u1g"]
-[ext_resource type="Texture2D" uid="uid://gukuv7yrrhqd" path="res://assets/background_icons/background.png" id="3_xdjud"]
+[ext_resource type="Texture2D" uid="uid://w336v7metces" path="res://assets/background_icons/background2.png" id="3_o1re5"]
 [ext_resource type="Texture2D" uid="uid://bk08bwsv6oc7i" path="res://assets/web_border.png" id="4_5oeln"]
 [ext_resource type="Texture2D" uid="uid://vkbehguryo40" path="res://assets/background_icons/tree_branches.png" id="5_4ishe"]
 [ext_resource type="Shader" path="res://world/wind.gdshader" id="6_ayvsr"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bvbuvch1rxf6e" path="res://assets/background_icons/leaf2.png" id="8_kdv0q"]
 [ext_resource type="Texture2D" uid="uid://cflssl2bbhkl0" path="res://assets/background_icons/leaf3.png" id="9_ukkj7"]
 [ext_resource type="Texture2D" uid="uid://cq4sexdsflati" path="res://assets/background_icons/leaf4.png" id="10_aww0j"]
-[ext_resource type="FontFile" uid="uid://byvnesw64mp7n" path="res://assets/fonts/Schoolbell-Regular.ttf" id="11_gyqhu"]
+[ext_resource type="FontFile" uid="uid://4y2kwmcdk8ka" path="res://assets/fonts/Schoolbell-Regular.ttf" id="11_gyqhu"]
 
 [sub_resource type="Curve" id="Curve_x8rvv"]
 _data = [Vector2(0.00946373, 0.0457968), 0.0, 0.0, 0, 0, Vector2(0.217666, 1), 0.0, 0.0, 0, 0, Vector2(0.769716, 1), 0.0, 0.0, 0, 0, Vector2(0.996845, 0), 0.0, 0.0, 0, 0]
@@ -86,16 +86,16 @@ shader_parameter/wave_frequency = 20.0
 shader_parameter/wave_length = 200.0
 
 [sub_resource type="Gradient" id="Gradient_23x0y"]
-offsets = PackedFloat32Array(0.3, 0.5, 0.7)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0.1, 0.4, 0.6, 0.9)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wu63y"]
 gradient = SubResource("Gradient_23x0y")
-width = 512
+width = 1024
 
 [sub_resource type="Gradient" id="Gradient_dric6"]
-offsets = PackedFloat32Array(0.1, 0.4, 0.6, 0.9)
+offsets = PackedFloat32Array(0.1, 0.3, 0.7, 0.9)
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 metadata/_snap_enabled = true
 
@@ -108,7 +108,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.8, 0.5, 1)
+color = Color(0.69, 0.685975, 0.4485, 1)
 thickness = 8
 vertical = true
 
@@ -117,7 +117,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.86, 0.65, 1)
+color = Color(0.69, 0.68885, 0.621, 1)
 thickness = 10
 vertical = true
 
@@ -126,7 +126,7 @@ content_margin_left = 20.0
 content_margin_top = 4.0
 content_margin_right = 20.0
 content_margin_bottom = 4.0
-color = Color(1, 0.733333, 0.329412, 1)
+color = Color(0.69, 0.68425, 0.345, 1)
 thickness = 6
 vertical = true
 
@@ -156,7 +156,7 @@ script = ExtResource("2_y2u1g")
 unique_name_in_owner = true
 position = Vector2(960, 540)
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("3_xdjud")
+texture = ExtResource("3_o1re5")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Background"]
 position = Vector2(898, 528)
@@ -234,7 +234,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.83977, 0.8055, 0.393436, 1)
+theme_override_colors/font_color = Color(0.890196, 0.839216, 0.505882, 1)
 theme_override_fonts/font = ExtResource("11_gyqhu")
 theme_override_font_sizes/font_size = 160
 text = "Game Over"
@@ -266,9 +266,9 @@ grow_vertical = 2
 size_flags_horizontal = 4
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme_override_colors/font_hover_color = Color(1, 0.795964, 0.511522, 1)
-theme_override_colors/font_pressed_color = Color(0.9, 0.6768, 0.342, 1)
-theme_override_colors/font_color = Color(0.999999, 0.755171, 0.398143, 1)
+theme_override_colors/font_hover_color = Color(1, 0.852115, 0.652964, 1)
+theme_override_colors/font_pressed_color = Color(0.999999, 0.743252, 0.361661, 1)
+theme_override_colors/font_color = Color(0.999999, 0.772822, 0.448921, 1)
 theme_override_fonts/font = ExtResource("11_gyqhu")
 theme_override_font_sizes/font_size = 52
 theme_override_styles/hover = SubResource("StyleBoxLine_syjvi")

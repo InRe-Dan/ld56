@@ -1,4 +1,3 @@
-@icon("res://assets/editor_icons/node_2D/icon_flag.png")
 extends Node2D
 
 @onready var spider : Spider = $Spider
@@ -6,6 +5,7 @@ extends Node2D
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.toggle_track(true)
 	Global.toggle_band_pass(true)
 	
 	Global.time_played = 0.0
