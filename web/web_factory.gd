@@ -36,8 +36,8 @@ func split(web : Web, pos : Vector2) -> WebJoint:
 	new_joint.global_position = pos
 	add_child(new_joint)
 	if not (is_instance_valid(web.point_a) and is_instance_valid(web.point_b)): return new_joint
-	_create_web_segment(web.point_a.global_position.distance_to(new_joint.global_position), web.point_a, new_joint)
-	_create_web_segment(web.point_b.global_position.distance_to(new_joint.global_position), new_joint, web.point_b)
+	_create_web_segment(true, web.point_a.global_position.distance_to(new_joint.global_position), web.point_a, new_joint)
+	_create_web_segment(true, web.point_b.global_position.distance_to(new_joint.global_position), new_joint, web.point_b)
 	web.destroy()
 	return new_joint
 	
@@ -96,7 +96,7 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 	var direction: Vector2 = point_a.direction_to(point_b)
 	
 	var start_joint: WebJoint = get_joint_at(initial_scout, point_a)
-
+	var is_static : bool = start_joint.body is RigidBody2D
 	while distance > 0:
 		# Calculate distance of next segment
 		var new_web_length: float
@@ -113,8 +113,8 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 		var new_joint: WebJoint = get_joint_at(final_scout, end)
 		if not new_joint:
 			return
-
-		_create_web_segment(new_web_length, start_joint, new_joint)
+		
+		_create_web_segment(is_static, new_web_length, start_joint, new_joint)
 		start_joint = new_joint
 		distance -= new_web_length
 	
@@ -122,10 +122,11 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 
 
 ## Creates a new web segment
-func _create_web_segment(length : float, point_a : WebJoint, point_b : WebJoint = null) -> void:
+func _create_web_segment(rigid_origin : bool, length : float, point_a : WebJoint, point_b : WebJoint = null) -> void:
 	# Instantiate new web object
 	var web: Web = web_scene.instantiate() as Web
 	web.point_a = point_a
 	web.point_b = point_b
+	if rigid_origin: web.resting_length = length * 0.6
 
 	add_child(web)

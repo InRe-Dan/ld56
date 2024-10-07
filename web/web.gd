@@ -24,7 +24,8 @@ var velocity : Vector2:
 		return vel_a + vel_b
 
 # Spring parameters
-var stiffness: float = 4096.0
+var resting_length : float = 0.0
+var stiffness: float = 8192.0
 var damping: float = 1024.0
 var lifetime : float = 60
 
@@ -65,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	# Apply spring physics
 	var direction: Vector2 = point_a.global_position.direction_to(point_b.global_position)
 	var distance : float = point_a.position.distance_to(point_b.position)
-	var magnitude: float = distance * stiffness
+	var magnitude: float = max(0.0, distance - resting_length) * stiffness
 	
 	# Destroy web if overstretched
 	if distance > Global.web_length * 4:
