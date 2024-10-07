@@ -130,6 +130,7 @@ script = ExtResource("1_gma0t")
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_vcq5e")
+pitch_scale = 0.8
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_iogig")

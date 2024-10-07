@@ -110,7 +110,7 @@ func create_web(point_a: Vector2, point_b: Vector2) -> void:
 		# Place points
 		distance_created += new_web_length
 		var end = point_a + direction * distance_created
-		
+
 		var new_joint: WebJoint = get_joint_at(final_scout, end)
 		if not new_joint:
 			return
