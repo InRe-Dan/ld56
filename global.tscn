@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d0ckbq1mytq2s"]
 
 [ext_resource type="Script" path="res://global.gd" id="1_rfklv"]
-[ext_resource type="AudioStream" uid="uid://bgrd03yxwav51" path="res://assets/sound/ld56_1_demo.mp3" id="2_5nxam"]
+[ext_resource type="AudioStream" uid="uid://cxoxi17xogky7" path="res://assets/sound/ld56_menu.mp3" id="2_2bpt6"]
 [ext_resource type="AudioStream" uid="uid://csi8dyukrdqg5" path="res://assets/sound/sfx/click1.ogg" id="3_6ps6f"]
 [ext_resource type="AudioStream" uid="uid://dvq0nwsv11nf8" path="res://assets/sound/sfx/weaksnap1.ogg" id="4_5jgsr"]
 [ext_resource type="AudioStream" uid="uid://d354sbe50nhyo" path="res://assets/sound/sfx/weaksnap2.ogg" id="5_drhvb"]
@@ -9,7 +9,7 @@
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_0vt7p"]
 stream_count = 1
-stream_0 = ExtResource("2_5nxam")
+stream_0 = ExtResource("2_2bpt6")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2dheb"]
 random_pitch = 1.05

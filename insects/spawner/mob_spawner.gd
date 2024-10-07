@@ -1,4 +1,3 @@
-@icon("res://assets/editor_icons/node_2D/icon_skull.png")
 extends Node2D
 
 @export var top_left_marker : Marker2D
