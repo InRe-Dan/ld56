@@ -46,7 +46,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	difficulty_metric += delta
 	# every 10 seconds the game gets sqrt(
-	spawn_interval = start_spawn_interval + pow(difficulty_metric * 0.05, 1.3)
+	spawn_interval = start_spawn_interval + pow(difficulty_metric * 0.05, 1.15)
 	spawn_timer -= delta
 	if spawn_timer <= 0:
 		reset_timer()

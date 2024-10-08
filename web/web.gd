@@ -98,6 +98,8 @@ func destroy() -> void:
 	if not free_timer.is_stopped(): return
 	if is_instance_valid(point_a): point_a.remove_web(self)
 	if is_instance_valid(point_b): point_b.remove_web(self)
+	if (is_instance_valid(point_a) and is_instance_valid(point_b)):
+		Global.play_snap_sound()
 	death_particles.position = (point_a.position + point_b.position) / 2.0
 	point_a = null
 	point_b = null
@@ -105,7 +107,6 @@ func destroy() -> void:
 	death_particles.emitting = true
 	destroyed.emit()
 	free_timer.start()
-	Global.play_snap_sound()
 
 
 ## Damages the web
